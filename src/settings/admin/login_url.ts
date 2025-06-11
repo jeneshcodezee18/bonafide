@@ -1,11 +1,12 @@
+import { commonController } from '../../controllers/admin/common/common';
 import app from "../../app"; 
 import * as config from "../../../config.json";
 import { Request, Response } from 'express';
 import { ResponseData } from "../../types/common";
 import { BASE_URL } from "../../util/secrets";
 import { validationResult } from "express-validator";
-import { commonController } from "../../controllers/common";
-import * as loginController from "../../controllers/admin/login";
+import * as loginController from "../../controllers/admin/login/login";
+import * as apiJwtController from "../../controllers/admin/jwt/jwt";
 
 
 export function bindURL(): void {
@@ -50,6 +51,22 @@ export function bindURL(): void {
             console.log(err)
             const respData = commonController.errorValidationResponse(err); 
             res.status(respData.status).send(respData);
+        }
+    });
+
+
+    app.get("/admin_master/login_check", (req: Request, res: Response): void => {
+        try {
+            apiJwtController.DECODE(req,  (respData) => {
+                if (respData.status !== 200) {
+                    res.redirect("/admin_master"); // Redirect to login page if token is expired
+                } else {
+                    res.status(respData.status).send(respData);
+                }
+            });
+        } catch (err) {
+            console.error(err); 
+            res.status(500).send("Internal Server Error");
         }
     });
 }

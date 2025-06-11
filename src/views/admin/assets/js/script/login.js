@@ -1,17 +1,16 @@
 jQuery(document).ready(function ($) {
   console.log("Login script loaded");
   let token = localStorage.getItem("TOKEN");
-  console.log(token,"<<<<<");
   jQuery.ajax({
     type: "GET",
-    url: BASE_URL + "admin/login_check",
+    url: BASE_URL + "admin_master/login_check",
     headers: {
       authorization: token ? `Bearer ${token}` : "",
     },
     data: {},
     success: function (response) {
       if (response.status === 200 && response.err === 0) {
-        window.location = BASE_URL + "admin/dashboard";
+        window.location = BASE_URL + "admin_master/adminHome";
       }
     },
   });

@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import md5 from "md5";
-import { commonController } from "../common";
-import { pool } from "../../app";
+import { commonController } from "../common/common";
+import { pool } from "../../../app";
 
 interface UserData {
   id: number;
