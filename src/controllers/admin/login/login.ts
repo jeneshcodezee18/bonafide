@@ -60,7 +60,6 @@ export const LOGIN = async function (
   callback(sendData);
 };
 
-
 // export const LOGOUT = async function (data, callback) {
 //     // Send data
 //     let sendData = commonController.getSendData(); // response data

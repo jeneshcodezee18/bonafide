@@ -199,7 +199,7 @@
 								</a>
 							</div>
 							<div data-kt-menu-trigger="click"
-								class="menu-item here menu-accordion <% if (menu == 'login_report' || menu == 'job_report') { %> show <% } %>">
+								class="menu-item here menu-accordion <% if (menu == 'report_analytics' || menu == 'upload_report' || menu == 'report_list' ||menu == 'press_releases_list' || menu == 'company_list' || menu == 'list_segment' || menu == 'list_segment_graph' || menu == 'list_snapshot' || menu == 'list_bar_graph' || menu == 'list_faqs' || menu == 'list_keyword' || menu == 'list_category' || menu == 'region_master' || menu == 'product_banner' || menu == 'sitemap' || menu == 'report_table_list') { %> show <% } %>">
 								<span class="menu-link">
 									<span class="menu-icon">
 										<!--begin::Svg Icon | path: icons/duotune/communication/com013.svg-->
@@ -220,8 +220,8 @@
 								</span>
 								<div class="menu-sub menu-sub-accordion menu-active-bg" kt-hidden-height="312">
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'login_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/login-report">
+										<a class="menu-link <% if (menu == 'report_analytics') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/report/report_analytics">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -229,8 +229,8 @@
 										</a>
 									</div>
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+										<a class="menu-link <% if (menu == 'upload_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/report/upload">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -238,8 +238,8 @@
 										</a>
 									</div>
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+										<a class="menu-link <% if (menu == 'report_list') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/report/manage">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -247,8 +247,8 @@
 										</a>
 									</div>
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+										<a class="menu-link <% if (menu == 'press_releases_list') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/press_releases/manage">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -256,8 +256,8 @@
 										</a>
 									</div>
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+										<a class="menu-link <% if (menu == 'company_list') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/company_master/manage">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -265,17 +265,8 @@
 										</a>
 									</div>
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/job-report">
-											<span class="menu-bullet">
-												<span class="bullet bullet-dot"></span>
-											</span>
-											<span class="menu-title fs-5">List Company</span>
-										</a>
-									</div>
-									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+										<a class="menu-link <% if (menu == 'list_segment') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/report/list_segment">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -283,8 +274,8 @@
 										</a>
 									</div>
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+										<a class="menu-link <% if (menu == 'list_segment_graph') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/report/segment_graph_list">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -292,8 +283,8 @@
 										</a>
 									</div>
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+										<a class="menu-link <% if (menu == 'list_snapshot') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/report/list_snapshot">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -301,8 +292,8 @@
 										</a>
 									</div>
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+										<a class="menu-link <% if (menu == 'list_bar_graph') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/report/bar_graph_list">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -310,8 +301,8 @@
 										</a>
 									</div>
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+										<a class="menu-link <% if (menu == 'list_faqs') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/report/faqs">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -319,8 +310,8 @@
 										</a>
 									</div>
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+										<a class="menu-link <% if (menu == 'list_keyword') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/keyword_link/manage">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -328,8 +319,8 @@
 										</a>
 									</div>
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+										<a class="menu-link <% if (menu == 'list_category') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/category/manage">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -337,8 +328,8 @@
 										</a>
 									</div>
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+										<a class="menu-link <% if (menu == 'region_master') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/region_master/manage">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -346,8 +337,8 @@
 										</a>
 									</div>
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+										<a class="menu-link <% if (menu == 'product_banner') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/report/product_banner">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -355,8 +346,8 @@
 										</a>
 									</div>
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+										<a class="menu-link <% if (menu == 'sitemap') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/site_config/sitemap">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -364,8 +355,8 @@
 										</a>
 									</div>
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+										<a class="menu-link <% if (menu == 'report_table_list') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/database/manage/report">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -375,7 +366,7 @@
 								</div>
 							</div>
 							<div data-kt-menu-trigger="click"
-								class="menu-item here menu-accordion <% if (menu == 'login_report' || menu == 'job_report') { %> show <% } %>">
+								class="menu-item here menu-accordion <% if (menu == 'partner' || menu == 'members' || menu == 'our_client' || menu == 'testimonial' || menu == 'quotation' || menu == 'email_template' || menu == 'report_promotion' || menu == 'sales_tracking' || menu == 'lead_master' || menu == 'subscriber_master' || menu == 'discount_coupon' || menu == 'email_to_subscriber' || menu == 'promotional_email' || menu == 'email_provider' || menu == 'upload_sales' || menu == 'sales_table_list') { %> show <% } %>">
 								<span class="menu-link">
 									<span class="menu-icon">
 										<!--begin::Svg Icon | path: icons/duotune/communication/com013.svg-->
@@ -395,8 +386,8 @@
 								</span>
 								<div class="menu-sub menu-sub-accordion menu-active-bg" kt-hidden-height="312">
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'login_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/login-report">
+										<a class="menu-link <% if (menu == 'partner') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/partner_list/manage">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -404,8 +395,8 @@
 										</a>
 									</div>
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+										<a class="menu-link <% if (menu == 'members') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/home_page/network_of_field_surveyors_list">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -413,8 +404,8 @@
 										</a>
 									</div>
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+										<a class="menu-link <% if (menu == 'our_client') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/testimonial/manage">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -422,8 +413,8 @@
 										</a>
 									</div>
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+										<a class="menu-link <% if (menu == 'testimonial') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/testimonial/manage">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -431,8 +422,8 @@
 										</a>
 									</div>
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+										<a class="menu-link <% if (menu == 'quotation') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/quotation/manage">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -440,8 +431,8 @@
 										</a>
 									</div>
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+										<a class="menu-link <% if (menu == 'email_template') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/email_template">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -449,8 +440,8 @@
 										</a>
 									</div>
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+										<a class="menu-link <% if (menu == 'report_promotion') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/report/report_promotion">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -458,8 +449,8 @@
 										</a>
 									</div>
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+										<a class="menu-link <% if (menu == 'sales_tracking') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/report/sales_tracking">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -467,8 +458,8 @@
 										</a>
 									</div>
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+										<a class="menu-link <% if (menu == 'lead_master') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/report/lead_master">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -476,8 +467,8 @@
 										</a>
 									</div>
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+										<a class="menu-link <% if (menu == 'subscriber_master') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/AdminHome/view_subscriber">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -485,8 +476,8 @@
 										</a>
 									</div>
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+										<a class="menu-link <% if (menu == 'discount_coupon') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/coupon_master/manage">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -494,8 +485,8 @@
 										</a>
 									</div>
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+										<a class="menu-link <% if (menu == 'email_to_subscriber') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/Subscriber_email/manage_product">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -503,8 +494,8 @@
 										</a>
 									</div>
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+										<a class="menu-link <% if (menu == 'promotional_email') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/promotional_email">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -512,8 +503,8 @@
 										</a>
 									</div>
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+										<a class="menu-link <% if (menu == 'email_provider') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/home_page/email_provider">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -521,8 +512,8 @@
 										</a>
 									</div>
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+										<a class="menu-link <% if (menu == 'upload_sales') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/report/upload_sales">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -530,8 +521,8 @@
 										</a>
 									</div>
 									<div class="menu-item">
-										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
-											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+										<a class="menu-link <% if (menu == 'sales_table_list') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin_master/Database/manage/sales">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
