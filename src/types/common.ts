@@ -1,7 +1,7 @@
 export interface ResponseData {
   base_url: string;
   title: string;
-  config: any;
+  config: Record<string, unknown>;
   script: { available: number; js: string };
   css: { available: number; css: string };
   menu: string;

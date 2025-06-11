@@ -9,9 +9,16 @@ interface UserData {
   password: string;
 }
 
+interface SendData {
+    status: number;
+    err: number;
+    data: object; // More specific type than `object`
+    msg: string;
+}
+
 export const LOGIN = async function (
   data: { username: string; password: string },
-  callback: (result: any) => void
+  callback: (result: SendData) => void
 ) {
   let sendData = commonController.getSendData();
   try {
