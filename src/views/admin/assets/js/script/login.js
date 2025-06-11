@@ -1,6 +1,7 @@
 jQuery(document).ready(function ($) {
   console.log("Login script loaded");
   let token = localStorage.getItem("TOKEN");
+  console.log(token,"<<<<<");
   jQuery.ajax({
     type: "GET",
     url: BASE_URL + "admin/login_check",
