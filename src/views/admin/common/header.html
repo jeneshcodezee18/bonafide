@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>
+		<%= config['WEBSITE_NAME'] %>
+	</title>
+	<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
+	<link rel="shortcut icon" href="<%= config['BASE_URL'] %>assets/media/logos/Icon-192.png" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+	<link href="<%= config['BASE_URL'] %>assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet"
+		type="text/css" />
+	<link href="<%= config['BASE_URL'] %>assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+
+	<link href="<%= config['BASE_URL'] %>/css/style.bundle.css" rel="stylesheet" type="text/css" />
+	<link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+	<link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+
+
+	<style>
+		.ui-menu {
+			z-index: 15006 !important;
+			overflow: auto;
+			max-height: 385px;
+		}
+
+		.ui-menu .ui-menu-item {
+			/* margin: 0; */
+			/* padding: 0; */
+			width: 100%;
+			height: 35px;
+		}
+
+		.ui-menu .ui-menu-item a {
+			text-decoration: none;
+			display: block;
+			padding: 6px 0.4em;
+			line-height: 1.5;
+			min-height: 0;
+			font-weight: normal;
+			height: 35px;
+			background: white;
+
+		}
+
+		.ui-menu-item a:hover {
+			/* text-decoration: none!important; */
+			background: #3a9ef7;
+			color: white;
+		}
+
+		.ui-state-hover,
+		.ui-widget-content .ui-state-hover,
+		.ui-widget-header .ui-state-hover,
+		.ui-state-focus,
+		.ui-widget-content .ui-state-focus,
+		.ui-widget-header .ui-state-focus {
+			border: 1px solid #3a9ef7 !important;
+			background: #3a9ef7 !important;
+			font-weight: normal;
+			color: #ffffff !important;
+		}
+
+		.expandable {
+			max-width: 100px;
+			/* Set your desired max width for truncated text */
+			max-height: 100px;
+			/* Set your desired max height for truncated text */
+			overflow: hidden;
+			white-space: nowrap;
+			position: relative;
+			text-overflow: ellipsis;
+			cursor: pointer;
+		}
+
+		.expandable:hover {
+			display: inline-block;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 10px;
+			text-size-adjust: initial;
+			content-visibility: initial;
+			direction: ltr;
+			position: relative;
+			padding: 10px;
+			border: 1px solid rgb(255, 255, 255);
+			max-width: 150px;
+			max-height: 100px;
+			/* Remove max-height on hover */
+			white-space: wrap;
+			/* Allow text to wrap */
+			overflow-y: scroll;
+			/* Add scrollbar */
+			overflow-x: scroll;
+			/* overflow: visible; Display full content on hover */
+			z-index: 1;
+			/* Ensure the expanded content displays above other elements */
+		}
+        
+		.expandtext {
+			display: inline-block;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 10px;
+			text-size-adjust: initial;
+			content-visibility: initial;
+			direction: ltr;
+			position: relative;
+			padding: 10px;
+			border: 1px solid rgb(255, 255, 255);
+			max-width: 500px;
+			max-height: 100px;
+			/* Remove max-height on hover */
+			white-space: wrap;
+			/* Allow text to wrap */
+			overflow-y: scroll;
+			/* Add scrollbar */
+			overflow-x: scroll;
+			/* overflow: visible; Display full content on hover */
+			z-index: 1;
+			/* Ensure the expanded content displays above other elements */
+		}
+
+		.aside .aside-logo .logo-minimize {
+			display: none
+		}
+	</style>
+</head>
+
+<body id="kt_body"
+	class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed"
+	style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+	<div class="d-flex flex-column flex-root">
+		<div class="page d-flex flex-row flex-column-fluid">
+			<div id="kt_aside" class="aside aside-dark aside-hoverable" data-kt-drawer="true"
+				data-kt-drawer-name="aside" data-kt-drawer-activate="{default: true, lg: false}"
+				data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}"
+				data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_mobile_toggle">
+				<div class="aside-logo flex-column-auto" id="kt_aside_logo" >
+					<a href="#"><img class="h-35px w-150px logo-default"
+							src="<%= config['BASE_URL'] %>assets/media/logos/logo.png">
+						<img class="h-25px w-30px logo-minimize"
+							src="<%= config['BASE_URL'] %>assets/media/logos/group.png">
+					</a>
+					<div id="kt_aside_toggle" class="btn btn-icon w-auto px-0 btn-active-color-primary aside-toggle"
+						data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body"
+						data-kt-toggle-name="aside-minimize">
+						<!--begin::Svg Icon | path: icons/duotune/arrows/arr079.svg-->
+						<span class="svg-icon svg-icon-1 rotate-180">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+								fill="none">
+								<path opacity="0.5"
+									d="M14.2657 11.4343L18.45 7.25C18.8642 6.83579 18.8642 6.16421 18.45 5.75C18.0358 5.33579 17.3642 5.33579 16.95 5.75L11.4071 11.2929C11.0166 11.6834 11.0166 12.3166 11.4071 12.7071L16.95 18.25C17.3642 18.6642 18.0358 18.6642 18.45 18.25C18.8642 17.8358 18.8642 17.1642 18.45 16.75L14.2657 12.5657C13.9533 12.2533 13.9533 11.7467 14.2657 11.4343Z"
+									fill="black" />
+								<path
+									d="M8.2657 11.4343L12.45 7.25C12.8642 6.83579 12.8642 6.16421 12.45 5.75C12.0358 5.33579 11.3642 5.33579 10.95 5.75L5.40712 11.2929C5.01659 11.6834 5.01659 12.3166 5.40712 12.7071L10.95 18.25C11.3642 18.6642 12.0358 18.6642 12.45 18.25C12.8642 17.8358 12.8642 17.1642 12.45 16.75L8.2657 12.5657C7.95328 12.2533 7.95328 11.7467 8.2657 11.4343Z"
+									fill="black" />
+							</svg>
+						</span>
+					</div>
+				</div>
+				<div class="aside-menu flex-column-fluid">
+					<div class="hover-scroll-overlay-y my-5 my-lg-5" id="kt_aside_menu_wrapper" data-kt-scroll="true"
+						data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-height="auto"
+						data-kt-scroll-dependencies="#kt_aside_logo, #kt_aside_footer"
+						data-kt-scroll-wrappers="#kt_aside_menu" data-kt-scroll-offset="0">
+						<div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500"
+							id="#kt_aside_menu" data-kt-menu="true">
+							<div class="menu-item">
+								<a class="menu-link <% if (menu == 'dashboard') { %> active <% } %>"
+									href="<%= config['BASE_URL'] %>admin_master/adminHome">
+									<span class="menu-icon">
+										<!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
+										<span class="svg-icon svg-icon-2">
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+												viewBox="0 0 24 24" fill="none">
+												<path
+													d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
+													fill="black" />
+												<path
+													d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
+													fill="black" />
+												<path opacity="0.3"
+													d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
+													fill="black" />
+												<path opacity="0.3"
+													d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
+													fill="black" />
+											</svg>
+										</span>
+										<!--end::Svg Icon-->
+									</span>
+									<span class="menu-title fs-5">Dashboard</span>
+								</a>
+							</div>
+							<div data-kt-menu-trigger="click"
+								class="menu-item here menu-accordion <% if (menu == 'login_report' || menu == 'job_report') { %> show <% } %>">
+								<span class="menu-link">
+									<span class="menu-icon">
+										<!--begin::Svg Icon | path: icons/duotune/communication/com013.svg-->
+										<span class="svg-icon svg-icon-2">
+											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+											    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+											        <polygon points="0 0 24 0 24 24 0 24"></polygon>
+											        <path d="M5.85714286,2 L13.7364114,2 C14.0910962,2 14.4343066,2.12568431 14.7051108,2.35473959 L19.4686994,6.3839416 C19.8056532,6.66894833 20,7.08787823 20,7.52920201 L20,20.0833333 C20,21.8738751 19.9795521,22 18.1428571,22 L5.85714286,22 C4.02044787,22 4,21.8738751 4,20.0833333 L4,3.91666667 C4,2.12612489 4.02044787,2 5.85714286,2 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"></path>
+											        <rect fill="#000000" x="6" y="11" width="9" height="2" rx="1"></rect>
+											        <rect fill="#000000" x="6" y="15" width="5" height="2" rx="1"></rect>
+											    </g>
+											</svg>
+										</span>
+										<!--end::Svg Icon-->
+									</span>
+									<span class="menu-title fs-5">Report Master</span>
+									<span class="menu-arrow"></span>
+								</span>
+								<div class="menu-sub menu-sub-accordion menu-active-bg" kt-hidden-height="312">
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'login_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/login-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Report Analytics</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Upload</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">List Report</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">List PR</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">List Company</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">List Company</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">List Segment</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">List Segment Graph</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">List Snapshot</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Bar Graph</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">List FAQs</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">List Keyword</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Category Master</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Region Master</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Product Banner</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Sitemap</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Database (upload/Download)</span>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div data-kt-menu-trigger="click"
+								class="menu-item here menu-accordion <% if (menu == 'login_report' || menu == 'job_report') { %> show <% } %>">
+								<span class="menu-link">
+									<span class="menu-icon">
+										<!--begin::Svg Icon | path: icons/duotune/communication/com013.svg-->
+										<span class="svg-icon svg-icon-2">
+											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+											    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+											        <polygon points="0 0 24 0 24 24 0 24"></polygon>
+											        <path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"></path>
+											        <path d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z" fill="#000000" fill-rule="nonzero"></path>
+											    </g>
+											</svg>
+										</span>
+										<!--end::Svg Icon-->
+									</span>
+									<span class="menu-title fs-5">Sale Master</span>
+									<span class="menu-arrow"></span>
+								</span>
+								<div class="menu-sub menu-sub-accordion menu-active-bg" kt-hidden-height="312">
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'login_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/login-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Partner</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Members</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Our Client</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Testimonial</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Quotation</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Email Template</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Report Promotion</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Sales Tracking</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Lead Master</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Subscriber</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Discount coupon</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Email To Subscriber</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Promotional Email</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Email Provider</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Upload</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Database (upload/Download)</span>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div data-kt-menu-trigger="click"
+								class="menu-item here menu-accordion <% if (menu == 'login_report' || menu == 'job_report') { %> show <% } %>">
+								<span class="menu-link">
+									<span class="menu-icon">
+										<!--begin::Svg Icon | path: icons/duotune/communication/com013.svg-->
+										<span class="svg-icon svg-icon-2">
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+												viewBox="0 0 24 24" fill="none">
+												<path
+													d="M13 5.91517C15.8 6.41517 18 8.81519 18 11.8152C18 12.5152 17.9 13.2152 17.6 13.9152L20.1 15.3152C20.6 15.6152 21.4 15.4152 21.6 14.8152C21.9 13.9152 22.1 12.9152 22.1 11.8152C22.1 7.01519 18.8 3.11521 14.3 2.01521C13.7 1.91521 13.1 2.31521 13.1 3.01521V5.91517H13Z"
+													fill="black"></path>
+												<path opacity="0.3"
+													d="M19.1 17.0152C19.7 17.3152 19.8 18.1152 19.3 18.5152C17.5 20.5152 14.9 21.7152 12 21.7152C9.1 21.7152 6.50001 20.5152 4.70001 18.5152C4.30001 18.0152 4.39999 17.3152 4.89999 17.0152L7.39999 15.6152C8.49999 16.9152 10.2 17.8152 12 17.8152C13.8 17.8152 15.5 17.0152 16.6 15.6152L19.1 17.0152ZM6.39999 13.9151C6.19999 13.2151 6 12.5152 6 11.8152C6 8.81517 8.2 6.41515 11 5.91515V3.01519C11 2.41519 10.4 1.91519 9.79999 2.01519C5.29999 3.01519 2 7.01517 2 11.8152C2 12.8152 2.2 13.8152 2.5 14.8152C2.7 15.4152 3.4 15.7152 4 15.3152L6.39999 13.9151Z"
+													fill="black"></path>
+											</svg>
+										</span>
+										<!--end::Svg Icon-->
+									</span>
+									<span class="menu-title fs-5">Services</span>
+									<span class="menu-arrow"></span>
+								</span>
+								<div class="menu-sub menu-sub-accordion menu-active-bg" kt-hidden-height="312">
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'login_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/login-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Custom report</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Data collection List</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Market Assessment</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Sme Consulting</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Benchmarking</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Market Entry</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Bxplor</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Lead Generation</span>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div data-kt-menu-trigger="click"
+								class="menu-item here menu-accordion <% if (menu == 'login_report' || menu == 'job_report') { %> show <% } %>">
+								<span class="menu-link">
+									<span class="menu-icon">
+										<!--begin::Svg Icon | path: icons/duotune/communication/com013.svg-->
+										<span class="svg-icon svg-icon-2">
+											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+											    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+											        <rect x="0" y="0" width="24" height="24"></rect>
+											        <path d="M4.5,3 L19.5,3 C20.3284271,3 21,3.67157288 21,4.5 L21,19.5 C21,20.3284271 20.3284271,21 19.5,21 L4.5,21 C3.67157288,21 3,20.3284271 3,19.5 L3,4.5 C3,3.67157288 3.67157288,3 4.5,3 Z M8,5 C7.44771525,5 7,5.44771525 7,6 C7,6.55228475 7.44771525,7 8,7 L16,7 C16.5522847,7 17,6.55228475 17,6 C17,5.44771525 16.5522847,5 16,5 L8,5 Z" fill="#000000"></path>
+											    </g>
+											</svg>
+										</span>
+										<!--end::Svg Icon-->
+									</span>
+									<span class="menu-title fs-5">About Bonafide</span>
+									<span class="menu-arrow"></span>
+								</span>
+								<div class="menu-sub menu-sub-accordion menu-active-bg" kt-hidden-height="312">
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Data collection List</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Market Assessment</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Sme Consulting</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Benchmarking</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Market Entry</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Bxplor</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Lead Generation</span>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div data-kt-menu-trigger="click"
+								class="menu-item here menu-accordion <% if (menu == 'login_report' || menu == 'job_report') { %> show <% } %>">
+								<span class="menu-link">
+									<span class="menu-icon">
+										<!--begin::Svg Icon | path: icons/duotune/communication/com013.svg-->
+										<span class="svg-icon svg-icon-2">
+											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+											    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+											        <rect x="0" y="0" width="24" height="24"></rect>
+											        <path d="M10.5,5 L19.5,5 C20.3284271,5 21,5.67157288 21,6.5 C21,7.32842712 20.3284271,8 19.5,8 L10.5,8 C9.67157288,8 9,7.32842712 9,6.5 C9,5.67157288 9.67157288,5 10.5,5 Z M10.5,10 L19.5,10 C20.3284271,10 21,10.6715729 21,11.5 C21,12.3284271 20.3284271,13 19.5,13 L10.5,13 C9.67157288,13 9,12.3284271 9,11.5 C9,10.6715729 9.67157288,10 10.5,10 Z M10.5,15 L19.5,15 C20.3284271,15 21,15.6715729 21,16.5 C21,17.3284271 20.3284271,18 19.5,18 L10.5,18 C9.67157288,18 9,17.3284271 9,16.5 C9,15.6715729 9.67157288,15 10.5,15 Z" fill="#000000"></path>
+											        <path d="M5.5,8 C4.67157288,8 4,7.32842712 4,6.5 C4,5.67157288 4.67157288,5 5.5,5 C6.32842712,5 7,5.67157288 7,6.5 C7,7.32842712 6.32842712,8 5.5,8 Z M5.5,13 C4.67157288,13 4,12.3284271 4,11.5 C4,10.6715729 4.67157288,10 5.5,10 C6.32842712,10 7,10.6715729 7,11.5 C7,12.3284271 6.32842712,13 5.5,13 Z M5.5,18 C4.67157288,18 4,17.3284271 4,16.5 C4,15.6715729 4.67157288,15 5.5,15 C6.32842712,15 7,15.6715729 7,16.5 C7,17.3284271 6.32842712,18 5.5,18 Z" fill="#000000" opacity="0.3"></path>
+											    </g>
+											</svg>
+										</span>
+										<!--end::Svg Icon-->
+									</span>
+									<span class="menu-title fs-5">Knowladge Based</span>
+									<span class="menu-arrow"></span>
+								</span>
+								<div class="menu-sub menu-sub-accordion menu-active-bg" kt-hidden-height="312">
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'login_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/login-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Did You Know?</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Infographics</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">News</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Blogs</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Events</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Database (upload/Download)</span>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div data-kt-menu-trigger="click"
+								class="menu-item here menu-accordion <% if (menu == 'login_report' || menu == 'job_report') { %> show <% } %>">
+								<span class="menu-link">
+									<span class="menu-icon">
+										<!--begin::Svg Icon | path: icons/duotune/communication/com013.svg-->
+										<span class="svg-icon svg-icon-2">
+											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+											    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+											        <rect x="0" y="0" width="24" height="24"></rect>
+											        <path d="M4,4 L11.6314229,2.5691082 C11.8750185,2.52343403 12.1249815,2.52343403 12.3685771,2.5691082 L20,4 L20,13.2830094 C20,16.2173861 18.4883464,18.9447835 16,20.5 L12.5299989,22.6687507 C12.2057287,22.8714196 11.7942713,22.8714196 11.4700011,22.6687507 L8,20.5 C5.51165358,18.9447835 4,16.2173861 4,13.2830094 L4,4 Z" fill="#000000" opacity="0.3"></path>
+											        <path d="M12,11 C10.8954305,11 10,10.1045695 10,9 C10,7.8954305 10.8954305,7 12,7 C13.1045695,7 14,7.8954305 14,9 C14,10.1045695 13.1045695,11 12,11 Z" fill="#000000" opacity="0.3"></path>
+											        <path d="M7.00036205,16.4995035 C7.21569918,13.5165724 9.36772908,12 11.9907452,12 C14.6506758,12 16.8360465,13.4332455 16.9988413,16.5 C17.0053266,16.6221713 16.9988413,17 16.5815,17 C14.5228466,17 11.463736,17 7.4041679,17 C7.26484009,17 6.98863236,16.6619875 7.00036205,16.4995035 Z" fill="#000000" opacity="0.3"></path>
+											    </g>
+											</svg>
+										</span>
+										<!--end::Svg Icon-->
+									</span>
+									<span class="menu-title fs-5">Super Admin</span>
+									<span class="menu-arrow"></span>
+								</span>
+								<div class="menu-sub menu-sub-accordion menu-active-bg" kt-hidden-height="312">
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'login_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/login-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Home Page</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Slider List</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Product page Analytics</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Website page Analytics</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Database (upload/Download)</span>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div data-kt-menu-trigger="click"
+								class="menu-item here menu-accordion <% if (menu == 'login_report' || menu == 'job_report') { %> show <% } %>">
+								<span class="menu-link">
+									<span class="menu-icon">
+										<!--begin::Svg Icon | path: icons/duotune/communication/com013.svg-->
+										<span class="svg-icon svg-icon-2">
+											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+											    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+											        <polygon points="0 0 24 0 24 24 0 24"></polygon>
+											        <path d="M22,15 L22,19 C22,20.1045695 21.1045695,21 20,21 L8,21 C5.790861,21 4,19.209139 4,17 C4,14.790861 5.790861,13 8,13 L20,13 C21.1045695,13 22,13.8954305 22,15 Z M7,19 C8.1045695,19 9,18.1045695 9,17 C9,15.8954305 8.1045695,15 7,15 C5.8954305,15 5,15.8954305 5,17 C5,18.1045695 5.8954305,19 7,19 Z" fill="#000000" opacity="0.3"></path>
+											        <path d="M15.5421357,5.69999981 L18.3705628,8.52842693 C19.1516114,9.30947552 19.1516114,10.5758055 18.3705628,11.3568541 L9.88528147,19.8421354 C8.3231843,21.4042326 5.79052439,21.4042326 4.22842722,19.8421354 C2.66633005,18.2800383 2.66633005,15.7473784 4.22842722,14.1852812 L12.7137086,5.69999981 C13.4947572,4.91895123 14.7610871,4.91895123 15.5421357,5.69999981 Z M7,19 C8.1045695,19 9,18.1045695 9,17 C9,15.8954305 8.1045695,15 7,15 C5.8954305,15 5,15.8954305 5,17 C5,18.1045695 5.8954305,19 7,19 Z" fill="#000000" opacity="0.3"></path>
+											        <path d="M5,3 L9,3 C10.1045695,3 11,3.8954305 11,5 L11,17 C11,19.209139 9.209139,21 7,21 C4.790861,21 3,19.209139 3,17 L3,5 C3,3.8954305 3.8954305,3 5,3 Z M7,19 C8.1045695,19 9,18.1045695 9,17 C9,15.8954305 8.1045695,15 7,15 C5.8954305,15 5,15.8954305 5,17 C5,18.1045695 5.8954305,19 7,19 Z" fill="#000000"></path>
+											    </g>
+											</svg>
+										</span>
+										<!--end::Svg Icon-->
+									</span>
+									<span class="menu-title fs-5">Career Master</span>
+									<span class="menu-arrow"></span>
+								</span>
+								<div class="menu-sub menu-sub-accordion menu-active-bg" kt-hidden-height="312">
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'login_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/login-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Jobs</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Career</span>
+										</a>
+									</div>
+									<div class="menu-item">
+										<a class="menu-link <% if (menu == 'job_report') { %> active <% } %>"
+											href="<%= config['BASE_URL'] %>admin/setting/job-report">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title fs-5">Database (upload/Download)</span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+				<div id="kt_header" style="background-color: #181c32;" class="header align-items-stretch">
+					<div class="container-fluid d-flex align-items-stretch justify-content-between">
+						<div class="d-flex align-items-center d-lg-none ms-n2 me-2" title="Show aside menu">
+							<div class="btn btn-icon btn-active-light-primary w-30px h-30px w-md-40px h-md-40px"
+								id="kt_aside_mobile_toggle">
+								<span class="svg-icon svg-icon-1">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+										fill="none">
+										<path
+											d="M21 7H3C2.4 7 2 6.6 2 6V4C2 3.4 2.4 3 3 3H21C21.6 3 22 3.4 22 4V6C22 6.6 21.6 7 21 7Z"
+											fill="black" />
+										<path opacity="0.3"
+											d="M21 14H3C2.4 14 2 13.6 2 13V11C2 10.4 2.4 10 3 10H21C21.6 10 22 10.4 22 11V13C22 13.6 21.6 14 21 14ZM22 20V18C22 17.4 21.6 17 21 17H3C2.4 17 2 17.4 2 18V20C2 20.6 2.4 21 3 21H21C21.6 21 22 20.6 22 20Z"
+											fill="black" />
+									</svg>
+								</span>
+							</div>
+						</div>
+						<div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
+							<a href="#" class="d-lg-none">
+								<img alt="Logo" src="<%= config['BASE_URL'] %>assets/media/logos/logo.png"
+									class="h-30px" />
+							</a>
+						</div>
+						<div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1">
+							<div class="d-flex align-items-stretch" id="kt_header_nav">
+								<div class="header-menu align-items-stretch" data-kt-drawer="true"
+									data-kt-drawer-name="header-menu"
+									data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true"
+									data-kt-drawer-width="{default:'200px', '300px': '250px'}"
+									data-kt-drawer-direction="end" data-kt-drawer-toggle="#kt_header_menu_mobile_toggle"
+									data-kt-swapper="true" data-kt-swapper-mode="prepend"
+									data-kt-swapper-parent="{default: '#kt_body', lg: '#kt_header_nav'}">
+									<div class="menu menu-lg-rounded menu-column menu-lg-row menu-state-bg menu-title-gray-700 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-400 fw-bold my-5 my-lg-0 align-items-stretch"
+										id="#kt_header_menu" data-kt-menu="true">
+										<div class="menu-item me-lg-1">
+											<a class="menu-link py-3" href="#">
+												<span class="menu-title">
+												</span>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="d-flex align-items-stretch flex-shrink-0">
+								<div class="d-flex align-items-stretch flex-shrink-0">
+									<div class="d-flex align-items-center ms-1 ms-lg-3" id="kt_header_user_menu_toggle">
+										<div class="cursor-pointer symbol symbol-30px symbol-md-40px"
+											data-kt-menu-trigger="click" data-kt-menu-attach="parent"
+											data-kt-menu-placement="bottom-end">
+											<img src="<%= config['BASE_URL'] %>assets/media/avatars/blank.png"
+												alt="user" id="adminProfileImg" />
+										</div>
+										<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px"
+											data-kt-menu="true">
+											<!--begin::Menu item-->
+											<div class="menu-item px-3">
+												<div class="menu-content d-flex align-items-center px-3">
+													<!--begin::Avatar-->
+													<div class="symbol symbol-50px me-5">
+														<img alt="Logo"
+															src="<%= config['BASE_URL'] %>assets/media/avatars/blank.png"
+															id="adminMenuImg" />
+													</div>
+													<!--end::Avatar-->
+													<!--begin::Username-->
+													<div class="d-flex flex-column">
+														<div class="fw-bolder d-flex align-items-center fs-5"><span
+																id="adminName1">Admin</span></div>
+													</div>
+													<!--end::Username-->
+												</div>
+											</div>
+											<!--end::Menu item-->
+											<!--begin::Menu separator-->
+											<div class="separator my-2"></div>
+											<div class="menu-item px-5 my-1">
+												<a id="edit_profile" onclick="showEditProfilepopup()"
+													class="menu-link px-5">Edit Profile</a>
+											</div>
+											<div class="menu-item px-5 my-1">
+												<a id="change_pass" onclick="showForgotPasswordPopup()"
+													class="menu-link px-5">Change password</a>
+											</div>
+											<!--end::Menu item-->
+											<!--begin::Menu item-->
+											<div class="menu-item px-5">
+												<a id="sign_out" class="menu-link px-5">Sign Out</a>
+											</div>
+
+										</div>
+										<!--end::Menu-->
+										<!--end::Menu wrapper-->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>

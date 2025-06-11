@@ -1,0 +1,95 @@
+<%- include('../common/header.html')-%>
+	<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+		<div class="toolbar" id="kt_toolbar">
+			<div id="kt_toolbar_container" class="container-fluid d-flex flex-stack p-0">
+				<div data-kt-swapper="true" data-kt-swapper-mode="prepend"
+					data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+					class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+					<h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Dashboard</h1>
+				</div>
+				<!-- <div class="d-flex align-items-center">
+					<div class="col-md-auto me-3">
+						<h4>Select Date</h4>
+					</div>
+					<div class="col-md-auto">
+						<input type="date" class="form-control form-control-solid" name="end_date" id="end_date" />
+					</div>
+				</div> -->
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+
+				<div type="button" onclick="chartData('userChart')" class="col-md-6 col-xxl-3">
+					<div class="card" style="margin-right: 10px;">
+						<div class="card-body position-relative">
+							<div class="d-flex justify-content-between">
+								<div>
+									<div class="mb-8">Total User</div>
+									<div><span class="text-black" style="font-size: 2rem; font-weight: 500px;"
+											id="total_user">0</span></div>
+								</div>
+								<div>
+									<img src="../../assets/media/svg/general/users.svg" alt="user icon" height="30px">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div type="button" onclick="chartData('businessChart')" class="col-md-6 col-xxl-3">
+					<div class="card" style="margin:0px 10px;">
+						<div class="card-body position-relative">
+							<div class="d-flex justify-content-between">
+								<div>
+									<div class="mb-8">Total Business</div>
+									<div><span class="text-black" style="font-size: 2rem; font-weight: 500px;"
+											id="total_business">0</span></div>
+								</div>
+								<div>
+									<img src="../../assets/media/svg/general/business.svg" alt="user icon" height="35px">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div type="button" onclick="chartData('jobChart')" class="col-md-6 col-xxl-3">
+					<div class="card" style="margin:0px 10px;">
+						<div class="card-body position-relative">
+							<div class="d-flex justify-content-between">
+								<div>
+									<div class="mb-8">Total Job</div>
+									<div><span class="text-black" style="font-size: 2rem; font-weight: 500px;"
+											id="total_job">0</span></div>
+								</div>
+								<div>
+									<img src="../../assets/media/svg/general/jobs.svg" alt="user icon" height="35px">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div type="button" onclick="chartData('agentChart')" class="col-md-6 col-xxl-3">
+					<div class="card" style="margin-left: 10px;">
+						<div class="card-body position-relative">
+							<div class="d-flex justify-content-between">
+								<div>
+									<div class="mb-8">Total Agent</div>
+									<div><span class="text-black" style="font-size: 2rem; font-weight: 500px;"
+											id="total_agent">0</span></div>
+								</div>
+								<div>
+									<img src="../../assets/media/svg/general/agents.svg" alt="user icon" height="35px">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<%- include('../common/footer.html')-%>

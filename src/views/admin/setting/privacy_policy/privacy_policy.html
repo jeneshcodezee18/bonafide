@@ -1,0 +1,102 @@
+<%- include('../../common/header.html')-%>
+    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+        <div class="toolbar" id="kt_toolbar">
+            <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
+                    data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                    class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">
+                        <%= title %>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="post d-flex flex-column-fluid" id="kt_post">
+            <div id="kt_content_container" class="container-xxl">
+                <div class="card mb-5 mb-xl-10" data-select2-id="select2-data-137-cfei">
+                    <div class="card-footer border-0 cursor-pointer" role="button" data-bs-toggle="collapse"
+                        data-bs-target="#kt_footer_details" aria-expanded="true" aria-controls="kt_footer_details">
+                        <div class="card-title m-0">
+                            <h3 class="fw-bolder m-0">
+                                <%= title %> Details
+                            </h3>
+                        </div>
+                    </div>
+                    <div id="kt_footer_details" class="collapse show" data-select2-id="select2-data-kt_footer_details">
+                        <form id="privacy_policy_form" class="form fv-plugins-bootstrap5 fv-plugins-framework"
+                            novalidate="novalidate" data-select2-id="select2-data-kt_footer_details_form" action="#">
+                            <div class="card-body border-top p-9" data-select2-id="select2-data-136-0zbi">
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Meta Title</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="privacy_policy_meta_title" id="privacy_policy_meta_title"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Title" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Meta Description</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <textarea name="privacy_policy_meta_description" id="privacy_policy_meta_description"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Meta Description"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Meta Locale</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="privacy_policy_meta_locale" id="privacy_policy_meta_locale"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Meta Locale" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Meta Type</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="privacy_policy_meta_type" id="privacy_policy_meta_type"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Meta Type" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Meta Site Name</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="privacy_policy_meta_site_name" id="privacy_policy_meta_site_name"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Meta Site Name" value="">
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Privacy policy Title</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="privacy_policy_title" id="privacy_policy_title"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Privacy policy Title" value="">
+                                    </div>
+                                </div>    
+
+                            </div>
+                            <div class="card-footer d-flex justify-content-end py-6 px-9">
+                                <button type="reset"
+                                    class="btn btn-light btn-active-light-primary me-2">Discard</button>
+                                <button type="submit" class="btn btn-primary" id="kt_footer_details_submit">Save
+                                    Changes</button>
+                            </div>
+                            <!--end::Actions-->
+                            <input type="hidden">
+                            <div></div>
+                        </form>
+                        <!--end::Form-->
+                    </div>
+                    <!--end::Content-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../../common/footer.html')-%>

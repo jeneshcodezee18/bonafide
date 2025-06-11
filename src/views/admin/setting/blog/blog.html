@@ -1,0 +1,161 @@
+<%- include('../../common/header.html')-%>
+    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+        <div class="toolbar" id="kt_toolbar">
+            <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
+                    data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                    class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">
+                        <%= title %>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="post d-flex flex-column-fluid" id="kt_post">
+            <div id="kt_content_container" class="container-xxl">
+                <div class="card mb-5 mb-xl-10" data-select2-id="select2-data-137-cfei">
+                    <div class="card-footer border-0 cursor-pointer" role="button" data-bs-toggle="collapse"
+                        data-bs-target="#kt_footer_details" aria-expanded="true" aria-controls="kt_footer_details">
+                        <div class="card-title m-0">
+                            <h3 class="fw-bolder m-0">
+                                <%= title %> Details
+                            </h3>
+                        </div>
+                    </div>
+                    <div id="kt_footer_details" class="collapse show" data-select2-id="select2-data-kt_footer_details">
+                        <form id="blog_form" class="form fv-plugins-bootstrap5 fv-plugins-framework"
+                            novalidate="novalidate" data-select2-id="select2-data-kt_footer_details_form" action="#">
+                            <div class="card-body border-top p-9" data-select2-id="select2-data-136-0zbi">
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Meta Title</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="blog_meta_title" id="blog_meta_title"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Title" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Meta Description</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <textarea name="blog_meta_description" id="blog_meta_description"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Meta Description"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Meta Locale</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="blog_meta_locale" id="blog_meta_locale"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Meta Locale" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Meta Type</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="blog_meta_type" id="blog_meta_type"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Meta Type" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Meta Site Name</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="blog_meta_site_name" id="blog_meta_site_name"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Meta Site Name" value="">
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Blog Banner Title</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="blog_banner_title" id="blog_banner_title"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Blog Title" value="">
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Blog Banner Heading</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="blog_banner_heading" id="blog_banner_heading"
+                                        class="form-control form-control-lg form-control-solid"
+                                            placeholder="Blog Banner Heading" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label fw-bold fs-6">Blog Banner Image</label>
+                                    <div class="col-lg-8">
+                                        <div class="image-input image-input-outline image-input-empty"
+                                            data-kt-image-input="true"
+                                            style="background-image: url('assets/media/svg/avatars/blank.svg')">
+                                            <div class="image-input-wrapper w-125px h-125px"
+                                                style="background-image: none;">
+                                                <img src="" id="image_preview1"
+                                                    style="width: 125px; height: 125px; display: none;">
+                                            </div>
+                                            <label
+                                                class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                data-kt-image-input-action="change" data-bs-toggle="tooltip" title=""
+                                                data-bs-original-title="Change image">
+                                                <i class="bi bi-pencil-fill fs-7"></i>
+                                                <input type="file" name="blog_banner_image1" id="blog_banner_image1"
+                                                    accept=".png, .jpg, .jpeg, .svg">
+                                                <input type="hidden" name="blog_banner_image" id="blog_banner_image" value="">
+                                            </label>
+                                        </div>
+                                        <div class="form-text">Allowed file types: png, jpg, jpeg, svg.</div>
+                                    </div>
+                                </div>    
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label fw-bold fs-6">Blog Banner Background Image</label>
+                                    <div class="col-lg-8">
+                                        <div class="image-input image-input-outline image-input-empty"
+                                            data-kt-image-input="true"
+                                            style="background-image: url('assets/media/svg/avatars/blank.svg')">
+                                            <div class="image-input-wrapper w-125px h-125px"
+                                                style="background-image: none;">
+                                                <img src="" id="image_preview2"
+                                                    style="width: 125px; height: 125px; display: none;">
+                                            </div>
+                                            <label
+                                                class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                data-kt-image-input-action="change" data-bs-toggle="tooltip" title=""
+                                                data-bs-original-title="Change image">
+                                                <i class="bi bi-pencil-fill fs-7"></i>
+                                                <input type="file" name="blog_banner_background_image1" id="blog_banner_background_image1"
+                                                    accept=".png, .jpg, .jpeg, .svg">
+                                                <input type="hidden" name="blog_banner_background_image" id="blog_banner_background_image" value="">
+                                            </label>
+                                        </div>
+                                        <div class="form-text">Allowed file types: png, jpg, jpeg, svg.</div>
+                                    </div>
+                                </div>    
+
+                            </div>
+                            <div class="card-footer d-flex justify-content-end py-6 px-9">
+                                <button type="reset"
+                                    class="btn btn-light btn-active-light-primary me-2">Discard</button>
+                                <button type="submit" class="btn btn-primary" id="kt_footer_details_submit">Save
+                                    Changes</button>
+                            </div>
+                            <!--end::Actions-->
+                            <input type="hidden">
+                            <div></div>
+                        </form>
+                        <!--end::Form-->
+                    </div>
+                    <!--end::Content-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../../common/footer.html')-%>

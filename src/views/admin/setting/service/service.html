@@ -1,0 +1,324 @@
+<%- include('../../common/header.html')-%>
+    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+        <div class="toolbar" id="kt_toolbar">
+            <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
+                    data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                    class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">
+                        <%= title %>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="post d-flex flex-column-fluid" id="kt_post">
+            <div id="kt_content_container" class="container-xxl">
+                <div class="card mb-5 mb-xl-10" data-select2-id="select2-data-137-cfei">
+                    <div class="card-footer border-0 cursor-pointer" role="button" data-bs-toggle="collapse"
+                        data-bs-target="#kt_footer_details" aria-expanded="true" aria-controls="kt_footer_details">
+                        <div class="card-title m-0">
+                            <h3 class="fw-bolder m-0">
+                                <%= title %> Details
+                            </h3>
+                        </div>
+                    </div>
+                    <div id="kt_footer_details" class="collapse show" data-select2-id="select2-data-kt_footer_details">
+                        <form id="service_form" class="form fv-plugins-bootstrap5 fv-plugins-framework"
+                            novalidate="novalidate" data-select2-id="select2-data-kt_footer_details_form" action="#">
+                            <div class="card-body border-top p-9" data-select2-id="select2-data-136-0zbi">
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Why_Choose us Title</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="why_hoose_us_main_title" id="why_choose_us_main_title"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Why Choose us Title" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">About us Heading</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="about_us_main_heading" id="about_us_main_heading"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="About us Heading" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="required col-lg-4 col-form-label fw-bold fs-6">About us1 Image</label>
+                                    <div class="col-lg-8">
+                                        <div class="image-input image-input-outline image-input-empty"
+                                            data-kt-image-input="true"
+                                            style="background-image: url('assets/media/svg/avatars/blank.svg')">
+                                            <div class="image-input-wrapper w-125px h-125px"
+                                                style="background-image: none;">
+                                                <img src="" id="image_preview2"
+                                                    style="width: 125px; height: 125px; display: none;">
+                                            </div>
+                                            <label
+                                                class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                data-kt-image-input-action="change" data-bs-toggle="tooltip" title=""
+                                                data-bs-original-title="Change image">
+                                                <i class="bi bi-pencil-fill fs-7"></i>
+                                                <input type="file" name="about_us1_image1" id="about_us1_image1"
+                                                    accept=".png, .jpg, .jpeg">
+                                                <input type="hidden" name="about_us1_image" id="about_us1_image" value="">
+                                            </label>
+                                        </div>
+                                        <div class="form-text">Allowed file types: png, jpg, jpeg, svg.</div>
+                                    </div>
+                                </div>    
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">About us1 Title</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="about_us1_title" id="about_us1_title"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="About us1 Title" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">About us1 Heading</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="about_us1_heading" id="about_us1_heading"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="About us1 Heading" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">About us1 Description</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <textarea name="about_us1_description" id="about_us1_description"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="About us1 Description"></textarea>
+                                    </div>
+                                </div>
+
+
+                                <div class="row mb-6">
+                                    <label class="required col-lg-4 col-form-label fw-bold fs-6">About us2 Image</label>
+                                    <div class="col-lg-8">
+                                        <div class="image-input image-input-outline image-input-empty"
+                                            data-kt-image-input="true"
+                                            style="background-image: url('assets/media/svg/avatars/blank.svg')">
+                                            <div class="image-input-wrapper w-125px h-125px"
+                                                style="background-image: none;">
+                                                <img src="" id="image_preview3"
+                                                    style="width: 125px; height: 125px; display: none;">
+                                            </div>
+                                            <label
+                                                class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                data-kt-image-input-action="change" data-bs-toggle="tooltip" title=""
+                                                data-bs-original-title="Change image">
+                                                <i class="bi bi-pencil-fill fs-7"></i>
+                                                <input type="file" name="about_us2_image1" id="about_us2_image1"
+                                                    accept=".png, .jpg, .jpeg">
+                                                <input type="hidden" name="about_us2_image" id="about_us2_image" value="">
+                                            </label>
+                                        </div>
+                                        <div class="form-text">Allowed file types: png, jpg, jpeg, svg.</div>
+                                    </div>
+                                </div>    
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">About us2 Title</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="about_us2_title" id="about_us2_title"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="About us2 Title" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">About us2 Heading</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="about_us2_heading" id="about_us2_heading"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="About us2 Heading" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">About us2 Description</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <textarea name="about_us2_description" id="about_us2_description"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="About us2 Description"></textarea>
+                                    </div>
+                                </div>
+                                
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">About us Detail</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="about_us_detail" id="about_us_detail"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="About us Detail" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="required col-lg-4 col-form-label fw-bold fs-6">About us Detail Image</label>
+                                    <div class="col-lg-8">
+                                        <div class="image-input image-input-outline image-input-empty"
+                                            data-kt-image-input="true"
+                                            style="background-image: url('assets/media/svg/avatars/blank.svg')">
+                                            <div class="image-input-wrapper w-125px h-125px"
+                                                style="background-image: none;">
+                                                <img src="" id="image_preview4"
+                                                    style="width: 125px; height: 125px; display: none;">
+                                            </div>
+                                            <label
+                                                class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                data-kt-image-input-action="change" data-bs-toggle="tooltip" title=""
+                                                data-bs-original-title="Change image">
+                                                <i class="bi bi-pencil-fill fs-7"></i>
+                                                <input type="file" name="about_us_detail_image1" id="about_us_detail_image1"
+                                                    accept=".png, .jpg, .jpeg">
+                                                <input type="hidden" name="about_us_detail_image" id="about_us_detail_image" value="">
+                                            </label>
+                                        </div>
+                                        <div class="form-text">Allowed file types: png, jpg, jpeg, svg.</div>
+                                    </div>
+                                </div>    
+
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">What we Done Title</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="what_we_done_title" id="what_we_done_title"
+                                            class="form-control form-control-lg form-control-solid" 
+                                            placeholder="What we Done Title" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Counter Number1</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="counter_number1" id="counter_number1"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Counter Number1" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Counter Title1</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="counter_title1" id="counter_title1"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Counter Title1" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Counter Number2</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="counter_number2" id="counter_number2"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Counter Number2" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">                                    
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Counter Title2</label>                                                           
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="counter_title2" id="counter_title2"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Counter Title2" value="">
+                                    </div>                                    
+                                </div>                                
+                               
+                                <div class="row mb-6">                                    
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Counter Number3</label>                                       
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="counter_number3" id="counter_number3"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Counter Number3" value="">
+                                    </div>                    
+                                </div>
+                                                               
+                                <div class="row mb-6">                                    
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Counter Title3</label>                                                                       
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="counter_title3" id="counter_title3"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Counter Title3" value="">
+                                    </div>                                    
+                                </div>                                
+                                <div class="row mb-6">                                    
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Counter Number4</label>                                       
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="counter_number4" id="counter_number4"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Counter Number4" value="">
+                                    </div>                    
+                                </div>
+                                                               
+                                <div class="row mb-6">                                    
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Counter Title4</label>                                                                       
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="counter_title4" id="counter_title4"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Counter Title4" value="">
+                                    </div>                                    
+                                </div>                                
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Doctors Team Title</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="doctors_team_title" id="doctors_team_title"
+                                            class="form-control form-control-lg form-control-solid" 
+                                            placeholder="Doctors Team Title" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Testimonial Title</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="testimonial_title" id="testimonial_title"
+                                            class="form-control form-control-lg form-control-solid" 
+                                            placeholder="Testimonial Title" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Our Centers Title</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="our_centers_title" id="our_centers_title"
+                                            class="form-control form-control-lg form-control-solid" 
+                                            placeholder="Our Centers Title" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Blogs Title</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="blogs_title" id="blogs_title"
+                                            class="form-control form-control-lg form-control-solid" 
+                                            placeholder="Blogs Title" value="">
+                                    </div>
+                                </div>
+
+                                
+                            </div>
+                            <div class="card-footer d-flex justify-content-end py-6 px-9">
+                                <button type="reset"
+                                    class="btn btn-light btn-active-light-primary me-2">Discard</button>
+                                <button type="submit" class="btn btn-primary" id="kt_footer_details_submit">Save
+                                    Changes</button>
+                            </div>
+                            <!--end::Actions-->
+                            <input type="hidden">
+                            <div></div>
+                        </form>
+                        <!--end::Form-->
+                    </div>
+                    <!--end::Content-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../../common/footer.html')-%>

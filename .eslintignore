@@ -1,0 +1,6 @@
+/tests/**
+/dist/**
+/node_modules/**
+!.eslintrc.js
+/templates/**
+/src/views/**

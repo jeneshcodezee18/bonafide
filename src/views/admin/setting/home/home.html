@@ -1,0 +1,311 @@
+<%- include('../../common/header.html')-%>
+    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+        <div class="toolbar" id="kt_toolbar">
+            <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
+                    data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                    class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">
+                        <%= title %>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="post d-flex flex-column-fluid" id="kt_post">
+            <div id="kt_content_container" class="container-xxl">
+                <div class="card mb-5 mb-xl-10" data-select2-id="select2-data-137-cfei">
+                    <div class="card-footer border-0 cursor-pointer" role="button" data-bs-toggle="collapse"
+                        data-bs-target="#kt_footer_details" aria-expanded="true" aria-controls="kt_footer_details">
+                        <div class="card-title m-0">
+                            <h3 class="fw-bolder m-0">
+                                <%= title %> Details
+                            </h3>
+                        </div>
+                    </div>
+                    <div id="kt_footer_details" class="collapse show" data-select2-id="select2-data-kt_footer_details">
+                        <form id="home_form" class="form fv-plugins-bootstrap5 fv-plugins-framework"
+                            novalidate="novalidate" data-select2-id="select2-data-kt_footer_details_form" action="#">
+                            <div class="card-body border-top p-9" data-select2-id="select2-data-136-0zbi">
+                                
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Meta Title</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="home_meta_title" id="home_meta_title"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Title" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Meta Description</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <textarea name="home_meta_description" id="home_meta_description"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Meta Description"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Meta Locale</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="home_meta_locale" id="home_meta_locale"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Meta Locale" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Meta Type</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="home_meta_type" id="home_meta_type"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Meta Type" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Meta Site Name</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="home_meta_site_name" id="home_meta_site_name"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Meta Site Name" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="required col-lg-4 col-form-label fw-bold fs-6">Banner1 Image</label>
+                                    <div class="col-lg-8">
+                                        <div class="image-input image-input-outline image-input-empty"
+                                            data-kt-image-input="true"
+                                            style="background-image: url('assets/media/svg/avatars/blank.svg')">
+                                            <div class="image-input-wrapper w-125px h-125px"
+                                                style="background-image: none;">
+                                                <img src="" id="image_preview3"
+                                                    style="width: 125px; height: 125px; display: none;">
+                                            </div>
+                                            <label
+                                                class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                data-kt-image-input-action="change" data-bs-toggle="tooltip" title=""
+                                                data-bs-original-title="Change image">
+                                                <i class="bi bi-pencil-fill fs-7"></i>
+                                                <input type="file" name="banner1_image1" id="banner1_image1"
+                                                    accept=".png, .jpg, .jpeg">
+                                                <input type="hidden" name="banner1_image" id="banner1_image" value="">
+                                            </label>
+                                        </div>
+                                        <div class="form-text">Allowed file types: png, jpg, jpeg, svg.</div>
+                                    </div>
+                                </div> 
+
+                                <div class="row mb-6">
+                                    <label class="required col-lg-4 col-form-label fw-bold fs-6">Banner2 Image</label>
+                                    <div class="col-lg-8">
+                                        <div class="image-input image-input-outline image-input-empty"
+                                            data-kt-image-input="true"
+                                            style="background-image: url('assets/media/svg/avatars/blank.svg')">
+                                            <div class="image-input-wrapper w-125px h-125px"
+                                                style="background-image: none;">
+                                                <img src="" id="image_preview4"
+                                                    style="width: 125px; height: 125px; display: none;">
+                                            </div>
+                                            <label
+                                                class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                data-kt-image-input-action="change" data-bs-toggle="tooltip" title=""
+                                                data-bs-original-title="Change image">
+                                                <i class="bi bi-pencil-fill fs-7"></i>
+                                                <input type="file" name="banner2_image1" id="banner2_image1"
+                                                    accept=".png, .jpg, .jpeg">
+                                                <input type="hidden" name="banner2_image" id="banner2_image" value="">
+                                            </label>
+                                        </div>
+                                        <div class="form-text">Allowed file types: png, jpg, jpeg, svg.</div>
+                                    </div>
+                                </div> 
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Banner2 Title</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="banner2_title" id="banner2_title"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Banner2 Title" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Banner2 Description</label>
+                                    <div class="col-lg-8 fv-row">
+                                    <textarea name="banner2_description" id="banner2_description" 
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Banner2 Description"></textarea>
+                                    </div>
+                                </div> 
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Our Service Title</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="our_service_title" id="our_service_title"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Our Service Title" value="">
+                                    </div>
+                                </div>
+                                
+
+                                <div class="row mb-6">
+                                    <label class="required col-lg-4 col-form-label fw-bold fs-6">About us Image</label>
+                                    <div class="col-lg-8">
+                                        <div class="image-input image-input-outline image-input-empty"
+                                            data-kt-image-input="true"
+                                            style="background-image: url('assets/media/svg/avatars/blank.svg')">
+                                            <div class="image-input-wrapper w-125px h-125px"
+                                                style="background-image: none;">
+                                                <img src="" id="image_preview"
+                                                    style="width: 125px; height: 125px; display: none;">
+                                            </div>
+                                            <label
+                                                class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                data-kt-image-input-action="change" data-bs-toggle="tooltip" title=""
+                                                data-bs-original-title="Change image">
+                                                <i class="bi bi-pencil-fill fs-7"></i>
+                                                <input type="file" name="about_us_image1" id="about_us_image1"
+                                                    accept=".png, .jpg, .jpeg">
+                                                <input type="hidden" name="about_us_image" id="about_us_image" value="">
+                                            </label>
+                                        </div>
+                                        <div class="form-text">Allowed file types: png, jpg, jpeg, svg.</div>
+                                    </div>
+                                </div>    
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">About us Title</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="about_us_title" id="about_us_title"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="About us Title" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">About us Description</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="about_us_description" id="about_us_description"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="About us Description" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Why Choose Title</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="why_choose_title" id="why_choose_title"
+                                            class="form-control form-control-lg form-control-solid" 
+                                            placeholder="Why Choose Title" value="">
+                                    </div>
+                                </div>
+
+                               
+                                <div class="row mb-6">
+                                    <label class="required col-lg-4 col-form-label fw-bold fs-6">WHy Choose1 Image</label>
+                                    <div class="col-lg-8">
+                                        <div class="image-input image-input-outline image-input-empty"
+                                            data-kt-image-input="true"
+                                            style="background-image: url('assets/media/svg/avatars/blank.svg')">
+                                            <div class="image-input-wrapper w-125px h-125px"
+                                                style="background-image: none;">
+                                                <img src="" id="image_preview1"
+                                                    style="width: 125px; height: 125px; display: none;">
+                                            </div>
+                                            <label
+                                                class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                data-kt-image-input-action="change" data-bs-toggle="tooltip" title=""
+                                                data-bs-original-title="Change image">
+                                                <i class="bi bi-pencil-fill fs-7"></i>
+                                                <input type="file" name="why_choose1_image1" id="why_choose1_image1"
+                                                    accept=".png, .jpg, .jpeg">
+                                                <input type="hidden" name="why_choose1_image" id="why_choose1_image" value="">
+                                            </label>
+                                        </div>
+                                        <div class="form-text">Allowed file types: png, jpg, jpeg, svg.</div>
+                                    </div>
+                                </div>    
+
+                                <div class="row mb-6">
+                                    <label class="required col-lg-4 col-form-label fw-bold fs-6">WHy Choose2 Image</label>
+                                    <div class="col-lg-8">
+                                        <div class="image-input image-input-outline image-input-empty"
+                                            data-kt-image-input="true"
+                                            style="background-image: url('assets/media/svg/avatars/blank.svg')">
+                                            <div class="image-input-wrapper w-125px h-125px"
+                                                style="background-image: none;">
+                                                <img src="" id="image_preview2"
+                                                    style="width: 125px; height: 125px; display: none;">
+                                            </div>
+                                            <label
+                                                class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                data-kt-image-input-action="change" data-bs-toggle="tooltip" title=""
+                                                data-bs-original-title="Change image">
+                                                <i class="bi bi-pencil-fill fs-7"></i>
+                                                <input type="file" name="why_choose2_image1" id="why_choose2_image1"
+                                                    accept=".png, .jpg, .jpeg">
+                                                <input type="hidden" name="why_choose2_image" id="why_choose2_image" value="">
+                                            </label>
+                                        </div>
+                                        <div class="form-text">Allowed file types: png, jpg, jpeg, svg.</div>
+                                    </div>
+                                </div>    
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Doctors Team Title</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="doctors_team_title" id="doctors_team_title"
+                                            class="form-control form-control-lg form-control-solid" 
+                                            placeholder="Doctors Team Title" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Testimonial Title</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="testimonial_title" id="testimonial_title"
+                                            class="form-control form-control-lg form-control-solid" 
+                                            placeholder="Testimonial Title" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Our Centers Title</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="our_centers_title" id="our_centers_title"
+                                            class="form-control form-control-lg form-control-solid" 
+                                            placeholder="Our Centers Title" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Blogs Title</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="blogs_title" id="blogs_title"
+                                            class="form-control form-control-lg form-control-solid" 
+                                            placeholder="Blogs Title" value="">
+                                    </div>
+                                </div>
+
+                                
+                            </div>
+                            <div class="card-footer d-flex justify-content-end py-6 px-9">
+                                <button type="reset"
+                                    class="btn btn-light btn-active-light-primary me-2">Discard</button>
+                                <button type="submit" class="btn btn-primary" id="kt_footer_details_submit">Save
+                                    Changes</button>
+                            </div>
+                            <!--end::Actions-->
+                            <input type="hidden">
+                            <div></div>
+                        </form>
+                        <!--end::Form-->
+                    </div>
+                    <!--end::Content-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../../common/footer.html')-%>

@@ -1,0 +1,239 @@
+<%- include('../../common/header.html')-%>
+    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+        <div class="toolbar" id="kt_toolbar">
+            <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
+                    data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                    class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">
+                        <%= title %>
+                    </h1>
+                    <span class="h-20px border-gray-300 border-start mx-4"></span>
+                    <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
+                        <li class="breadcrumb-item text-dark">Lists</li>
+                    </ul>
+                </div>
+                <div class="d-flex align-items-center py-1">
+                    <a href="javascript:;" onclick="add_record();" class="btn btn-sm btn-primary">Add New</a>
+                </div>
+            </div>
+        </div>
+        <div class="post d-flex flex-column-fluid" id="kt_post">
+            <div id="kt_content_container" class="container-xxl">
+                <div class="row g-5 g-xl-8">
+                    <div class="col-xl-12">
+                        <div class="card card-xl-stretch mb-xl-8">
+                            <div class="card-header border-0 pt-5">
+                                <h3 class="card-title align-items-start flex-column">
+                                    <span class="card-label fw-bolder text-dark">
+                                        <%= title %>
+                                    </span>
+                                </h3>
+                                <!--begin:Action-->
+                                <div class="d-flex align-items-center remove-container">
+                                    
+                                </div>
+                                <!--end:Action-->
+                                <div class="row">
+                                    <div class="col-9">
+                                        <div class="d-flex align-items-center w-200px">
+                                            <select class="form-select form-select-solid"
+                                                    id="imageCategoryDropdown"
+                                                    onchange="pagination(1);">
+                                                <option value="">All</option>
+                                                <option value="Baby">Baby</option>
+                                                <option value="Patient">Patient</option>
+                                                <option value="Bliss Inauguration">Bliss Inauguration</option>
+                                                <option value="Vadodara">Vadodara</option>                                        
+                                                <option value="Surat">Surat</option>                                        
+                                                <option value="Rajkot">Rajkot</option>                                        
+                                                <option value="Valsad">Valsad</option>         
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>                                
+                            </div>
+                            <div class="card-body pt-5">
+                                <div class="table-responsive">
+                                    <table class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                                        <thead>
+                                            <tr class="fw-bolder text-muted">
+                                                <th class="min-w-150px">No</th>
+                                                <th class="min-w-150px">Image</th>
+                                                <th class="min-w-150px">Media Type</th>
+                                                <th class="min-w-100px">Category</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="table-data">
+                                            <tr>
+                                                <td colspan="2">
+                                                    <span class="fw-bold d-block fs-7">Loading...</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="d-flex flex-stack flex-wrap pt-10">
+                                    <div class="fs-6 fw-bold text-gray-700 pagination-text"></div>
+                                    <ul class="pagination" id="pagination"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="edit-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered mw-650px">
+            <div class="modal-content rounded">
+                <div class="modal-header">
+                    <h2 class="popup-title">Add / Edit <%= title %>
+                    </h2>
+                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                        <span class="svg-icon svg-icon-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
+                                    transform="rotate(-45 6 17.3137)" fill="black" />
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)"
+                                    fill="black" />
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-10">
+                    <form id="edit_gallery" class="form" action="#">
+                        <div class="mb-4 text-center"></div>
+                    
+                        <div class="row g-9 mb-5">
+                            <div class="col-md-12 fv-row">
+                                <input type="hidden" name="Id" id="Id" value="" />
+                    
+                                <!-- Media Type Selection -->
+                                <div class="row mb-6">
+                                    <label class="fs-6 fw-bold mb-2">Media Type</label>
+                                    <select class="form-control form-control-solid" name="media_type" id="media_type">
+                                        <option>Select Media Type</option>
+                                        <option value="1">Image</option>
+                                        <option value="2">Video</option>
+                                    </select>
+                                </div>
+                    
+                                <!-- Image Section -->
+                                <div id="image_section" class="d-none">
+                                    <div class="row mb-6">
+                                        <label class="fs-6 fw-bold mb-2">Gallery Category</label>
+                                        <select class="form-control form-control-solid" name="image_category" id="image_category">
+                                            <option >Select Category</option>
+                                            <option value="Baby">Baby</option>
+                                            <option value="Patient">Patient</option>
+                                            <option value="Bliss Inauguration">Bliss Inauguration</option>
+                                            <option value="Vadodara">Vadodara</option>
+                                            <option value="Surat">Surat</option>
+                                            <option value="Rajkot">Rajkot</option>
+                                            <option value="Valsad">Valsad</option>
+                                        </select>
+                                    </div>
+                    
+                                    <div class="row mb-6">
+                                        <div class="col-lg-4">
+                                            <label class="fw-bold fs-6">Gallery Image</label>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="image-input image-input-outline image-input-empty"
+                                                 data-kt-image-input="true"
+                                                 style="background-image: url('assets/media/svg/avatars/blank.svg')">
+                                                <div class="image-input-wrapper w-125px h-125px"
+                                                     style="background-image: none;">
+                                                    <img src="/assets/media/svg/avatars/blank.svg" id="image_preview"
+                                                         style="width: 125px; height: 125px;">
+                                                </div>
+                                                <label
+                                                    class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                    data-kt-image-input-action="change" data-bs-toggle="tooltip" title=""
+                                                    data-bs-original-title="Change image">
+                                                    <i class="bi bi-pencil-fill fs-7"></i>
+                                                    <input type="file" name="image1" id="image1" accept=".png, .jpg, .jpeg">
+                                                    <input type="hidden" name="image" id="image" value="">
+                                                </label>
+                                            </div>
+                                            <div class="form-text">Allowed file types: png, jpg, jpeg, svg.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                                <!-- Video Section -->
+                                <div id="video_section" class="d-none">
+                                    <div class="row mb-6">
+                                        <div class="col-lg-4">
+                                            <label class="fw-bold fs-6">Gallery Thumbnail Image</label>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="image-input image-input-outline image-input-empty"
+                                                 data-kt-image-input="true"
+                                                 style="background-image: url('assets/media/svg/avatars/blank.svg')">
+                                                <div class="image-input-wrapper w-125px h-125px"
+                                                     style="background-image: none;">
+                                                    <img src="/assets/media/svg/avatars/blank.svg" id="image_preview1"
+                                                         style="width: 125px; height: 125px;">
+                                                </div>
+                                                <label
+                                                    class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                    data-kt-image-input-action="change" data-bs-toggle="tooltip" title=""
+                                                    data-bs-original-title="Change image">
+                                                    <i class="bi bi-pencil-fill fs-7"></i>
+                                                    <input type="file" name="gallery_thumbnail_image1" id="gallery_thumbnail_image1"
+                                                           accept=".png, .jpg, .jpeg">
+                                                    <input type="hidden" name="gallery_thumbnail_image" id="gallery_thumbnail_image"
+                                                           value="">
+                                                </label>
+                                            </div>
+                                            <div class="form-text">Allowed file types: png, jpg, jpeg, svg.</div>
+                                        </div>
+                                    </div>
+                    
+                                    <div class="row mb-6">
+                                        <div class="col-lg-4">
+                                            <label class="fw-bold fs-6">Gallery Video</label>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="image-input image-input-outline image-input-empty"
+                                                 data-kt-image-input="true"
+                                                 style="background-image: url('assets/media/svg/avatars/blank.svg')">
+                                                <div class="image-input-wrapper w-125px h-125px"
+                                                     style="background-image: none;">
+                                                    <video id="video_preview" width="125" height="125" controls></video>
+                                                </div>
+                                                <label
+                                                    class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                    data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change video">
+                                                    <i class="bi bi-pencil-fill fs-7"></i>
+                                                    <input type="file" name="gallery_video1" id="gallery_video1" accept="video/*">
+                                                    <input type="hidden" name="gallery_video" id="gallery_video" value="">
+                                                </label>
+                                            </div>
+                                            <div class="form-text">Allowed file types: mp4, webm, ogg.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" id="kt_modal_new_target_submit" class="btn btn-primary">
+                                <span class="indicator-label">Submit</span>
+                                <span class="indicator-progress">
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                </span>
+                            </button>
+                        </div>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../../common/footer.html')-%>

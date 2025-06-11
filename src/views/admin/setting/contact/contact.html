@@ -1,0 +1,222 @@
+<%- include('../../common/header.html')-%>
+    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+        <div class="toolbar" id="kt_toolbar">
+            <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
+                    data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                    class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">
+                        <%= title %>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="post d-flex flex-column-fluid" id="kt_post">
+            <div id="kt_content_container" class="container-xxl">
+                <div class="card mb-5 mb-xl-10" data-select2-id="select2-data-137-cfei">
+                    <div class="card-footer border-0 cursor-pointer" role="button" data-bs-toggle="collapse"
+                        data-bs-target="#kt_footer_details" aria-expanded="true" aria-controls="kt_footer_details">
+                        <div class="card-title m-0">
+                            <h3 class="fw-bolder m-0">
+                                <%= title %> Details
+                            </h3>
+                        </div>
+                    </div>
+                    <div id="kt_footer_details" class="collapse show" data-select2-id="select2-data-kt_footer_details">
+                        <form id="contact_us_form" class="form fv-plugins-bootstrap5 fv-plugins-framework"
+                            novalidate="novalidate" data-select2-id="select2-data-kt_footer_details_form" action="#">
+                            <div class="card-body border-top p-9" data-select2-id="select2-data-136-0zbi">
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Meta Title</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="contact_us_meta_title" id="contact_us_meta_title"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Title" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Meta Description</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <textarea name="contact_us_meta_description" id="contact_us_meta_description"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Meta Description"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Meta Locale</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="contact_us_meta_locale" id="contact_us_meta_locale"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Meta Locale" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Meta Type</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="contact_us_meta_type" id="contact_us_meta_type"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Meta Type" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Meta Site Name</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="contact_us_meta_site_name" id="contact_us_meta_site_name"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Meta Site Name" value="">
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Contact Us Title</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="contact_us_title" id="contact_us_title"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Contact Us Title" value="">
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Contact Us Heading</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="contact_us_heading" id="contact_us_heading"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Contact Us Heading" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">FAQ Title</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="faq_title" id="faq_title"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="FAQ Title" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label fw-bold fs-6">Contact Us Image</label>
+                                    <div class="col-lg-8">
+                                        <div class="image-input image-input-outline image-input-empty"
+                                            data-kt-image-input="true"
+                                            style="background-image: url('assets/media/svg/avatars/blank.svg')">
+                                            <div class="image-input-wrapper w-125px h-125px"
+                                                style="background-image: none;">
+                                                <img src="" id="image_preview1"
+                                                    style="width: 125px; height: 125px; display: none;">
+                                            </div>
+                                            <label
+                                                class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                data-kt-image-input-action="change" data-bs-toggle="tooltip" title=""
+                                                data-bs-original-title="Change image">
+                                                <i class="bi bi-pencil-fill fs-7"></i>
+                                                <input type="file" name="contact_us_image1" id="contact_us_image1"
+                                                    accept=".png, .jpg, .jpeg, .svg">
+                                                <input type="hidden" name="contact_us_image" id="contact_us_image" value="">
+                                            </label>
+                                        </div>
+                                        <div class="form-text">Allowed file types: png, jpg, jpeg, svg.</div>
+                                    </div>
+                                </div>    
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label fw-bold fs-6">Faq Image</label>
+                                    <div class="col-lg-8">
+                                        <div class="image-input image-input-outline image-input-empty"
+                                            data-kt-image-input="true"
+                                            style="background-image: url('assets/media/svg/avatars/blank.svg')">
+                                            <div class="image-input-wrapper w-125px h-125px"
+                                                style="background-image: none;">
+                                                <img src="" id="image_preview2"
+                                                    style="width: 125px; height: 125px; display: none;">
+                                            </div>
+                                            <label
+                                                class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                data-kt-image-input-action="change" data-bs-toggle="tooltip" title=""
+                                                data-bs-original-title="Change image">
+                                                <i class="bi bi-pencil-fill fs-7"></i>
+                                                <input type="file" name="faq_image1" id="faq_image1"
+                                                    accept=".png, .jpg, .jpeg, .svg">
+                                                <input type="hidden" name="faq_image" id="faq_image" value="">
+                                            </label>
+                                        </div>
+                                        <div class="form-text">Allowed file types: png, jpg, jpeg, svg.</div>
+                                    </div>
+                                </div>    
+
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Contact-Us Center Title1</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="contact_us_center_title1_heading1" id="contact_us_center_title1_heading1"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Contact-Us Center Title1" value="">
+                                    </div>
+                                </div>
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Contact-Us Center Title1</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="contact_us_center_title1_heading2" id="contact_us_center_title1_heading2"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Contact-Us Center Title1" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Contact-Us Center Title2</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="contact_us_center_title2_heading1" id="contact_us_center_title2_heading1"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Contact-Us Center Title2" value="">
+                                    </div>
+                                </div>
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Contact-Us Center Title2</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="contact_us_center_title2_heading2" id="contact_us_center_title2_heading2"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Contact-Us Center Title2" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Contact-Us Center Title3</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="contact_us_center_title3_heading1" id="contact_us_center_title3_heading1"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Contact-Us Center Title3" value="">
+                                    </div>
+                                </div>
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Contact-Us Center Title3</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="contact_us_center_title3_heading2" id="contact_us_center_title3_heading2"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Contact-Us Center Title3" value="">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="card-footer d-flex justify-content-end py-6 px-9">
+                                <button type="reset"
+                                    class="btn btn-light btn-active-light-primary me-2">Discard</button>
+                                <button type="submit" class="btn btn-primary" id="kt_footer_details_submit">Save
+                                    Changes</button>
+                            </div>
+                            <!--end::Actions-->
+                            <input type="hidden">
+                            <div></div>
+                        </form>
+                        <!--end::Form-->
+                    </div>
+                    <!--end::Content-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../../common/footer.html')-%>

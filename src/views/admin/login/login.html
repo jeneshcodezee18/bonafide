@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+  <style type="text/css">
+
+    .hover-button:hover {
+      background-color: #273050 !important;
+    }
+
+    body.swal2-height-auto {
+			height: 100vh !important;
+		}
+
+  </style>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+  <link href="../css/style.bundle.css" rel="stylesheet" />
+  <!-- Add the reference to jQuery type definitions -->
+</head>
+
+<body id="kt_body" class="bg-dark">
+  <div class="d-flex flex-column flex-root">
+    <div
+      class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed"
+      style="
+          background-image: url(assets/media/illustrations/sketchy-1/14-dark.png);
+        ">
+      <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
+        <div class="mb-12">
+          <h2 style="color: white">Bonafide Research</h2>
+        </div>
+        <div class="w-lg-500px bg-body rounded p-10 p-lg-15 mx-auto" style="background-color: #fbfaf8 !important">
+          <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" action="#">
+            <div class="text-center mb-10">
+              <h1 class="text-dark mb-3">Sign In - Control Panel</h1>
+              <div class="fs-5">Enter your account credentials</div>
+            </div>
+            <div class="fv-row mb-10">
+              <div class="d-flex align-items-center position-relative">
+                <span class="svg-icon svg-icon-3 position-absolute ms-5 me-5">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-person" viewBox="0 0 16 16">
+                    <path
+                      d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                  </svg>
+                </span>
+                <input type="text" id="username" name="username" placeholder="Username"
+                  class="ps-15 form-control form-control-lg form-control-solid" autocomplete="off" style="
+                      background-color: #ffffff;
+                      border-color: #dedede;
+                      line-height: 2;
+                    " />
+              </div>
+            </div>
+            <div class="fv-row mb-10">
+              <div class="d-flex align-items-center position-relative">
+                <span class="svg-icon svg-icon-3 position-absolute ms-5 me-5">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-shield-lock" viewBox="0 0 16 16">
+                    <path
+                      d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z" />
+                    <path
+                      d="M9.5 6.5a1.5 1.5 0 0 1-1 1.415l.385 1.99a.5.5 0 0 1-.491.595h-.788a.5.5 0 0 1-.49-.595l.384-1.99a1.5 1.5 0 1 1 2-1.415z" />
+                  </svg>
+                </span>
+                <input type="password" id="password" name="password" placeholder="Password"
+                  class="ps-15 form-control form-control-lg form-control-solid" autocomplete="off" style="
+                      background-color: #ffffff;
+                      border-color: #dedede;
+                      line-height: 2;" />
+              </div>
+            </div>
+            <div class="text-center">
+              <button type="submit" id="kt_sign_in_submit" class="btn btn-lg btn-primary w-100 mb-5 hover-button"
+                style="background-color: #273050; line-height: 2">
+                <span class="indicator-label">Sign In</span>
+                <span class="indicator-progress">
+                  <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="d-flex flex-center flex-column-auto p-10"></div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+  <script>
+    var BASE_URL = "<%= config['BASE_URL'] %>";
+  </script>
+    <script type="module" src="<%= config['BASE_URL'] %>assets/js/script/login.js"></script>
+</body>
+
+</html>
