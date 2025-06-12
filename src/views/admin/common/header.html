@@ -215,7 +215,7 @@
 										</span>
 										<!--end::Svg Icon-->
 									</span>
-									<span class="menu-title fs-5">Report Master</span>
+									<span class="menu-title fs-5 <% if (!(menu == 'report_analytics' || menu == 'upload_report' || menu == 'report_list' ||menu == 'press_releases_list' || menu == 'company_list' || menu == 'list_segment' || menu == 'list_segment_graph' || menu == 'list_snapshot' || menu == 'list_bar_graph' || menu == 'list_faqs' || menu == 'list_keyword' || menu == 'list_category' || menu == 'region_master' || menu == 'product_banner' || menu == 'sitemap' || menu == 'report_table_list')) { %> text-muted <% } %>">Report Master</span>
 									<span class="menu-arrow"></span>
 								</span>
 								<div class="menu-sub menu-sub-accordion menu-active-bg" kt-hidden-height="312">
@@ -381,7 +381,7 @@
 										</span>
 										<!--end::Svg Icon-->
 									</span>
-									<span class="menu-title fs-5">Sale Master</span>
+									<span class="menu-title fs-5 <% if (!(menu == 'partner' || menu == 'members' || menu == 'our_client' || menu == 'testimonial' || menu == 'quotation' || menu == 'email_template' || menu == 'report_promotion' || menu == 'sales_tracking' || menu == 'lead_master' || menu == 'subscriber_master' || menu == 'discount_coupon' || menu == 'email_to_subscriber' || menu == 'promotional_email' || menu == 'email_provider' || menu == 'upload_sales' || menu == 'sales_table_list')) { %> text-muted <% } %>">Sale Master</span>
 									<span class="menu-arrow"></span>
 								</span>
 								<div class="menu-sub menu-sub-accordion menu-active-bg" kt-hidden-height="312">
@@ -549,7 +549,7 @@
 										</span>
 										<!--end::Svg Icon-->
 									</span>
-									<span class="menu-title fs-5">Services</span>
+									<span class="menu-title fs-5  <% if (!(menu == 'custom_report' || menu == 'data_collection' || menu == 'market_assessment' || menu == 'sme_consulting' || menu =='benchmarking' || menu == 'market_entry' || menu == 'bxplor' || menu == 'lead_generation' )) { %> text-muted <% } %>">Services</span>
 									<span class="menu-arrow"></span>
 								</span>
 								<div class="menu-sub menu-sub-accordion menu-active-bg" kt-hidden-height="312">
@@ -642,7 +642,7 @@
 										</span>
 										<!--end::Svg Icon-->
 									</span>
-									<span class="menu-title fs-5">About Bonafide</span>
+									<span class="menu-title fs-5  <% if (!( menu == 'about_us' || menu == 'methodology' || menu == 'license_information' || menu == 'howtoorder' || menu == 'policies' || menu == 'faqs_manage' || menu == 'sample_request' || menu == 'about_database')) { %> text-muted <% } %> ">About Bonafide</span>
 									<span class="menu-arrow"></span>
 								</span>
 								<div class="menu-sub menu-sub-accordion menu-active-bg" kt-hidden-height="312">
@@ -737,7 +737,7 @@
 										</span>
 										<!--end::Svg Icon-->
 									</span>
-									<span class="menu-title fs-5">Knowladge Based</span>
+									<span class="menu-title fs-5 <% if (!( menu == 'did_you_know' || menu == 'infographics' || menu == 'news' || menu == 'blogs' || menu == 'events' || menu == 'knowledge_database' )) { %> text-muted <% } %>">Knowladge Based</span>
 									<span class="menu-arrow"></span>
 								</span>
 								<div class="menu-sub menu-sub-accordion menu-active-bg" kt-hidden-height="312">
@@ -814,7 +814,7 @@
 										</span>
 										<!--end::Svg Icon-->
 									</span>
-									<span class="menu-title fs-5">Super Admin</span>
+									<span class="menu-title fs-5 <% if (!( menu == 'home_page' || menu == 'page_headings' || menu == 'slider_list' || menu == 'admin_user' || menu == 'product_page_analytics' || menu == 'website_page_analytics' || menu == 'superadmin_database' )) { %> text-muted <% } %>">Super Admin</span>
 									<span class="menu-arrow"></span>
 								</span>
 								<div class="menu-sub menu-sub-accordion menu-active-bg" kt-hidden-height="312">
@@ -901,7 +901,9 @@
 										</span>
 										<!--end::Svg Icon-->
 									</span>
-									<span class="menu-title fs-5">Career Master</span>
+									<span class="menu-title fs-5
+									
+									<% if (!(menu == 'career_list' || menu == 'career_us' || menu == 'career_database')) { %> text-muted <% } %>">Career Master</span>
 									<span class="menu-arrow"></span>
 								</span>
 								<div class="menu-sub menu-sub-accordion menu-active-bg" kt-hidden-height="312">
