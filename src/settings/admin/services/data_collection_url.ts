@@ -5,27 +5,28 @@ import { ResponseData } from "../../../types/common";
 import { BASE_URL } from "../../../util/secrets";
 
 export function bindURL(): void {
-    app.get("/admin_master/did_you_know/manage", async function (req: Request, res: Response): Promise<void> {
+    app.get("/admin_master/services/data_collection", async function (req: Request, res: Response): Promise<void> {
         try {
             const respData: ResponseData = {
                 base_url: BASE_URL ?? "",
-                title: "Did You Know Image List",
+                title: "Data Collection And Analysis",
                 config: config,
                 script: {
                     available: 0,
-                    js: "did_you_know",
+                    js: "data_collection",
                 },
                 css: {
                     available: 0,
-                    css: "did_you_know",
+                    css: "data_collection",
                 },
-                menu: "did_you_know",
+                menu: "data_collection",
                 data: {}
             };
-            res.render("admin/knowledge_based/did_you_know/did_you_know.html", respData);
+            res.render("admin/services/data_collection/data_collection.html", respData);
         } catch (err: unknown) {
-            console.error(err);
+            console.error(err); // Log the error for debugging purposes
             res.status(500).send("Internal Server Error");
         }
     });
+
 }

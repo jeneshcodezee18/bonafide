@@ -22,7 +22,7 @@ export function bindURL(): void {
                 menu: "upload_sales",
                 data: {}
             };
-            res.render("admin/sales_master/upload_sales/upload_sales.html", respData);
+            res.render("admin/sales_master/upload/upload.html", respData);
         } catch (err: unknown) {
             console.error(err); // Log the error for debugging purposes
             res.status(500).send("Internal Server Error");

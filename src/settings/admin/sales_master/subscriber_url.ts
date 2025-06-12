@@ -22,7 +22,7 @@ export function bindURL(): void {
                 menu: "subscriber_master",
                 data: {}
             };
-            res.render("admin/sales_master/subscriber_master/subscriber_master.html", respData);
+            res.render("admin/sales_master/subscriber/subscriber.html", respData);
         } catch (err: unknown) {
             console.error(err); // Log the error for debugging purposes
             res.status(500).send("Internal Server Error");
