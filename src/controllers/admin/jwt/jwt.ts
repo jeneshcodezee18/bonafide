@@ -16,7 +16,6 @@ export const DECODE = async (req, callback) => {
     try {
         const token: string = req.headers.authorization.split(' ')[1];
         const decoded: { id: number, username: string } = jwt.verify(token, jwtKey as string);
-
         if (decoded && decoded.id) {
             // Query the login_token table in PostgreSQL
             const query = `SELECT * FROM login_token WHERE user_id = $1 AND token = $2 LIMIT 1`;

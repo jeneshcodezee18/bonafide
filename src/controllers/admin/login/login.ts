@@ -24,7 +24,7 @@ export const LOGIN = async function (
   try {
     // Query user from adminmaster table
     const query = `
-      SELECT adminid, adminuname, adminpassword
+      SELECT adminid, adminuname
       FROM adminmaster
       WHERE adminuname = $1 AND adminpassword = $2
       LIMIT 1
@@ -34,20 +34,19 @@ export const LOGIN = async function (
 
     if (result.rows.length > 0) {
       const user = result.rows[0];
-
       const token = jwt.sign(
-        { username: user.adminuname, id: user.adminId },
+        { username: user.adminuname, id: user.adminid },
         process.env.JWT_SECRET_KEY as string,
         { expiresIn: "1d" }
       );
 
       // Save user_id and token in login_token table
-      // const insertQuery = `
-      //   INSERT INTO login_token (user_id, token, created_at)
-      //   VALUES ($1, $2, NOW())
-      // `;
-      // const insertValues = [user.adminId, token];
-      // await pool.query(insertQuery, insertValues);
+      const insertQuery = `
+        INSERT INTO login_token (user_id, token, created_at)
+        VALUES ($1, $2, NOW())
+      `;
+      const insertValues = [user.adminid, token];
+      await pool.query(insertQuery, insertValues);
 
       sendData = commonController.getSuccessSendData({ token }, "Login Successful");
     } else {

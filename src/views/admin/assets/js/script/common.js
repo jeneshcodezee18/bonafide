@@ -84,24 +84,23 @@ $(document).ready(function () {
 });
 jQuery(document).ready(function ($) {
   let token = localStorage.getItem("TOKEN");
- 
   jQuery.ajax({
     type: "GET",
-    url: BASE_URL + "admin/login_check",
+    url: BASE_URL + "admin_master/login_check",
     headers: {
       authorization: token ? `Bearer ${token}` : "",
     },
     data: {},
     success: function (response) {
       if (response.status !== 200 && response.err !== 0) {
-        window.location = BASE_URL + "admin";
+        window.location = BASE_URL + "admin_master";
       }
     },
   });
 });
 
 
-document.getElementById('sign_out').addEventListener('click', function () {
+$('#sign_out').on('click', function () {
   // Display a confirmation dialog using SweetAlert
   Swal.fire({
     title: 'Confirm Sign Out',
@@ -111,22 +110,22 @@ document.getElementById('sign_out').addEventListener('click', function () {
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
     confirmButtonText: 'Yes, Sign Out'
-  }).then((result) => {
+  }).then(function (result) {
     if (result.isConfirmed) {
       // User confirmed sign out, proceed with removal of TOKEN and redirection
-      const token = localStorage.getItem("TOKEN");
+      var token = localStorage.getItem("TOKEN");
       if (token) {
         $.ajax({
           type: 'POST',
-          url: BASE_URL + "admin/logout",
+          url: BASE_URL + "admin_master/logout",
           headers: {
-            'Authorization': `Bearer ${token}`
+            'Authorization': 'Bearer ' + token
           },
           data: { token: token },
           success: function (response) {
             $(".indicator-progress").hide();
+
             if (response.err == 1) {
-              // console.log(response, "error");
               Swal.fire({
                 text: response.msg,
                 icon: "error",
@@ -137,20 +136,16 @@ document.getElementById('sign_out').addEventListener('click', function () {
                 },
               });
             } else {
-              // Redirect to admin dashboard on successful login
-              console.log("You have successfully logged out!");
-              localStorage.setItem("TOKEN", token);
-
-                  // If no specific redirect URL is provided, use a default dashboard URL
-                  window.location.href = BASE_URL + "admin";
+              // Remove token and redirect to admin login
+              localStorage.removeItem("TOKEN");
+              window.location.href = BASE_URL + "admin_master";
             }
           },
           error: function (xhr, status, error) {
             $(".indicator-progress").hide();
             console.log("Error:", error);
-            // Handle error here
           },
-        })
+        });
       } else {
         Swal.fire('Error', 'Token not found.', 'error');
       }

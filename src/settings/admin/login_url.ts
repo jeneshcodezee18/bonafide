@@ -59,7 +59,7 @@ export function bindURL(): void {
         try {
             apiJwtController.DECODE(req,  (respData) => {
                 if (respData.status !== 200) {
-                    res.redirect("/admin_master"); // Redirect to login page if token is expired
+                    res.redirect("/admin_master"); 
                 } else {
                     res.status(respData.status).send(respData);
                 }
@@ -69,6 +69,19 @@ export function bindURL(): void {
             res.status(500).send("Internal Server Error");
         }
     });
+
+    app.get("/admin_master/logout",  (req: Request, res: Response): void => {
+        try {
+            if (req.headers.authorization) {
+                delete req.headers.authorization;
+            }
+            res.redirect("/admin_master");
+        } catch (err) {
+            console.error(err); 
+            res.status(500).send("Internal Server Error");
+        }
+    });
+
 }
    
 
