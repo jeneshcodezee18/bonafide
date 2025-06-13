@@ -1,5 +1,4 @@
 jQuery(document).ready(function ($) {
-  console.log("Login script loaded");
   let token = localStorage.getItem("TOKEN");
   jQuery.ajax({
     type: "GET",
@@ -18,7 +17,6 @@ jQuery(document).ready(function ($) {
   
 
   $("#kt_sign_in_form").on("submit", function (e) {
-    console.log("Form submitted");
     e.preventDefault();
     $(".indicator-progress").css("display", "contents");
     const username = $("#username").val();
@@ -33,7 +31,6 @@ jQuery(document).ready(function ($) {
       },
       success: function (response) {
         $(".indicator-progress").hide();
-        console.log(response);
         if (response.err === 1) {
           Swal.fire({
             text: response.msg,

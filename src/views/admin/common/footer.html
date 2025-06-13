@@ -177,26 +177,6 @@
 	<% } %>
 		<script src="<%= config['BASE_URL'] %>assets/js/script/common.js"></script>
 		<script>
-			var lbl = document.getElementById("footer-year");
+			const lbl = document.getElementById("footer-year");
 			lbl.textContent = new Date().getFullYear() + " © ";
-
-			// Add event listener to the sign out button
-			document.getElementById('sign_out').addEventListener('click', function () {
-				// Display a confirmation dialog using SweetAlert
-				Swal.fire({
-					title: 'Confirm Sign Out',
-					text: 'Are you sure you want to sign out?',
-					icon: 'warning',
-					showCancelButton: true,
-					confirmButtonColor: '#3085d6',
-					cancelButtonColor: '#d33',
-					confirmButtonText: 'Yes, Sign Out'
-				}).then((result) => {
-					if (result.isConfirmed) {
-						// User confirmed sign out, proceed with removal of TOKEN and redirection
-						localStorage.removeItem("TOKEN");
-						window.location.href = "/admin/logout";
-					}
-				});
-			});
 		</script>
