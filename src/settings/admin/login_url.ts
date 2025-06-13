@@ -4,7 +4,7 @@ import * as config from "../../../config.json";
 import { Request, Response } from 'express';
 import { ResponseData } from "../../types/common";
 import { BASE_URL } from "../../util/secrets";
-import { validationResult } from "express-validator";
+import { header, validationResult } from "express-validator";
 import * as loginController from "../../controllers/admin/login/login";
 import * as apiJwtController from "../../controllers/admin/jwt/jwt";
 
@@ -70,17 +70,64 @@ export function bindURL(): void {
         }
     });
 
-    app.get("/admin_master/logout",  (req: Request, res: Response): void => {
+    app.get("/admin_master/logout",
+           header('authorization').trim().not().isEmpty(),
+          (req: Request, res: Response): void => {
         try {
-            if (req.headers.authorization) {
-                delete req.headers.authorization;
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                const respData = commonController.errorValidationResponse(errors);
+                res.status(respData.status).send(respData);
+            } else {
+                //calling controller function
+                apiJwtController.DECODE(req, (respData) => {
+                    if (respData.status !== 200) {
+                        res.status(respData.status).send(respData);
+                    } else {
+                        const sendData = {
+                            user_data: respData.data,
+                            token: req.headers.authorization.split(' ')[1]
+                        };
+                        loginController.LOGOUT(sendData, (respData) => {
+                            res.status(respData.status).send(respData);
+                        });
+                    }
+                });
             }
-            res.redirect("/admin_master");
         } catch (err) {
             console.error(err); 
             res.status(500).send("Internal Server Error");
         }
     });
+
+    app.post("/admin_master/change_password",
+        header('authorization').trim().not().isEmpty(),
+        async (req: Request, res: Response): Promise<void> => {
+        try {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                const respData = commonController.errorValidationResponse(errors);
+                res.status(respData.status).send(respData);
+            } else {
+                //calling controller function
+                apiJwtController.DECODE(req, (respData) => {
+                    if (respData.status !== 200) {
+                        res.status(respData.status).send(respData);
+                    } else {
+                        const data = req.body;
+                        data.userData = respData.data; 
+                        loginController.CHANGED_PASSWORD(data, (respData) => {
+                            res.status(respData.status).send(respData);
+                        });
+                    }
+                });
+            }
+        } catch (err) {
+            console.error(err); 
+            res.status(500).send("Internal Server Error");
+        }
+    });
+
 
 }
    

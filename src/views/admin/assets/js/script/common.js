@@ -7,50 +7,64 @@ function showForgotPasswordPopup() {
 }
 
 $(document).ready(function () {
+  $(document).ready(function () {
   $("#forgotPasswordPopup form").submit(function (e) {
     e.preventDefault();
-    var oldPassword = $("#oldPassword").val();
-    var newPassword = $("#newPassword").val();
-    var confirmPassword = $("#confirmPassword").val();
+    const oldPassword = $("#oldPassword").val();
+    const newPassword = $("#newPassword").val();
+    const confirmPassword = $("#confirmPassword").val();
     let token = localStorage.getItem("TOKEN");
+
     if (oldPassword && newPassword && confirmPassword) {
       if (newPassword === confirmPassword) {
-        $.ajax({
-          type: "POST",
-          url: BASE_URL + "admin/change_password",
-          headers: {
-            authorization: token ? `Bearer ${token}` : "",
-          },
-          data: {
-            oldPassword: oldPassword,
-            newPassword: newPassword,
-            confirmPassword: confirmPassword,
-          },
-          success: function (response) {
-            if (response.err == 1) {
-              Swal.fire({
-                text: response.msg,
-                icon: "error",
-                buttonsStyling: false,
-                confirmButtonText: "Ok got it",
-                customClass: {
-                  confirmButton: "btn btn-primary",
-                },
-              });
-            } else {
-
-              Swal.fire({
-                text: response.msg,
-                icon: "success",
-                buttonsStyling: false,
-                confirmButtonText: "Ok got it",
-                customClass: {
-                  confirmButton: "btn btn-primary",
-                },
-              });
-              $("#forgotPasswordPopup").modal("hide");
-            }
-          },
+        // Show confirmation before changing password
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "Do you really want to change your password?",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, change it!'
+        }).then(function (result) {
+          if (result.isConfirmed) {
+            $.ajax({
+              type: "POST",
+              url: BASE_URL + "admin_master/change_password",
+              headers: {
+                authorization: token ? `Bearer ${token}` : "",
+              },
+              data: {
+                oldPassword: oldPassword,
+                newPassword: newPassword,
+                confirmPassword: confirmPassword,
+              },
+              success: function (response) {
+                if (response.err == 1) {
+                  Swal.fire({
+                    text: response.msg,
+                    icon: "error",
+                    buttonsStyling: false,
+                    confirmButtonText: "Ok got it",
+                    customClass: {
+                      confirmButton: "btn btn-primary",
+                    },
+                  });
+                } else {
+                  Swal.fire({
+                    text: response.msg,
+                    icon: "success",
+                    buttonsStyling: false,
+                    confirmButtonText: "Ok got it",
+                    customClass: {
+                      confirmButton: "btn btn-primary",
+                    },
+                  });
+                  $("#forgotPasswordPopup").modal("hide");
+                }
+              },
+            });
+          }
         });
       } else {
         Swal.fire({
@@ -75,6 +89,7 @@ $(document).ready(function () {
       });
     }
   });
+});
 
   // Hide the forgot password popup modal on cancel
   $("#cancelForgotPassword").click(function () {
@@ -112,11 +127,10 @@ $('#sign_out').on('click', function () {
     confirmButtonText: 'Yes, Sign Out'
   }).then(function (result) {
     if (result.isConfirmed) {
-      // User confirmed sign out, proceed with removal of TOKEN and redirection
-      var token = localStorage.getItem("TOKEN");
+      const token = localStorage.getItem("TOKEN");
       if (token) {
         $.ajax({
-          type: 'POST',
+          type: 'GET',
           url: BASE_URL + "admin_master/logout",
           headers: {
             'Authorization': 'Bearer ' + token
