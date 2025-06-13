@@ -14,12 +14,302 @@
                     </ul>
                 </div>
                 <div class="d-flex align-items-center py-1">
-                    <a href="javascript:;" onclick="add_record();" class="btn btn-sm btn-primary">Add New</a>
+                    <a href="javascript:;" id="addJob" class="btn btn-sm btn-primary">Add New Job</a>
                 </div>
             </div>
         </div>
-        <div class="container mt-10">
-            <h2 class="text-center mb-4">This <%= title %> page is coming soon...</h2>
+        <div class="post d-flex flex-column-fluid" id="kt_post">
+            <div id="kt_content_container" class="container-xxl">
+                <div class="row g-5 g-xl-8">
+                    <div class="col-xl-12">
+                        <div class="card card-xl-stretch mb-xl-8">
+                            <div class="card-header border-0 pt-5">
+                                <h3 class="card-title align-items-start flex-column">
+                                    <span class="card-label fw-bolder text-dark">
+                                        <%= title %>
+                                    </span>
+                                </h3>
+                                <div class="row">
+                                    <div class="col-3">
+
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="d-flex align-items-center" style="margin-top: 26px;">
+                                            <!--begin::Input group-->
+                                            <div class="position-relative w-md-400px me-md-2">
+                                                <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
+                                                <span
+                                                    class="svg-icon svg-icon-3 svg-icon-gray-500 position-absolute top-50 translate-middle ms-6">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none">
+                                                        <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546"
+                                                            height="2" rx="1" transform="rotate(45 17.0365 15.1223)"
+                                                            fill="black"></rect>
+                                                        <path
+                                                            d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"
+                                                            fill="black"></path>
+                                                    </svg>
+                                                </span>
+                                                <!--end::Svg Icon-->
+                                                <input type="text" class="form-control form-control-solid ps-10"
+                                                    id="search" name="search" value="" placeholder="Search">
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin:Action-->
+                                            <div class="d-flex align-items-center">
+                                                <button type="button" onclick="pagination(1);"
+                                                    class="btn btn-primary me-5">Search</button>
+                                            </div>
+                                            <!--end:Action-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body pt-5">
+                                <div class="table-responsive">
+                                    <table class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                                        <thead>
+                                            <tr class="fw-bolder text-muted">
+                                                <th class="min-w-150px">Sr No</th>
+                                                <th class="min-w-150px">Title</th>
+                                                <th class="min-w-150px">Job Title</th>
+                                                <th class="min-w-150px">Description</th>
+                                                <th class="min-w-150px">Created At</th>
+                                                <th class="min-w-150px">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="table-data">
+                                            <tr>
+                                                <td colspan="2">
+                                                    <span class="fw-bold d-block fs-7">Loading...</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="d-flex flex-stack flex-wrap pt-10">
+                                    <div class="fs-6 fw-bold text-gray-700 pagination-text"></div>
+                                    <ul class="pagination" id="pagination"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
+         <div class="modal fade" id="edit-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered mw-650px">
+            <div class="modal-content rounded">
+                <div class="modal-header">
+                    <h2 class="popup-title">Add / Edit <%= title %>
+                    </h2>
+                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                        <span class="svg-icon svg-icon-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
+                                    transform="rotate(-45 6 17.3137)" fill="black" />
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)"
+                                    fill="black" />
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-10">
+                    <form id="edit_center" class="form" action="#">
+                        <div class="mb-4 text-center">
+                        </div>
+                        <div class="row g-9 mb-5">
+                            <div class="col-md-12 fv-row">
+                                <input type="hidden" name="Id" id="Id" value="" />
+
+                                <div class="row mb-6">
+                                    <div class="col-lg-4">
+                                        <label class="required fw-bold fs-6">Center Map Image</label>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <div class="image-input image-input-outline image-input-empty"
+                                            data-kt-image-input="true"
+                                            style="background-image: url('assets/media/svg/avatars/blank.svg')">
+                                            <div class="image-input-wrapper w-125px h-125px"
+                                                style="background-image: none;">
+                                                <img src="/assets/media/svg/avatars/blank.svg" id="image_preview1"
+                                                    style="width: 125px; height: 125px;">
+                                            </div>
+                                            <label
+                                                class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                data-kt-image-input-action="change" data-bs-toggle="tooltip" title=""
+                                                data-bs-original-title="Change image">
+                                                <i class="bi bi-pencil-fill fs-7"></i>
+                                                <input type="file" name="center_map_image1" id="center_map_image1"
+                                                    accept=".png, .jpg, .jpeg">
+                                                <input type="hidden" name="center_map_image" id="center_map_image"
+                                                    value="">
+                                            </label>
+                                        </div>
+                                        <div class="form-text">Allowed file types: png, jpg, jpeg, svg.</div>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="required fs-6 fw-bold mb-2">Center Name</label>
+                                    <input type="text" class="form-control form-control-solid" name="center_name"
+                                        id="center_name" required placeholder="Center Name" />                                       
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="required fs-6 fw-bold mb-2">Center Banner Detail</label>
+                                    <input type="text" class="form-control form-control-solid" name="center_banner_detail"
+                                        id="center_banner_detail" required placeholder="Center Banner Detail" />                                       
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class=" fs-6 fw-bold mb-2">Phone No1</label>
+                                    <input type="number" class="form-control form-control-solid" name="phone_no1"
+                                        id="phone_no1"  placeholder="Phone no" />                                       
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class=" fs-6 fw-bold mb-2">Phone No2</label>
+                                    <input type="number" class="form-control form-control-solid" name="phone_no2"
+                                        id="phone_no2"  placeholder="Phone no" />                                       
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="required fs-6 fw-bold mb-2">Address</label>
+                                    <textarea class="form-control form-control-solid" name="address"
+                                        id="address" required placeholder="Address"></textarea>
+                                </div>                               
+
+                                <div class="row mb-6">
+                                    <label class="required fs-6 fw-bold mb-2">Address URL</label>
+                                    <input type="text" class="form-control form-control-solid" name="address_url"
+                                        id="address_url" required placeholder="Address URL"/>
+                                </div>                               
+
+                                <div class="row mb-6">
+                                    <label class="required fs-6 fw-bold mb-2">Map URL</label>
+                                    <input type="text" class="form-control form-control-solid" name="map_url"
+                                        id="map_url" required placeholder="Map URL"/>
+                                </div>                               
+                                
+                                <div class="row mb-6">
+                                    <label class="required fs-6 fw-bold mb-2">Email</label>
+                                    <input type="text" class="form-control form-control-solid" name="email"
+                                     id="email" required placeholder="Email" /> 
+                                </div>   
+
+                                <div class="row mb-6">
+                                    <div class="col-lg-4">
+                                        <label class="required fw-bold fs-6">Center Image</label>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <div class="image-input image-input-outline image-input-empty"
+                                            data-kt-image-input="true"
+                                            style="background-image: url('assets/media/svg/avatars/blank.svg')">
+                                            <div class="image-input-wrapper w-125px h-125px"
+                                                style="background-image: none;">
+                                                <img src="/assets/media/svg/avatars/blank.svg" id="image_preview2"
+                                                    style="width: 125px; height: 125px;">
+                                            </div>
+                                            <label
+                                                class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                data-kt-image-input-action="change" data-bs-toggle="tooltip" title=""
+                                                data-bs-original-title="Change image">
+                                                <i class="bi bi-pencil-fill fs-7"></i>
+                                                <input type="file" name="center_image1" id="center_image1"
+                                                    accept=".png, .jpg, .jpeg">
+                                                <input type="hidden" name="center_image" id="center_image"
+                                                    value="">
+                                            </label>
+                                        </div>
+                                        <div class="form-text">Allowed file types: png, jpg, jpeg, svg.</div>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="required fs-6 fw-bold mb-2">Center Heading</label>
+                                    <input type="text" class="form-control form-control-solid" name="center_heading"
+                                     id="center_heading" required placeholder="Center Heading" /> 
+                                </div>      
+                                
+                                <div class="row mb-6">
+                                    <label class="required fs-6 fw-bold mb-2">Center Description</label>
+                                    <textarea class="form-control form-control-solid" name="center_description"
+                                        id="center_description" required placeholder="Center Description"></textarea>
+                                </div> 
+                                
+                                <div class="row mb-6">
+                                    <label class="required fs-6 fw-bold mb-2">Center Travel Distance/Time(Mumbai)</label>
+                                    <input type="text" class="form-control form-control-solid" name="center_travel_mumbai"
+                                     id="center_travel_mumbai" required placeholder="Center Travel Distance/Time(Mumbai)" /> 
+                                </div>
+                                
+                                <div class="row mb-6">
+                                    <label class="required fs-6 fw-bold mb-2">Center Travel Distance/Time(Delhi)</label>
+                                    <input type="text" class="form-control form-control-solid" name="center_travel_delhi"
+                                     id="center_travel_delhi" required placeholder="Center Travel Distance/Time(Delhi)" /> 
+                                </div>
+                                
+                                <div class="row mb-6">
+                                    <label class="required fs-6 fw-bold mb-2">Center Travel Distance/Time(Bangalore)</label>
+                                    <input type="text" class="form-control form-control-solid" name="center_travel_bangalore"
+                                     id="center_travel_bangalore" required placeholder="Center Travel Distance/Time(Bangalore)" /> 
+                                </div>
+
+                                <!-- <div class="row mb-6">
+                                    <label class="required fs-6 fw-bold mb-2">Center Travel Time</label>
+                                    <input type="number" class="form-control form-control-solid" name="center_travel_time"
+                                     id="center_travel_time" required placeholder="Center Travel Time" /> 
+                                </div>  -->
+
+
+                                <div class="row mb-6">
+                                    <label class="required fs-6 fw-bold mb-2">Center Meta Title</label>
+                                    <input type="text" class="form-control form-control-solid" name="center_meta_title"
+                                     id="center_meta_title" required placeholder="Center Meta Title" /> 
+                                </div> 
+
+                                <div class="row mb-6">
+                                    <label class="required fs-6 fw-bold mb-2">Center Meta Description</label>
+                                    <textarea class="form-control form-control-solid" name="center_meta_description"
+                                        id="center_meta_description" required placeholder="Center Meta Description"></textarea>
+                                </div> 
+
+                                <div class="row mb-6">
+                                    <label class="required fs-6 fw-bold mb-2">Center Meta Locale</label>
+                                    <input type="text" class="form-control form-control-solid" name="center_meta_locale"
+                                     id="center_meta_locale" required placeholder="Center Meta Locale" /> 
+                                </div> 
+
+                                <div class="row mb-6">
+                                    <label class="required fs-6 fw-bold mb-2">Center Meta Type</label>
+                                    <input type="text" class="form-control form-control-solid" name="center_meta_type"
+                                     id="center_meta_type" required placeholder="Center Meta Type" /> 
+                                </div> 
+
+                                <div class="row mb-6">
+                                    <label class="required fs-6 fw-bold mb-2">Center Meta Site Name</label>
+                                    <input type="text" class="form-control form-control-solid" name="center_meta_site_name"
+                                     id="center_meta_site_name" required placeholder="Center Meta Site Name" /> 
+                                </div> 
+
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" id="kt_modal_new_target_submit" class="btn btn-primary">
+                                <span class="indicator-label">Submit</span>
+                                <span class="indicator-progress">
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     </div>
 <%- include('../../common/footer.html')-%>
