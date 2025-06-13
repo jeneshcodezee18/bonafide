@@ -1,14 +1,8 @@
 import jwt from "jsonwebtoken";
 import md5 from "md5";
 import { commonController } from "../common/common";
-import { pool } from "../../../app";
 import { deleteOne, insertOne, selectFields, updateOne } from "../../../util/commonQuery";
 
-interface UserData {
-  id: number;
-  username: string;
-  password: string;
-}
 
 interface SendData {
     status: number;
@@ -82,7 +76,6 @@ export const LOGOUT = async function (
 
   callback(sendData);
 };
-
 
 export const CHANGED_PASSWORD = async (data, callback) => {
   let sendData = commonController.getSendData();
