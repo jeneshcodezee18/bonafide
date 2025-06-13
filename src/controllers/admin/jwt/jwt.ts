@@ -7,14 +7,13 @@ const jwtKey: string | undefined = process.env.JWT_SECRET_KEY;
 export const DECODE = async (req, callback) => {
     let sendData = commonController.getSendData(); // response data
     sendData = commonController.getErrorSendData({}, 401, {}, "Token Expired");
-
-    if (!req.headers.authorization) {
+    if (!req.cookies.token) {
         sendData = commonController.getErrorSendData({}, 406, {}, "No access token provided");
         return callback(sendData);
     }
 
     try {
-        const token: string = req.headers.authorization.split(' ')[1];
+        const token: string = req.cookies.token;
         const decoded: { id: number, username: string } = jwt.verify(token, jwtKey as string);
         if (decoded && decoded.id) {
             // Query the login_token table in PostgreSQL

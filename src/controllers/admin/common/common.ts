@@ -52,7 +52,7 @@ export const __sendEmail = async function (receiver_email, reply_to_email, subje
         console.log("Email sent: " + info.response);
       }
     });
-  }
+}
 
 export const addDaysToDate = function (date, days) {
     if (!date || typeof date !== 'object') return new Date()

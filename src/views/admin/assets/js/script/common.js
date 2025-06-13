@@ -31,9 +31,6 @@ $(document).ready(function () {
             $.ajax({
               type: "POST",
               url: BASE_URL + "admin_master/change_password",
-              headers: {
-                authorization: token ? `Bearer ${token}` : "",
-              },
               data: {
                 oldPassword: oldPassword,
                 newPassword: newPassword,
@@ -97,14 +94,11 @@ $(document).ready(function () {
   });
 
 });
+
 jQuery(document).ready(function ($) {
-  let token = localStorage.getItem("TOKEN");
   jQuery.ajax({
     type: "GET",
     url: BASE_URL + "admin_master/login_check",
-    headers: {
-      authorization: token ? `Bearer ${token}` : "",
-    },
     data: {},
     success: function (response) {
       if (response.status !== 200 && response.err !== 0) {
@@ -127,42 +121,35 @@ $('#sign_out').on('click', function () {
     confirmButtonText: 'Yes, Sign Out'
   }).then(function (result) {
     if (result.isConfirmed) {
-      const token = localStorage.getItem("TOKEN");
-      if (token) {
-        $.ajax({
-          type: 'GET',
-          url: BASE_URL + "admin_master/logout",
-          headers: {
-            'Authorization': 'Bearer ' + token
-          },
-          data: { token: token },
-          success: function (response) {
-            $(".indicator-progress").hide();
+      $.ajax({
+        type: 'GET',
+        url: BASE_URL + "admin_master/logout",
+        data: {},
+        success: function (response) {
+          $(".indicator-progress").hide();
 
-            if (response.err == 1) {
-              Swal.fire({
-                text: response.msg,
-                icon: "error",
-                buttonsStyling: false,
-                confirmButtonText: "Ok, got it!",
-                customClass: {
-                  confirmButton: "btn btn-primary",
-                },
-              });
-            } else {
-              // Remove token and redirect to admin login
-              localStorage.removeItem("TOKEN");
-              window.location.href = BASE_URL + "admin_master";
-            }
-          },
-          error: function (xhr, status, error) {
-            $(".indicator-progress").hide();
-            console.log("Error:", error);
-          },
-        });
-      } else {
-        Swal.fire('Error', 'Token not found.', 'error');
-      }
+          if (response.err == 1) {
+            Swal.fire({
+              text: response.msg,
+              icon: "error",
+              buttonsStyling: false,
+              confirmButtonText: "Ok, got it!",
+              customClass: {
+                confirmButton: "btn btn-primary",
+              },
+            });
+          } else {
+            // Remove token and redirect to admin login
+            localStorage.removeItem("TOKEN");
+            window.location.href = BASE_URL + "admin_master";
+          }
+        },
+        error: function (xhr, status, error) {
+          $(".indicator-progress").hide();
+          console.log("Error:", error);
+        },
+      });
+      
     }
   });
 });
