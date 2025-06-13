@@ -6,4 +6,5 @@ export interface ResponseData {
   css: { available: number; css: string };
   menu: string;
   data: Record<string, unknown>;
+  userData?: Record<string, unknown>; 
 }

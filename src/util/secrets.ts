@@ -14,7 +14,7 @@ export const ENVIRONMENT = process.env.NODE_ENVIRONMENT
 const prod = ENVIRONMENT === 'production' // Anything else is treated as 'dev'
 
 export const SESSION_SECRET = process.env.SESSION_SECRET
-export const BASE_URL = prod ? process.env.BASE_URL : 'http://127.0.0.1:3061/'
+export const BASE_URL = prod ? process.env.BASE_URL : 'http://localhost:3000/'
 export const POSTGRES_URI = prod ? process.env.POSTGRES_URI : process.env.POSTGRES_URI_LOCAL;
 
 if (SESSION_SECRET === undefined) {

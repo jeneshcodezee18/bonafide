@@ -1,8 +1,14 @@
 import jwt from "jsonwebtoken";
 import md5 from "md5";
 import { commonController } from "../common/common";
+import { pool } from "../../../app";
 import { deleteOne, insertOne, selectFields, updateOne } from "../../../util/commonQuery";
 
+interface UserData {
+  id: number;
+  username: string;
+  password: string;
+}
 
 interface SendData {
     status: number;
@@ -17,17 +23,57 @@ export const LOGIN = async function (
 ) {
   let sendData = commonController.getSendData();
   try {
-    // Query user from adminmaster table
-    const user = await selectFields<{ adminid: number; adminuname: string }>(
+  
+    const user = await selectFields<{
+      adminid: number;
+      adminuname: string;
+      dashboard: string;
+      report: string;
+      company_master: string;
+      khowladge_based: string;
+      sales_master: string;
+      services: string;
+      home_setting: string;
+      site: string;
+      carrer_master: string;
+    }>(
       "adminmaster",
-      ["adminid", "adminuname"], // Only select needed fields
+      [
+        "adminid",
+        "adminuname",
+        "dashboard",
+        "report",
+        "company_master",
+        "khowladge_based",
+        "sales_master",
+        "services",
+        "home_setting",
+        "site",
+        "carrer_master"
+      ],
       "adminuname = $1 AND adminpassword = $2",
       [data.username, md5(data.password)]
     );
 
     if (user) {
+      const tokenPayload = {
+        id: user.adminid,
+        username: user.adminuname,
+        permissions: {
+          dashboard: "yes",
+          report: user.report,
+          company_master: user.company_master,
+          khowladge_based: user.khowladge_based,
+          sales_master: user.sales_master,
+          services: user.services,
+          home_setting: user.home_setting,
+          site: user.site,
+          carrer_master: user.carrer_master
+        }
+      };
+
       const token = jwt.sign(
-        { username: user.adminuname, id: user.adminid },
+        tokenPayload,
         process.env.JWT_SECRET_KEY as string,
         { expiresIn: "1d" }
       );
