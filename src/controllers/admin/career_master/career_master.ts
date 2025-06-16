@@ -26,21 +26,21 @@ export const ADD_JOB = async function (
     try {
         // _id exists or not (using career_jobsid)
         if (bodyData.career_jobsid) {
-            // existFaq exists (here: existJob already exists or not)
+            const jobId = parseInt(bodyData.career_jobsid, 10);
             const existJob = await selectFields(
                 "career_jobs",
-                ["id"],
-                "title = $1 AND job_code = $2 AND id != $3",
-                [bodyData.title, bodyData.job_code, bodyData.career_jobsid]
+                ["career_jobsid"],
+                "title = $1 AND job_code = $2 AND career_jobsid != $3",
+                [bodyData.title, bodyData.job_code, jobId]
             );
             if (existJob) {
-                sendData = commonController.getSuccessSendData({}, "Job already exists.");
+                sendData = commonController.getErrorSendData({}, 200, {}, "Job already exists.");
             } else {
                 // updatedJob was updated or not
                 const updatedJob = await updateOne(
                     "career_jobs",
                     ["title", "job_code", "url", "image", "short_description", "description"],
-                    "id = $1",
+                    "career_jobsid = $7",
                     [
                         bodyData.title,
                         bodyData.job_code,
@@ -48,7 +48,7 @@ export const ADD_JOB = async function (
                         bodyData.image,
                         bodyData.short_description,
                         bodyData.description,
-                        bodyData.career_jobsid
+                        jobId // use the parsed integer here
                     ]
                 );
                 if (updatedJob) {

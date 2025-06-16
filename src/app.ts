@@ -51,6 +51,7 @@ app.use(lusca.xssProtection(true));
 // app.use(express.static(path.join(__dirname, "views")));
 app.use(express.static(path.join(__dirname, "views/web")));
 app.use(express.static(path.join(__dirname, "views/admin")));
+app.use(express.static(path.join(__dirname, "../../uploads")));
 
 
 app.use(cors());

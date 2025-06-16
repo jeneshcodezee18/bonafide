@@ -70,6 +70,7 @@ import { bindURL as bindDatabaseSuperAdminURL } from "./admin/super_admin/databa
 import { bindURL as bindJobsURL } from "./admin/career_master/jobs_url";
 import { bindURL as bindCareerURL } from "./admin/career_master/career_url";
 import { bindURL as bindDatabaseCareerURL } from "./admin/career_master/database_url";
+import { bindURL as bindCommonURl } from "./admin/common_url";
 
 bindLoginURL();
 binddashboardURL();
@@ -143,3 +144,5 @@ bindDatabaseSuperAdminURL();
 bindJobsURL();
 bindCareerURL();
 bindDatabaseCareerURL();
+
+bindCommonURl();

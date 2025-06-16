@@ -162,30 +162,30 @@ export function bindURL(): void {
     });
 
     app.get("/admin_master/career_jobs/:career_jobsid", function (req, res) {
-    try {
-        const { career_jobsid } = req.params;
-        careerMasterController.VIEW_JOB({ career_jobsid }, function (service) {
-            const respData = {
-                base_url: BASE_URL,
-                title: 'Career Job Details',
-                config: config,
-                script: {
-                    available: 0,
-                    js: "career_master/career_list",
-                },
-                css: {
-                    available: 0,
-                    css: "career_list",
-                },
-                menu: "career_list",
-                data: service.data
-            };
+        try {
+            const { career_jobsid } = req.params;
+            careerMasterController.VIEW_JOB({ career_jobsid }, function (service) {
+                const respData = {
+                    base_url: BASE_URL,
+                    title: 'Career Job Details',
+                    config: config,
+                    script: {
+                        available: 0,
+                        js: "career_master/career_list",
+                    },
+                    css: {
+                        available: 0,
+                        css: "career_list",
+                    },
+                    menu: "career_list",
+                    data: service.data
+                };
 
-            res.render("admin/career_master/jobs/job_view.html", respData);
-        });
-    } catch (err) {
-        res.status(404).send(err);
-    }
-});
+                res.render("admin/career_master/jobs/job_view.html", respData);
+            });
+        } catch (err) {
+            res.status(404).send(err);
+        }
+    });
 
 }
