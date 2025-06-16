@@ -130,6 +130,17 @@ export function bindURL(): void {
         }
     });
 
+    app.get("/error-404", (req: Request, res: Response) => {
+        const respData = {
+            base_url: BASE_URL ?? "",
+            title: "404 - Page Not Found",
+        };
+        res.status(404).render("admin/error-404.html", respData);
+    });
+
+    // Catch-all route for undefined paths
+  
+
 }
    
 
