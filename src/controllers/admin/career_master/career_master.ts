@@ -11,7 +11,7 @@ interface SendData {
 
 export const ADD_JOB = async function (
     data: {
-        career_jobsid?: string; // _id exists or not
+        career_jobsid?: string; 
         title: string;
         job_code: string;
         url: string;

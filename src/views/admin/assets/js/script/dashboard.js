@@ -2,14 +2,9 @@
 
 jQuery(document).ready(function ($) {
 
-  
-  let token = localStorage.getItem("TOKEN");
     $.ajax({
       type: "GET",
       url: BASE_URL + "admin/dashboard/count",
-       headers: {
-        authorization: token ? `Bearer ${token}` : "",
-      },
       data: {},
       success: function (response) {
         if (response.err !== 2) {

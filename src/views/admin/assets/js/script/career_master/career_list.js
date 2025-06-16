@@ -130,7 +130,7 @@ DecoupledEditor.create(document.querySelector("#kt_description"), {
     };
   })
   .catch((error) => {
-    console.error(error);
+    console.log(error);
   });
 
 $("#job_form").on("submit", function (e) {
@@ -150,13 +150,9 @@ $("#job_form").on("submit", function (e) {
     },
   }).then(function (result) {
     if (result.isConfirmed) {
-      let token = localStorage.getItem("TOKEN");
       jQuery.ajax({
         type: "POST",
         url: BASE_URL + "admin_master/career_jobs/add",
-        headers: {
-          authorization: token ? `Bearer ${token}` : "",
-        },
         data: {
           career_jobsid: $("#Id").val(),
           title: $("#title").val(),
@@ -188,11 +184,24 @@ $("#job_form").on("submit", function (e) {
                 confirmButton: "btn btn-primary",
               },
             });
-            formElement.reset(); // <-- Reset the form
+            formElement.reset();
             if (editor) editor.setData("");
-            pagination(start);
+            window.location.href =
+              BASE_URL + "admin_master/career_jobs/manage";
           }
         },
+        error: function (xhr, status, error) {
+          $(".indicator-progress").hide();
+          Swal.fire({
+            text: "An error occurred while processing your request.",
+            icon: "error",
+            buttonsStyling: !1,
+            confirmButtonText: "Ok Got it!",
+            customClass: {
+              confirmButton: "btn btn-primary",
+            },
+          });
+        }
       });
     } else if (result.dismiss === Swal.DismissReason.cancel) {
       console.log("User clicked on No, return");
@@ -300,7 +309,6 @@ function pagination(start) {
 }
 
 function html(list) {
-  console.log("list: ", list);
   let htmlData = "";
   if (list.length == 0) {
     htmlData += `<tr><td colspan="12"><span class="fw-bold d-block fs-7">No data found!</span></td></tr>`;
@@ -346,7 +354,6 @@ $(document).ready(function () {
       success: function (response) {
         if (response.err == 0) {
           var data = response.data;
-          console.log("data: ", data);
           $("#image_preview").attr("src", data.image).show();
           $("#Id").val(data.career_jobsid || "");
           $("#title").val(data.title || "");
@@ -377,7 +384,6 @@ function handleFileUpload(selectedFile, file_field) {
   formData.append("file", selectedFile);
 
   const oldImagePath = $("#image").val();
-  console.log("oldImagePath: ", oldImagePath);
   if (oldImagePath) {
     formData.append("oldImagePath", oldImagePath);
   }

@@ -13,7 +13,6 @@ $(document).ready(function () {
     const oldPassword = $("#oldPassword").val();
     const newPassword = $("#newPassword").val();
     const confirmPassword = $("#confirmPassword").val();
-    let token = localStorage.getItem("TOKEN");
 
     if (oldPassword && newPassword && confirmPassword) {
       if (newPassword === confirmPassword) {
@@ -139,8 +138,6 @@ $('#sign_out').on('click', function () {
               },
             });
           } else {
-            // Remove token and redirect to admin login
-            localStorage.removeItem("TOKEN");
             window.location.href = BASE_URL + "admin_master";
           }
         },
