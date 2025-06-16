@@ -1,19 +1,12 @@
 import jwt from "jsonwebtoken";
 import md5 from "md5";
 import { commonController } from "../common/common";
-import { pool } from "../../../app";
 import { deleteOne, insertOne, selectFields, updateOne } from "../../../util/commonQuery";
-
-interface UserData {
-  id: number;
-  username: string;
-  password: string;
-}
-
+ 
 interface SendData {
     status: number;
     err: number;
-    data: object; // More specific type than `object`
+    data: object; 
     msg: string;
 }
 
