@@ -1,0 +1,92 @@
+<%- include('../../common/header.html')-%>
+    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+        <div class="toolbar" id="kt_toolbar">
+            <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
+                    data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                    class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                    <a href="javascript:history.back();" class="me-4">
+                          <i class="bi bi-arrow-left fs-2 text-dark"></i>
+                    </a>
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">
+                        <%= title %>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="post d-flex flex-column-fluid" id="kt_post">
+            <div id="kt_content_container" class="container-xxl">
+                <div class="card mb-5 mb-xl-10" data-select2-id="select2-data-137-cfei">
+                    <!-- <div class="card-footer border-0 cursor-pointer" role="button" data-bs-toggle="collapse"
+                        data-bs-target="#kt_footer_details" aria-expanded="true" aria-controls="kt_footer_details">
+                        <div class="card-title m-0">
+                            <a href="javascript:history.back();" class="me-4">
+                                <i class="bi bi-arrow-left fs-2 text-dark"></i>
+                            </a>
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">
+                                <%= title %>
+                            </h1>
+                        </div>
+                    </div> -->
+                    <div id="kt_footer_details" class="collapse show" data-select2-id="select2-data-kt_footer_details">
+                        <form id="testimonial_form" class="form fv-plugins-bootstrap5 fv-plugins-framework"
+                            novalidate="novalidate" data-select2-id="select2-data-kt_footer_details_form" action="#">
+                            <div class="card-body border-top p-9" data-select2-id="select2-data-136-0zbi">
+
+                            <input type="hidden" name="Id" id="Id" value="" />
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Title</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="title" id="title"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Title" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Name</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="name" id="name"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Name" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Post</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="post" id="post"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Post" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Short Description</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <textarea name="description" id="description"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Short Description" rows="3"></textarea>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="card-footer d-flex justify-content-end py-6 px-9">
+                                <button type="reset"
+                                    class="btn btn-light btn-active-light-primary me-2">Discard</button>
+                                <button type="submit" class="btn btn-primary" id="kt_footer_details_submit">Save
+                                    Changes</button>
+                            </div>
+                            <!--end::Actions-->
+                            <input type="hidden">
+                            <div></div>
+                        </form>
+                        <!--end::Form-->
+                    </div>
+                    <!--end::Content-->
+                </div>
+            </div>
+        </div>
+    </div>
+<%- include('../../common/footer.html')-%>
