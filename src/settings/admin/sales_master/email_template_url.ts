@@ -11,7 +11,8 @@ import * as salesMasterController from "../../../controllers/admin/sales_master/
 export function bindURL(): void {
     app.get("/admin_master/email_template",
         requireAuth,
-        requirePermission("sales_master"), async function (req: Request, res: Response): Promise<void> {
+        requirePermission("sales_master"),
+        async function (req: Request, res: Response): Promise<void> {
             try {
                 const respData: ResponseData = {
                     base_url: BASE_URL ?? "",
@@ -35,32 +36,32 @@ export function bindURL(): void {
             }
         });
 
-        // Render add/edit page
-        app.get("/admin_master/email_template/addEdit", async function (req: Request, res: Response): Promise<void> {
-            try {
-                const respData: ResponseData = {
-                    base_url: BASE_URL ?? "",
-                    title: "Add Email Template",
-                    config: config,
-                    script: {
-                        available: 1,
-                        js: "sales_master/email_template",
-                    },
-                    css: {
-                        available: 0,
-                        css: "email_template",
-                    },
-                    menu: "email_template",
-                    data: {}
-                };
-                res.render("admin/email_template/add_email_template.html", respData);
-            } catch (err: unknown) {
-                console.error(err);
-                res.status(500).send("Internal Server Error");
-            }
-        });
+    // Render add/edit page
+    app.get("/admin_master/email_template/addEdit", async function (req: Request, res: Response): Promise<void> {
+        try {
+            const respData: ResponseData = {
+                base_url: BASE_URL ?? "",
+                title: "Add Email Template",
+                config: config,
+                script: {
+                    available: 1,
+                    js: "sales_master/email_template",
+                },
+                css: {
+                    available: 0,
+                    css: "email_template",
+                },
+                menu: "email_template",
+                data: {}
+            };
+            res.render("admin/sales_master/email_template/add_email_template.html", respData);
+        } catch (err: unknown) {
+            console.error(err);
+            res.status(500).send("Internal Server Error");
+        }
+    });
 
-            app.post("/admin_master/email_template/add", async function (req: Request, res: Response): Promise<void> {
+    app.post("/admin_master/email_template/add", async function (req: Request, res: Response): Promise<void> {
         try {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
