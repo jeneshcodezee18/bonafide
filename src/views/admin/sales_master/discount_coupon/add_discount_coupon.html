@@ -1,0 +1,224 @@
+<%- include('../../common/header.html')-%>
+    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+        <div class="toolbar" id="kt_toolbar">
+            <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
+                    data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                    class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                    <a href="javascript:history.back();" class="me-4">
+                          <i class="bi bi-arrow-left fs-2 text-dark"></i>
+                    </a>
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">
+                        <%= title %>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="post d-flex flex-column-fluid" id="kt_post">
+            <div id="kt_content_container" class="container-xxl">
+                <div class="card mb-5 mb-xl-10" data-select2-id="select2-data-137-cfei">
+                    <!-- <div class="card-footer border-0 cursor-pointer" role="button" data-bs-toggle="collapse"
+                        data-bs-target="#kt_footer_details" aria-expanded="true" aria-controls="kt_footer_details">
+                        <div class="card-title m-0">
+                            <a href="javascript:history.back();" class="me-4">
+                                <i class="bi bi-arrow-left fs-2 text-dark"></i>
+                            </a>
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">
+                                <%= title %>
+                            </h1>
+                        </div>
+                    </div> -->
+                    <div id="kt_footer_details" class="collapse show" data-select2-id="select2-data-kt_footer_details">
+                        <form id="coupon_form" class="form fv-plugins-bootstrap5 fv-plugins-framework"
+                            novalidate="novalidate" action="#">
+                            <div class="card-body border-top p-9">
+
+                                <input type="hidden" name="Id" id="Id" value="" />
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Coupon Name</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="coupon_name" id="coupon_name"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Coupon Name" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label fw-bold fs-6">Publisher Name</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="publisher_name" id="publisher_name"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Publisher Name" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label fw-bold fs-6">Category Name</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="category_name" id="category_name"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Category Name" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label fw-bold fs-6">Product Code From</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="product_code_from" id="product_code_from"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Product Code From" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label fw-bold fs-6">Product Code To</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="product_code_to" id="product_code_to"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Product Code To" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label fw-bold fs-6">Single User Amount From</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="single_user_amount_from" id="single_user_amount_from"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Single User Amount From" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label fw-bold fs-6">Single User Amount To</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="single_user_amount_to" id="single_user_amount_to"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Single User Amount To" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label fw-bold fs-6">Product Code</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="product_code" id="product_code"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Product Code" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label fw-bold fs-6">License</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="license" id="license"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="License" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label fw-bold fs-6">Type</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="type" id="type"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Type" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label fw-bold fs-6">Coupon Type</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="coupon_type" id="coupon_type"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Coupon Type" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label fw-bold fs-6">Value</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="value" id="value"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Value" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label fw-bold fs-6">Limit Value</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="limit_value" id="limit_value"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Limit Value" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label fw-bold fs-6">Product Date Start</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="date" name="product_date_start" id="product_date_start"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Product Date Start" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label fw-bold fs-6">Product Date End</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="date" name="product_date_end" id="product_date_end"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Product Date End" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label fw-bold fs-6">Show/Hide</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <select name="show_hide" id="show_hide" class="form-select form-select-lg form-select-solid">
+                                            <option value="">Select</option>
+                                            <option value="1">Show</option>
+                                            <option value="0">Hide</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label fw-bold fs-6">Region ID</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="number" name="region_id" id="region_id"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Region ID" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label fw-bold fs-6">Country ID</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="number" name="country_id" id="country_id"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Country ID" value="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label fw-bold fs-6">Expire Date</label>
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="date" name="expire_date" id="expire_date"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Expire Date" value="">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="card-footer d-flex justify-content-end py-6 px-9">
+                                <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button>
+                                <button type="submit" class="btn btn-primary" id="kt_footer_details_submit">Save Changes</button>
+                            </div>
+                        </form>
+                        <!--end::Form-->
+                    </div>
+                    <!--end::Content-->
+                </div>
+            </div>
+        </div>
+    </div>
+<%- include('../../common/footer.html')-%>
