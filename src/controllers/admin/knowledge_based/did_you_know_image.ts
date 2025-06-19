@@ -12,10 +12,10 @@ interface SendData {
 export const ADD_DID_YOU_KNOW_IMAGE = async function (
         data: {
         infographic_and_did_you_know_imagesid?: string; // _id exists or not
-        parent_id?: string;
         image: string;
         report_title: string;
         createddate: string;
+        parent_id?: string;
     },
     callback: (result: SendData) => void
 ) {
@@ -25,17 +25,17 @@ export const ADD_DID_YOU_KNOW_IMAGE = async function (
         // _id exists or not (using infographic_and_did_you_know_imagesid)
         if (bodyData.infographic_and_did_you_know_imagesid) {
             const didYoyKnowId = parseInt(bodyData.infographic_and_did_you_know_imagesid, 10);
-            const existDidYouKnowImage = await selectFields(
+            const existDidYouKnowImage: any = await selectFields(
                 "infographic_and_did_you_know_images",
                 ["infographic_and_did_you_know_imagesid"],
-                "title = $1 AND infographic_and_did_you_know_imagesid != $2",
+                "report_title = $1 AND infographic_and_did_you_know_imagesid != $2",
                 [bodyData.report_title, didYoyKnowId]
             );
             if (existDidYouKnowImage) {
                 sendData = commonController.getErrorSendData({}, 200, {}, "Title already exists.");
             } else {
-                // updatedJob was updated or not
-                const updatedJob = await updateOne(
+                // updatedDidYouKnow was updated or not
+                const updatedDidYouKnow = await updateOne(
                     "infographic_and_did_you_know_images",
                     ["image", "report_title", "createddate"],
                     "infographic_and_did_you_know_imagesid = $4",
@@ -46,21 +46,20 @@ export const ADD_DID_YOU_KNOW_IMAGE = async function (
                         didYoyKnowId // use the parsed integer here
                     ]
                 );
-                if (updatedJob) {
-                    sendData = commonController.getSuccessSendData(updatedJob, "Did you know image updated successfully");
+                if (updatedDidYouKnow) {
+                    sendData = commonController.getSuccessSendData(updatedDidYouKnow, "Did you know image updated successfully");
                 } else {
                     sendData = commonController.getErrorSendData({}, 400, {}, "Failed to update Did you know image.");
                 }
             }
         } else {
             // existDidYouKnowImage already exists or not
-            const existDidYouKnowImage = await selectFields(
+            const existDidYouKnowImage: any = await selectFields(
                 "infographic_and_did_you_know_images",
                 ["infographic_and_did_you_know_imagesid"],
                 "report_title = $1",
                 [bodyData.report_title]
             );
-            console.log("existDidYouKnowImage: ", existDidYouKnowImage);
             if (existDidYouKnowImage) {
                 sendData = commonController.getErrorSendData({}, 200, {}, "Title already exists.");
             } else {
@@ -71,17 +70,17 @@ export const ADD_DID_YOU_KNOW_IMAGE = async function (
                         "image",
                         "report_title",
                         "createddate",
+                        "type"
                     ],
                     [
                         bodyData.image,
                         bodyData.report_title,
                         bodyData.createddate,
+                        "did_you_know"
                     ]
                 );
-                console.log("addDidYouKnowImage: ", addDidYouKnowImage);
                 if (addDidYouKnowImage) {
                     sendData = commonController.getSuccessSendData(addDidYouKnowImage, "Did you know image added successfully");
-                    console.log("sendData: ", sendData);
                 } else {
                     sendData = commonController.getErrorSendData({}, 400, {}, "Failed to add Did you know image.");
                 }
@@ -126,16 +125,16 @@ export const DELETE_DID_YOU_KNOW_IMAGE = async (data: any, callback: (result: Se
         const bodyData = data;
         const didYouKnowImageId = bodyData.id;
 
-        const deletedJob = await deleteOne(
+        const deletedDidYouKnowImage = await deleteOne(
             "infographic_and_did_you_know_images",
             "infographic_and_did_you_know_imagesid = $1",
             [didYouKnowImageId]
         );
 
-        if (deletedJob) {
-            sendData = commonController.getSuccessSendData(deletedJob, "Job Deleted Successfully");
+        if (deletedDidYouKnowImage) {
+            sendData = commonController.getSuccessSendData(deletedDidYouKnowImage, "Did you know image Deleted Successfully");
         } else {
-            sendData = commonController.getErrorSendData({}, 400, {}, "Job not Deleted");
+            sendData = commonController.getErrorSendData({}, 400, {}, "Did you know image not Deleted");
         }
     } catch (err) {
         sendData = commonController.getErrorSendData(err);
@@ -147,39 +146,48 @@ export const LIST_DID_YOU_KNOW_IMAGE = async (data: any, callback: (result: Send
     let sendData = common.commonController.getSendData();
     try {
         const start = parseInt(data.start) || 1;
-        console.log("start: ", start);
         const limit = parseInt(data.limit) || 10;
-        console.log("limit: ", limit);
         const offset = (start - 1) * limit;
-        console.log("offset: ", offset);
 
         const didYoyKnowAboutList = await selectJoin(
-            `SELECT * FROM infographic_and_did_you_know_images ORDER BY createddate DESC LIMIT $1 OFFSET $2`,
+            `SELECT * FROM infographic_and_did_you_know_images WHERE type = 'did_you_know' ORDER BY createddate DESC LIMIT $1 OFFSET $2`,
             [limit, offset]
         );
 
         const countResult = await selectJoin(
-            `SELECT COUNT(*) as count FROM infographic_and_did_you_know_images`,
+            `SELECT COUNT(*) as count FROM infographic_and_did_you_know_images WHERE type = 'did_you_know'`,
             []
         ) as { count: string }[];
 
         const total_did_you_know_image = parseInt(countResult[0]?.count || "0");
-        console.log("total_did_you_know_image: ", total_did_you_know_image);
 
-        console.log("didYoyKnowAboutList: ", didYoyKnowAboutList);
         if (didYoyKnowAboutList.length > 0) {
+            const allowedKeys = ["infographic_and_did_you_know_imagesid","image", "report_title", "createddate"];
+
+            // ✅ Use safe key check
+            const filteredList = didYoyKnowAboutList.map((item: any) => {
+                const filtered: any = {};
+                allowedKeys.forEach((key) => {
+                    if (item[key] !== undefined) {
+                        filtered[key] = item[key];
+                    }
+                });
+                return filtered;
+            });
+
             const respData = common.paginationSetup({
                 start,
                 limit,
                 numRows: total_did_you_know_image,
-                currentRows: didYoyKnowAboutList as object[],
+                currentRows: filteredList,
             });
-            respData.list = didYoyKnowAboutList as object[];
+
+            respData.list = filteredList;
             sendData["data"] = respData;
 
             sendData = common.commonController.getSuccessSendData(
                 sendData.data,
-                "Did you know image List Found"
+                "News List Found"
             );
         } else {
             sendData = common.commonController.getSuccessSendData(

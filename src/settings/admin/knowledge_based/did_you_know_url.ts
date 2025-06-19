@@ -162,30 +162,4 @@ export function bindURL(): void {
             }
         });
     
-        app.get("/admin_master/did_you_know/:infographic_and_did_you_know_imagesid", function (req, res) {
-            try {
-                const { infographic_and_did_you_know_imagesid } = req.params;
-                didYouKnowImageController.VIEW_DID_YOU_KNOW_IMAGE({ infographic_and_did_you_know_imagesid }, function (service) {
-                    const respData = {
-                        base_url: BASE_URL,
-                        title: 'Did you know image Details',
-                        config: config,
-                        script: {
-                            available: 0,
-                            js: "knowledge_based/did_you_know_image",
-                        },
-                        css: {
-                            available: 0,
-                            css: "did_you_know",
-                        },
-                        menu: "did_you_know",
-                        data: service.data
-                    };
-    
-                    res.render("admin/did_you_know/job_view.html", respData);
-                });
-            } catch (err) {
-                res.status(404).send(err);
-            }
-        });
 }

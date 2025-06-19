@@ -29,12 +29,12 @@
                         </div>
                     </div> -->
                     <div id="kt_footer_details" class="collapse show" data-select2-id="select2-data-kt_footer_details">
-                        <form id="did_you_know_image_form" class="form fv-plugins-bootstrap5 fv-plugins-framework"
+                        <form id="infographics_form" class="form fv-plugins-bootstrap5 fv-plugins-framework"
                             novalidate="novalidate" data-select2-id="select2-data-kt_footer_details_form" action="#">
                              <div class="card-body border-top p-9" data-select2-id="select2-data-136-0zbi">
 
                             <input type="hidden" name="Id" id="Id" value="" />
-                           <div class="row mb-6">
+                                <div class="row mb-6">
                                     <label class="required col-lg-4 col-form-label fw-bold fs-6">Image</label>
                                     <div class="col-lg-8">
                                         <div class="image-input image-input-outline image-input-empty"
@@ -69,7 +69,24 @@
                             </div>
 
                             <div class="row mb-6">
-                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Created At</label>
+                                    <label for="categoryDropdown" class="fs-6 fw-bold mb-2 required">Category</label>
+                                    <select class="form-select" id="categoryDropdown">
+                                        <option value="">Select</option>
+                                        <!-- Options will be dynamically populated by JavaScript -->
+                                    </select>
+                            </div>
+
+                            <div class="row mb-6">
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Product Code</label>
+                                <div class="col-lg-8 fv-row">
+                                    <input type="text" name="title" id="product_code"
+                                        class="form-control form-control-lg form-control-solid"
+                                        placeholder="Product Code" required>
+                                </div>
+                            </div>
+
+                            <div class="row mb-6">
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Created Date</label>
                                 <div class="col-lg-8 fv-row">
                                     <input type="date" name="created_at" id="createddate"
                                         class="form-control form-control-lg form-control-solid"
