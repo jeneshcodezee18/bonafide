@@ -78,7 +78,7 @@ export const LOGIN = async function (
         [user.adminid, token, new Date()]
      );
 
-      sendData = commonController.getSuccessSendData({ token }, "Login Successful");
+     sendData = commonController.getSuccessSendData({ token }, "Login Successful");
     } else {
       sendData = commonController.getErrorSendData({}, 404, {}, "Invalid username or password.");
     }

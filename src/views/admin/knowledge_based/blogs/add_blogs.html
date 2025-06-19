@@ -1,0 +1,164 @@
+<%- include('../../common/header.html')-%>
+    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+        <div class="toolbar" id="kt_toolbar">
+            <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
+                    data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                    class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                    <a href="javascript:history.back();" class="me-4">
+                          <i class="bi bi-arrow-left fs-2 text-dark"></i>
+                    </a>
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">
+                        <%= title %>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="post d-flex flex-column-fluid" id="kt_post">
+            <div id="kt_content_container" class="container-xxl">
+                <div class="card mb-5 mb-xl-10" data-select2-id="select2-data-137-cfei">
+                    <!-- <div class="card-footer border-0 cursor-pointer" role="button" data-bs-toggle="collapse"
+                        data-bs-target="#kt_footer_details" aria-expanded="true" aria-controls="kt_footer_details">
+                        <div class="card-title m-0">
+                            <a href="javascript:history.back();" class="me-4">
+                                <i class="bi bi-arrow-left fs-2 text-dark"></i>
+                            </a>
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">
+                                <%= title %>
+                            </h1>
+                        </div>
+                    </div> -->
+                    <div id="kt_footer_details" class="collapse show" data-select2-id="select2-data-kt_footer_details">
+                        <form id="blogs_form" class="form fv-plugins-bootstrap5 fv-plugins-framework"
+                            novalidate="novalidate" data-select2-id="select2-data-kt_footer_details_form" action="#">
+                             <div class="card-body border-top p-9" data-select2-id="select2-data-136-0zbi">
+
+                            <input type="hidden" name="Id" id="Id" value="" />
+
+                            <div class="row mb-6">
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Title</label>
+                                <div class="col-lg-8 fv-row">
+                                    <input type="text" name="title" id="blogs_title"
+                                        class="form-control form-control-lg form-control-solid"
+                                        placeholder="Blogs Title" required>
+                                </div>
+                            </div>
+
+                            <div class="row mb-6">
+                                    <label for="categoryDropdown" class="fs-6 fw-bold mb-2 required">Category</label>
+                                    <select class="form-select" id="categoryDropdown">
+                                        <option value="">Select</option>
+                                        <!-- Options will be dynamically populated by JavaScript -->
+                                    </select>
+                            </div>
+
+                            <div class="row mb-6">
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Short Description</label>
+                                <div class="col-lg-8 fv-row">
+                                    <textarea name="short_description" id="short_description"
+                                        class="form-control form-control-lg form-control-solid"
+                                        placeholder="Short Description"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="row mb-6">
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Long Description</label>
+                                <div class="col-lg-8 fv-row">
+                                    <div id="toolbar-container"></div>
+                                    <div id="editor-menu-bar"></div>
+                                    <div id="kt_description" class="min-h-200px mb-2"></div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-6">
+                                <label class="required col-lg-4 col-form-label fw-bold fs-6">Thumbnail</label>
+                                <div class="col-lg-8">
+                                    <div class="image-input image-input-outline image-input-empty"
+                                        data-kt-image-input="true"
+                                        style="background-image: url('assets/media/svg/avatars/blank.svg')">
+                                        <div class="image-input-wrapper w-125px h-125px"
+                                            style="background-image: none;">
+                                            <img src="" id="image_preview1"
+                                                style="width: 125px; height: 125px; display: none;">
+                                        </div>
+                                        <label
+                                            class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                            data-kt-image-input-action="change" data-bs-toggle="tooltip" title=""
+                                            data-bs-original-title="Change image">
+                                            <i class="bi bi-pencil-fill fs-7"></i>
+                                            <input type="file" name="image1" id="image1"
+                                                accept=".png, .jpg, .jpeg">
+                                            <input type="hidden" name="thumbnail" id="thumbnail" value="">
+                                        </label>
+                                    </div>
+                                    <div class="form-text">Allowed file types: png, jpg, jpeg, svg.</div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-6">
+                                <label class="required col-lg-4 col-form-label fw-bold fs-6">Featured Image</label>
+                                <div class="col-lg-8">
+                                    <div class="image-input image-input-outline image-input-empty"
+                                        data-kt-image-input="true"
+                                        style="background-image: url('assets/media/svg/avatars/blank.svg')">
+                                        <div class="image-input-wrapper w-125px h-125px"
+                                            style="background-image: none;">
+                                            <img src="" id="image_preview2"
+                                                style="width: 125px; height: 125px; display: none;">
+                                        </div>
+                                        <label
+                                            class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                            data-kt-image-input-action="change" data-bs-toggle="tooltip" title=""
+                                            data-bs-original-title="Change image">
+                                            <i class="bi bi-pencil-fill fs-7"></i>
+                                            <input type="file" name="image2" id="image2"
+                                                accept=".png, .jpg, .jpeg">
+                                            <input type="hidden" name="featured_image" id="featured_image" value="">
+                                        </label>
+                                    </div>
+                                    <div class="form-text">Allowed file types: png, jpg, jpeg, svg.</div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-6">
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Created Date</label>
+                                <div class="col-lg-8 fv-row">
+                                    <input type="date" name="created_at" id="created_date"
+                                        class="form-control form-control-lg form-control-solid"
+                                        required>
+                                </div>
+                            </div>
+
+                            <div class="row mb-6">
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Meta Title</label>
+                                <div class="col-lg-8 fv-row">
+                                    <input type="text" name="title" id="meta_title"
+                                        class="form-control form-control-lg form-control-solid"
+                                        placeholder="Meta Title" required>
+                                </div>
+                            </div>
+
+                            <div class="row mb-6">
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Meta Description</label>
+                                <div class="col-lg-8 fv-row">
+                                    <textarea name="meta_description" id="meta_description"
+                                        class="form-control form-control-lg form-control-solid"
+                                        placeholder="Meta Description"></textarea>
+                                </div>
+                            </div>
+                            
+                            <div class="card-footer d-flex justify-content-end py-6 px-9">
+                                <button type="submit" class="btn btn-primary" id="kt_footer_details_submit">Submit</button>
+                            </div>
+                            <!--end::Actions-->
+                            <input type="hidden">
+                            <div></div>
+                        </form>
+                        <!--end::Form-->
+                    </div>
+                    <!--end::Content-->
+                </div>
+            </div>
+        </div>
+    </div>
+<%- include('../../common/footer.html')-%>
