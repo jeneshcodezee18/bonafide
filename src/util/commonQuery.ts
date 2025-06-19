@@ -20,11 +20,14 @@ export async function selectFields<T>(
 export async function selectManyFields<T>(
   table: string,
   fields: string[],
-  where: string,
-  values: any[]
+  where?: string,
+  values?: any[]
 ): Promise<T[]> {
-  const query = `SELECT ${fields.join(", ")} FROM ${table} WHERE ${where}`;
-  const result = await pool.query<T>(query, values);
+  let query = `SELECT ${fields.join(", ")} FROM ${table}`;
+  if (where && where.trim() !== "") {
+    query += ` WHERE ${where}`;
+  }
+  const result = await pool.query<T>(query, values || []);
   return result.rows;
 }
 
