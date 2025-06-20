@@ -129,7 +129,37 @@
 		.aside .aside-logo .logo-minimize {
 			display: none
 		}
+
+		.table-responsive {
+			position: relative;
+		}
+			
+		.sticky-table {
+			position: relative;
+		}
+		
+		.sticky-actions {
+			position: sticky !important;
+			right: 0;
+			background: white;
+			z-index: 10;
+			box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+		}
+		
+		.sticky-table tbody tr td:last-child {
+			position: sticky !important;
+			right: 0;
+			background: white;
+			z-index: 5;
+			box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+		}
+		
+		.sticky-table thead th.sticky-actions {
+			background: #fff;
+		}
+
 	</style>
+	    
 </head>
 
 <body id="kt_body"

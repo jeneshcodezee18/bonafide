@@ -62,6 +62,18 @@ $("#member_form").on("submit", function (e) {
             window.location.href = BASE_URL + "admin_master/home_page/network_of_field_surveyors_list";
           }
         },
+        error: function (xhr, status, error) {
+          $(".indicator-progress").hide();
+          Swal.fire({
+            text: "An error occurred while processing your request.",
+            icon: "error",
+            buttonsStyling: !1,
+            confirmButtonText: "Ok Got it!",
+            customClass: {
+              confirmButton: "btn btn-primary",
+            },
+          });
+        }
       });
     } else if (result.dismiss === Swal.DismissReason.cancel) {
       console.log("User clicked on No, return");
