@@ -1,36 +1,62 @@
 import jwt from "jsonwebtoken";
 import md5 from "md5";
 import { commonController } from "../common/common";
-import { deleteOne, insertOne, selectFields, updateOne } from "../../../util/commonQuery";
- 
-interface SendData {
-    status: number;
-    err: number;
-    data: object; 
-    msg: string;
-}
+import {
+  // deleteOne,
+  deleteQuery,
+  // insertOne,
+  insertQuery,
+  // selectFields,
+  selectQuery,
+  // updateOne,
+  updateQuery,
+} from "../../../util/commonQuery";
+import { CallbackFunction } from "../../../types/common";
+import { TABLES } from "../../../util/constants/table_names";
 
 export const LOGIN = async function (
   data: { username: string; password: string },
-  callback: (result: SendData) => void
+  callback: CallbackFunction
 ) {
   let sendData = commonController.getSendData();
   try {
-  
-    const user = await selectFields<{
-      adminid: number;
-      adminuname: string;
-      dashboard: string;
-      report: string;
-      company_master: string;
-      khowladge_based: string;
-      sales_master: string;
-      services: string;
-      home_setting: string;
-      site: string;
-      carrer_master: string;
-    }>(
-      "adminmaster",
+    // const user = await selectFields<{
+    //   adminid: number;
+    //   adminuname: string;
+    //   dashboard: string;
+    //   report: string;
+    //   company_master: string;
+    //   khowladge_based: string;
+    //   sales_master: string;
+    //   services: string;
+    //   home_setting: string;
+    //   site: string;
+    //   carrer_master: string;
+    // }>(
+    //   "adminmaster",
+    //   [
+    //     "adminid",
+    //     "adminuname",
+    //     "dashboard",
+    //     "report",
+    //     "company_master",
+    //     "khowladge_based",
+    //     "sales_master",
+    //     "services",
+    //     "home_setting",
+    //     "site",
+    //     "carrer_master",
+    //   ],
+    //   "adminuname = $1 AND adminpassword = $2",
+    //   [data.username, md5(data.password)]
+    // );
+
+    let user: Record<string, any> = await selectQuery(
+      {
+        adminuname: data.username,
+        adminpassword: md5(data.password),
+      },
+      TABLES.ADMIN_MASTER,
       [
         "adminid",
         "adminuname",
@@ -42,12 +68,10 @@ export const LOGIN = async function (
         "services",
         "home_setting",
         "site",
-        "carrer_master"
-      ],
-      "adminuname = $1 AND adminpassword = $2",
-      [data.username, md5(data.password)]
+        "carrer_master",
+      ]
     );
-
+    user = user.length ? user[0] : {};
     if (user) {
       const tokenPayload = {
         id: user.adminid,
@@ -61,8 +85,8 @@ export const LOGIN = async function (
           services: user.services,
           home_setting: user.home_setting,
           site: user.site,
-          carrer_master: user.carrer_master
-        }
+          carrer_master: user.carrer_master,
+        },
       };
 
       const token = jwt.sign(
@@ -72,34 +96,49 @@ export const LOGIN = async function (
       );
 
       // Save user_id and token in login_token table
-      await insertOne(
-        "login_token",
-        ["user_id", "token", "created_at"],
-        [user.adminid, token, new Date()]
-     );
+      await insertQuery(
+        {
+          user_id: user.adminid,
+          token: token,
+          created_at: new Date(),
+        },
+        TABLES.LOGIN_TOKEN
+      );
 
-     sendData = commonController.getSuccessSendData({ token }, "Login Successful");
+      sendData = commonController.getSuccessSendData(
+        { token },
+        "Login Successful"
+      );
     } else {
-      sendData = commonController.getErrorSendData({}, 404, {}, "Invalid username or password.");
+      sendData = commonController.getErrorSendData(
+        {},
+        404,
+        {},
+        "Invalid username or password."
+      );
     }
   } catch (error) {
     console.error("Error while logging in:", error);
-    sendData = commonController.getErrorSendData({}, 500, {}, "Internal server error.");
+    sendData = commonController.getErrorSendData(
+      {},
+      500,
+      {},
+      "Internal server error."
+    );
   }
   callback(sendData);
 };
 
 export const LOGOUT = async function (
   data: { token: string },
-  callback: (result: SendData) => void
+  callback: CallbackFunction
 ) {
   let sendData = commonController.getSendData();
 
   try {
-    const deleted = await deleteOne(
-      "login_token",
-      "token = $1",
-      [data.token]
+    const deleted = await deleteQuery(
+      { token: data.token },
+      TABLES.LOGIN_TOKEN
     );
 
     if (deleted) {
@@ -110,13 +149,21 @@ export const LOGOUT = async function (
     }
   } catch (error) {
     console.error("Error while deleting token:", error);
-    sendData = commonController.getErrorSendData({}, 500, {}, "Internal server error.");
+    sendData = commonController.getErrorSendData(
+      {},
+      500,
+      {},
+      "Internal server error."
+    );
   }
 
   callback(sendData);
 };
 
-export const CHANGED_PASSWORD = async (data, callback) => {
+export const CHANGED_PASSWORD = async (
+  data: Record<string, any>,
+  callback: CallbackFunction
+) => {
   let sendData = commonController.getSendData();
   try {
     const bodyData = data;
@@ -124,12 +171,20 @@ export const CHANGED_PASSWORD = async (data, callback) => {
     const userId = userData.id; // Assuming JWT payload has 'id' as adminid
 
     // 1. Find user by id
-    const user = await selectFields<{ adminid: number; adminpassword: string }>(
-      "adminmaster",
-      ["adminid", "adminpassword"],
-      "adminid = $1",
-      [userId]
+    // const user = await selectFields<{ adminid: number; adminpassword: string }>(
+    //   "adminmaster",
+    //   ["adminid", "adminpassword"],
+    //   "adminid = $1",
+    //   [userId]
+    // );
+
+    let user: Record<string, any> = await selectQuery(
+      { adminid: userId },
+      TABLES.ADMIN_MASTER,
+      ["adminid", "adminpassword"]
     );
+
+    user = user.length ? user[0] : {};
 
     if (!user) {
       sendData.status = 401;
@@ -141,30 +196,54 @@ export const CHANGED_PASSWORD = async (data, callback) => {
     // 2. Check old password
     const oldmd5Password = md5(bodyData.oldPassword);
     if (oldmd5Password !== user.adminpassword) {
-      sendData = commonController.getErrorSendData(1, 200, {}, "Old password does not match");
+      sendData = commonController.getErrorSendData(
+        1,
+        200,
+        {},
+        "Old password does not match"
+      );
       return callback(sendData);
     }
 
     // 3. Check new and confirm password match
     if (bodyData.newPassword !== bodyData.confirmPassword) {
-      sendData = commonController.getErrorSendData({}, 200, {}, "Password and confirm password must be same");
+      sendData = commonController.getErrorSendData(
+        {},
+        200,
+        {},
+        "Password and confirm password must be same"
+      );
       return callback(sendData);
     }
 
     // 4. Update password
-    const updated = await updateOne(
-      "adminmaster",
-      ["adminpassword"],
-      "adminid = $2",
-      [md5(bodyData.confirmPassword), userId]
+    // const updated = await updateOne(
+    //   "adminmaster",
+    //   ["adminpassword"],
+    //   "adminid = $2",
+    //   [md5(bodyData.confirmPassword), userId]
+    // );
+
+    const updated = await updateQuery(
+      { adminpassword: md5(bodyData.confirmPassword) },
+      TABLES.ADMIN_MASTER,
+      { adminid: userId }
     );
 
     if (updated) {
-      sendData = commonController.getSuccessSendData({}, "Password Successfully Changed");
+      sendData = commonController.getSuccessSendData(
+        {},
+        "Password Successfully Changed"
+      );
     } else {
-      sendData = commonController.getErrorSendData({}, 200, {}, "Password not changed");
+      sendData = commonController.getErrorSendData(
+        {},
+        200,
+        {},
+        "Password not changed"
+      );
     }
-  } catch (err) {
+  } catch (err: any) {
     console.log("error", err);
     sendData = commonController.getErrorSendData(err);
   }

@@ -40,7 +40,7 @@ app.use(compression());
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({ secret: SESSION_SECRET, cookie: { maxAge: 24 * 60 * 60 * 1000 }, resave: false, saveUninitialized: true }));
+app.use(session({ secret: SESSION_SECRET || 'defaultsecret', cookie: { maxAge: 24 * 60 * 60 * 1000 }, resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
@@ -69,7 +69,7 @@ app.use(function (req, res, next) {
         "X-Requested-With,Content-type,token"
     ); 
 
-    res.setHeader("Access-Control-Allow-Credentials", true);
+    res.setHeader("Access-Control-Allow-Credentials", "true");
 
     next();
 });

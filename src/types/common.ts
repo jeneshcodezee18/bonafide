@@ -8,7 +8,6 @@ export interface ResponseData {
   data: Record<string, unknown>;
   userData?: Record<string, unknown>;
 }
- 
 export interface SendData {
   status: number;
   err: number;

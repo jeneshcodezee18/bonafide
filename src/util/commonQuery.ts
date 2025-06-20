@@ -2,23 +2,29 @@ import { UUID } from "aws-sdk/clients/cloudtrail";
 import { pool } from "../app";
 import { QueryResultRow } from "pg";
 
-
-
 type SimpleValue = string | number | boolean | null;
 
-type FilterCondition =
-  | SimpleValue
+type ConditionOperators = {
+  equalTo?: SimpleValue;
+  notEqualTo?: SimpleValue;
+  greaterThan?: number;
+  lessThan?: number;
+  greaterThanOrEqual?: number;
+  lessThanOrEqual?: number;
+  in?: SimpleValue[];
+  notIn?: SimpleValue[];
+  like?: string;
+};
+
+type Condition = SimpleValue | ConditionOperators;
+type FilterGroup = Record<string, Condition>;
+
+type FilterInput =
+  | FilterGroup // default AND
   | {
-    equalTo?: SimpleValue;
-    notEqualTo?: SimpleValue;
-    greaterThan?: number;
-    lessThan?: number;
-    greaterThanOrEqual?: number;
-    lessThanOrEqual?: number;
-    in?: SimpleValue[];
-    notIn?: SimpleValue[];
-    like?: string;
-  };
+      AND?: FilterGroup;
+      OR?: FilterGroup;
+    };
 
 /**
  * Select specific fields from a table (single row)
@@ -261,58 +267,82 @@ export const deleteQuery = async (
   return result?.rowCount ? true : false;
 };
 
-
 export const selectQuery = async (
-  filters: Record<string, FilterCondition>,
+  filters: FilterInput,
   tableName: string,
   dynamicColumns: string[] = []
 ): Promise<Array<Record<string, any>>> => {
-  const whereClauses: string[] = [];
   const values: any[] = [];
-
   let paramIndex = 1;
 
-  for (const [key, condition] of Object.entries(filters)) {
-    if (
-      typeof condition !== 'object' ||
-      condition === null ||
-      Array.isArray(condition)
-    ) {
-      // Shorthand: treat as equalTo
-      whereClauses.push(`"${key}" = $${paramIndex}`);
-      values.push(condition);
-    } else {
-      if (condition.equalTo !== undefined) {
-        whereClauses.push(`"${key}" = $${paramIndex}`);
-        values.push(condition.equalTo);
-      } else if (condition.notEqualTo !== undefined) {
-        whereClauses.push(`"${key}" != $${paramIndex}`);
-        values.push(condition.notEqualTo);
-      } else if (condition.greaterThan !== undefined) {
-        whereClauses.push(`"${key}" > $${paramIndex}`);
-        values.push(condition.greaterThan);
-      } else if (condition.lessThan !== undefined) {
-        whereClauses.push(`"${key}" < $${paramIndex}`);
-        values.push(condition.lessThan);
-      } else if (condition.greaterThanOrEqual !== undefined) {
-        whereClauses.push(`"${key}" >= $${paramIndex}`);
-        values.push(condition.greaterThanOrEqual);
-      } else if (condition.lessThanOrEqual !== undefined) {
-        whereClauses.push(`"${key}" <= $${paramIndex}`);
-        values.push(condition.lessThanOrEqual);
-      } else if (condition.in !== undefined) {
-        whereClauses.push(`"${key}" = ANY($${paramIndex})`);
-        values.push(condition.in);
-      } else if (condition.notIn !== undefined) {
-        whereClauses.push(`NOT ("${key}" = ANY($${paramIndex}))`);
-        values.push(condition.notIn);
-      } else if (condition.like !== undefined) {
-        whereClauses.push(`"${key}" ILIKE $${paramIndex}`);
-        values.push(condition.like);
+  const buildConditions = (group: FilterGroup): string[] => {
+    const clauses: string[] = [];
+
+    for (const [key, condition] of Object.entries(group)) {
+      if (
+        typeof condition !== "object" ||
+        condition === null ||
+        Array.isArray(condition)
+      ) {
+        clauses.push(`"${key}" = $${paramIndex}`);
+        values.push(condition);
+        paramIndex++;
+      } else {
+        const cond = condition as ConditionOperators;
+
+        if (cond.equalTo !== undefined) {
+          clauses.push(`"${key}" = $${paramIndex}`);
+          values.push(cond.equalTo);
+        } else if (cond.notEqualTo !== undefined) {
+          clauses.push(`"${key}" != $${paramIndex}`);
+          values.push(cond.notEqualTo);
+        } else if (cond.greaterThan !== undefined) {
+          clauses.push(`"${key}" > $${paramIndex}`);
+          values.push(cond.greaterThan);
+        } else if (cond.lessThan !== undefined) {
+          clauses.push(`"${key}" < $${paramIndex}`);
+          values.push(cond.lessThan);
+        } else if (cond.greaterThanOrEqual !== undefined) {
+          clauses.push(`"${key}" >= $${paramIndex}`);
+          values.push(cond.greaterThanOrEqual);
+        } else if (cond.lessThanOrEqual !== undefined) {
+          clauses.push(`"${key}" <= $${paramIndex}`);
+          values.push(cond.lessThanOrEqual);
+        } else if (cond.in !== undefined) {
+          clauses.push(`"${key}" = ANY($${paramIndex})`);
+          values.push(cond.in);
+        } else if (cond.notIn !== undefined) {
+          clauses.push(`NOT ("${key}" = ANY($${paramIndex}))`);
+          values.push(cond.notIn);
+        } else if (cond.like !== undefined) {
+          clauses.push(`"${key}" ILIKE $${paramIndex}`);
+          values.push(cond.like);
+        }
+        paramIndex++;
       }
     }
 
-    paramIndex++;
+    return clauses;
+  };
+
+  let andClauses: string[] = [];
+  let orClauses: string[] = [];
+
+  // Handle shorthand: if filters is flat object
+  if ("AND" in filters || "OR" in filters) {
+    const obj = filters as { AND?: FilterGroup; OR?: FilterGroup };
+    andClauses = obj.AND ? buildConditions(obj.AND) : [];
+    orClauses = obj.OR ? buildConditions(obj.OR) : [];
+  } else {
+    andClauses = buildConditions(filters as FilterGroup);
+  }
+
+  const whereClauseParts = [];
+  if (andClauses.length) {
+    whereClauseParts.push(`(${andClauses.join(" AND ")})`);
+  }
+  if (orClauses.length) {
+    whereClauseParts.push(`(${orClauses.join(" OR ")})`);
   }
 
   const selectColumns =
@@ -322,9 +352,9 @@ export const selectQuery = async (
 
   const queryText = `
     SELECT ${selectColumns} FROM "${tableName}"
-    ${whereClauses.length > 0 ? `WHERE ${whereClauses.join(" AND ")}` : ""};
+    ${whereClauseParts.length ? `WHERE ${whereClauseParts.join(" AND ")}` : ""};
   `;
 
-  const result = await pool.query<QueryResultRow>(queryText, values);
+  const result = await pool.query(queryText, values);
   return result?.rows || [];
 };
