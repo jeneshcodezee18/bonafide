@@ -1,5 +1,5 @@
 import { commonController } from "../common/common";
-import { deleteOne, insertOne, selectFields, selectJoin, updateOne } from "../../../util/commonQuery";
+import { deleteOne, insertOne, selectFields, selectJoin, selectManyFields, updateOne } from "../../../util/commonQuery";
 import * as common from "../common/common"
 
 interface SendData {
@@ -15,6 +15,7 @@ export const ADD_COUPON = async function (
 ) {
     let sendData = commonController.getSendData();
     try {
+        console.log("data: ", data);
         if (data.couponid) {
             const couponId = parseInt(data.couponid, 10);
             const updatedCoupon = await updateOne(
@@ -54,6 +55,7 @@ export const ADD_COUPON = async function (
                     data.show_hide, data.region_id, data.country_id, data.expire_date, new Date()
                 ]
             );
+            console.log("addCoupon: ", addCoupon);
             if (addCoupon) {
                 sendData = commonController.getSuccessSendData(addCoupon, "Coupon added successfully");
             } else {
@@ -70,6 +72,9 @@ export const ADD_COUPON = async function (
 export const VIEW_COUPON = async (data: any, callback: (result: SendData) => void) => {
     let sendData = commonController.getSendData();
     try {
+        const bodyData = data;
+        const condition = "couponid = $1";
+        const values = [bodyData.id];
         const coupon = await selectFields(
             "coupon_master",
             [
@@ -78,11 +83,12 @@ export const VIEW_COUPON = async (data: any, callback: (result: SendData) => voi
                 "coupon_type", "value", "limit_value", "product_date_start", "product_date_end",
                 "show_hide", "region_id", "country_id", "expire_date", "createddate"
             ],
-            "couponid = $1",
-            [data.couponid]
+            condition,
+            values
         );
         if (coupon) {
-            sendData = commonController.getSuccessSendData(coupon[0], "Coupon found");
+            console.log("coupon: ", coupon);
+            sendData = commonController.getSuccessSendData(coupon, "Coupon found");
         } else {
             sendData = commonController.getErrorSendData({}, 404, {}, "Coupon not found");
         }
@@ -150,6 +156,92 @@ export const LIST_COUPONS = async (data: any, callback: (result: SendData) => vo
                 {},
                 "Coupon list not found"
             );
+        }
+    } catch (err) {
+        sendData = commonController.getErrorSendData(err);
+    }
+    callback(sendData);
+};
+
+export const LIST_CATEGORY = async (data: any, callback: (result: SendData) => void) => {
+    let sendData = commonController.getSendData();
+    try {
+        const categories = await selectManyFields(
+            "master_category",
+            [
+                "categoryid",
+                "categoryname",
+            ],
+            "parent_id = 0",
+            []
+        );
+        if (categories) {
+            sendData = commonController.getSuccessSendData(categories, "Category list found");
+        } else {
+            sendData = commonController.getSuccessSendData([], "No categories found");
+        }
+    } catch (err) {
+        sendData = commonController.getErrorSendData(err);
+    }
+    callback(sendData);
+};
+
+export const LIST_ALL_PUBLISHER = async (data: any, callback: (result: SendData) => void) => {
+    let sendData = commonController.getSendData();
+    try {
+        const publishers = await selectManyFields(
+            "publisher_name_master",
+            [
+                "publisher_name_id",
+                "publisher_name"
+            ]
+        );
+        if (publishers) {
+            sendData = commonController.getSuccessSendData(publishers, "Publisher list found");
+        } else {
+            sendData = commonController.getSuccessSendData([], "No publishers found");
+        }
+    } catch (err) {
+        sendData = commonController.getErrorSendData(err);
+    }
+    callback(sendData);
+};
+
+export const LIST_ALL_REGION = async (data: any, callback: (result: SendData) => void) => {
+    let sendData = commonController.getSendData();
+    try {
+        const regions = await selectManyFields(
+            "region_master",
+            [
+                "region_id",
+                "region_name"
+            ],
+        );
+        if (regions) {
+            sendData = commonController.getSuccessSendData(regions, "Region list found");
+        } else {
+            sendData = commonController.getSuccessSendData([], "No regions found");
+        }
+    } catch (err) {
+        sendData = commonController.getErrorSendData(err);
+    }
+    callback(sendData);
+};
+
+export const LIST_ALL_COUNTRY = async (data: any, callback: (result: SendData) => void) => {
+    let sendData = commonController.getSendData();
+    try {
+        const countries = await selectManyFields(
+            "countries",
+            [
+                "id",
+                "name"
+            ],
+        );
+        if (countries) {
+            sendData = commonController.getSuccessSendData(countries, "Country list found");
+        } else {
+            sendData = commonController.getSuccessSendData([], "No countries found");
         }
     } catch (err) {
         sendData = commonController.getErrorSendData(err);

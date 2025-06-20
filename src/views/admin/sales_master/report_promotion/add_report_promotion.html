@@ -1,0 +1,193 @@
+<%- include('../../common/header.html')-%>
+    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+        <div class="toolbar" id="kt_toolbar">
+            <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
+                    data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                    class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                    <a href="javascript:history.back();" class="me-4">
+                          <i class="bi bi-arrow-left fs-2 text-dark"></i>
+                    </a>
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">
+                        <%= title %>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="post d-flex flex-column-fluid" id="kt_post">
+            <div id="kt_content_container" class="container-xxl">
+                <div class="card mb-5 mb-xl-10" data-select2-id="select2-data-137-cfei">
+                    <!-- <div class="card-footer border-0 cursor-pointer" role="button" data-bs-toggle="collapse"
+                        data-bs-target="#kt_footer_details" aria-expanded="true" aria-controls="kt_footer_details">
+                        <div class="card-title m-0">
+                            <a href="javascript:history.back();" class="me-4">
+                                <i class="bi bi-arrow-left fs-2 text-dark"></i>
+                            </a>
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">
+                                <%= title %>
+                            </h1>
+                        </div>
+                    </div> -->
+                    <div id="kt_footer_details" class="collapse show" data-select2-id="select2-data-kt_footer_details">
+                        <form id="report_promotional_form" class="form fv-plugins-bootstrap5 fv-plugins-framework"
+                            novalidate="novalidate" action="#">
+                            <div class="card-body border-top p-9">
+
+                                <input type="hidden" name="Id" id="Id" value="" />
+
+                                <!-- Row 1 -->
+                                <div class="row mb-6">
+                                    <div class="col-lg-3">
+                                        <label class="form-label required fw-bold fs-6">Report List</label>
+                                        <input type="text" name="report_list" id="report_list" class="form-control form-control-lg form-control-solid" placeholder="Report List">
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label class="form-label required fw-bold fs-6">Parts</label>
+                                        <input type="text" name="parts" id="parts" class="form-control form-control-lg form-control-solid" placeholder="Parts">
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label class="form-label required fw-bold fs-6">Published Date</label>
+                                        <input type="date" name="published_date" id="published_date" class="form-control form-control-lg form-control-solid" placeholder="Published Date">
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label for="mainCategoryDropdown" class="form-label fw-bold fs-6">Industry</label>
+                                        <select class="form-select form-select-lg form-select-solid" id="mainCategoryDropdown">
+                                            <option value="">Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Row 2 -->
+                                <div class="row mb-6">
+                                    <div class="col-lg-3">
+                                        <label for="mainCategoryDropdown" class="form-label fw-bold fs-6">Sub Industry</label>
+                                        <select class="form-select form-select-lg form-select-solid" id="subCategoryDropdown">
+                                            <option value="">Select</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label for="allPublisherDropdown" class="form-label fw-bold fs-6">Publisher</label>
+                                        <select class="form-select form-select-lg form-select-solid" id="allPublisherDropdown">
+                                            <option value="">Select</option>
+                                            <option value="actual">Actual</option>
+                                            <option value="bonafide">Bonafide</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label class="form-label required fw-bold fs-6">Type</label>
+                                        <select name="type" id="type" class="form-select form-select-lg form-select-solid">
+                                            <option value="">Select</option>
+                                            <option value="published">Published</option>
+                                            <option value="pre_book">Pre-book</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label for="allPublisherDropdown" class="form-label fw-bold fs-6">Assigned To</label>
+                                        <select class="form-select form-select-lg form-select-solid" id="assignedToDropdown">
+                                            <option value="">Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Row 3 -->
+                                <div class="row mb-6">
+                                    <div class="col-lg-3">
+                                        <label class="form-label required fw-bold fs-6">Lead Extracted</label>
+                                        <select name="lead_extracted" id="lead_extracted" class="form-select form-select-lg form-select-solid">
+                                            <option value="">Select</option>
+                                            <option value="yes">Yes</option>
+                                            <option value="no">No</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label class="form-label required fw-bold fs-6">Company</label>
+                                        <input type="text" name="company" id="company" class="form-control form-control-lg form-control-solid" placeholder="Company">
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label class="form-label required fw-bold fs-6">Email Status</label>
+                                        <select name="email_status" id="email_status" class="form-select form-select-lg form-select-solid">
+                                            <option value="">Select</option>
+                                            <option value="sent">Sent</option>
+                                            <option value="pending">Published</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label class="form-label required fw-bold fs-6">Soutbound</label>
+                                        <input type="text" name="soutbound" id="soutbound" class="form-control form-control-lg form-control-solid" placeholder="Soutbound">
+                                    </div>
+                                </div>
+
+                                <!-- Row 4 -->
+                                <div class="row mb-6">
+                                    <div class="col-lg-3">
+                                        <label class="form-label required fw-bold fs-6">Moutbound</label>
+                                        <input type="text" name="moutbound" id="moutbound" class="form-control form-control-lg form-control-solid" placeholder="Moutbound">
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label class="form-label required fw-bold fs-6">Response</label>
+                                        <input type="text" name="response" id="response" class="form-control form-control-lg form-control-solid" placeholder="Response">
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label class="form-label required fw-bold fs-6">Date</label>
+                                        <input type="date" name="date" id="date" class="form-control form-control-lg form-control-solid" placeholder="Date">
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label class="form-label required fw-bold fs-6">News Letter Published</label>
+                                        <select name="news_letter_published" id="news_letter_published" class="form-select form-select-lg form-select-solid">
+                                            <option value="">Select</option>
+                                            <option value="yes">Yes</option>
+                                            <option value="no">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Row 5 -->
+                                <div class="row mb-6">
+                                    <div class="col-lg-3">
+                                        <label class="form-label required fw-bold fs-6">Infographic</label>
+                                        <select name="infographics" id="infographics" class="form-select form-select-lg form-select-solid">
+                                            <option value="">Select</option>
+                                            <option value="yes">Yes</option>
+                                            <option value="no">No</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label class="form-label required fw-bold fs-6">Polls</label>
+                                        <select name="polls" id="polls" class="form-select form-select-lg form-select-solid">
+                                            <option value="">Select</option>
+                                            <option value="yes">Yes</option>
+                                            <option value="no">No</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label class="form-label required fw-bold fs-6">Paid Promotion</label>
+                                        <select name="paid_promotion" id="paid_promotion" class="form-select form-select-lg form-select-solid">
+                                            <option value="">Select</option>
+                                            <option value="yes">Yes</option>
+                                            <option value="no">No</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label class="form-label required fw-bold fs-6">Paid Promotion Blogs</label>
+                                        <select name="blogs" id="blogs" class="form-select form-select-lg form-select-solid">
+                                            <option value="">Select</option>
+                                            <option value="yes">Yes</option>
+                                            <option value="no">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="card-footer d-flex justify-content-end py-6 px-9">
+                                <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button>
+                                <button type="submit" class="btn btn-primary" id="kt_footer_details_submit">Save Changes</button>
+                            </div>
+                        </form>
+                        <!--end::Form-->
+                    </div>
+                    <!--end::Content-->
+                </div>
+            </div>
+        </div>
+    </div>
+<%- include('../../common/footer.html')-%>
