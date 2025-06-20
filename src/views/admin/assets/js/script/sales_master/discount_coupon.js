@@ -1,6 +1,101 @@
 $("#addDiscountCoupon").on("click", function () {
   window.location.href = BASE_URL + "admin_master/coupon_master/add_filter";
 });
+function fetchAllPublisherDropdownAndPopulateDropdown() {
+  jQuery.ajax({
+    type: "POST",
+    url: `${BASE_URL}admin_master/all_publisher/list`,
+    success: function (response) {
+      if (response.err == 0) {
+        const allPublisher = response.data;
+        populateAllPublisherDropdownDropdown(allPublisher);
+      } else {
+      }
+    },
+    error: function (xhr, status, error) {},
+  });
+}
+
+function populateAllPublisherDropdownDropdown(publisher) {
+  let dropdownOptions = '<option value="">Select</option>';
+  publisher.forEach((publisher) => {
+    dropdownOptions += `<option value="${publisher.publisher_name}">${publisher.publisher_name}</option>`;
+  });
+  $("#allPublisherDropdown").html(dropdownOptions);
+  $("#allPublisherDropdown").html(dropdownOptions);
+}
+
+function fetchMainCategoryDropdownAndPopulateDropdown() {
+  jQuery.ajax({
+    type: "POST",
+    url: `${BASE_URL}admin_master/all_category/list`,
+    success: function (response) {
+      if (response.err == 0) {
+        const serviceParent = response.data;
+        populateMainCategoryDropdownDropdown(serviceParent);
+      } else {
+      }
+    },
+    error: function (xhr, status, error) {},
+  });
+}
+
+function populateMainCategoryDropdownDropdown(category) {
+  let dropdownOptions = '<option value="">Select</option>';
+  category.forEach((category) => {
+    dropdownOptions += `<option value="${category.categoryid}">${category.categoryname}</option>`;
+  });
+  $("#mainCategoryDropdown").html(dropdownOptions);
+  $("#mainCategoryDropdown").html(dropdownOptions);
+}
+
+function fetchAllRegionDropdownAndPopulateDropdown() {
+  jQuery.ajax({
+    type: "POST",
+    url: `${BASE_URL}admin_master/all_region/list`,
+    success: function (response) {
+      if (response.err == 0) {
+        const allRegion = response.data;
+        populateAllRegionDropdownDropdown(allRegion);
+      } else {
+      }
+    },
+    error: function (xhr, status, error) {},
+  });
+}
+
+function populateAllRegionDropdownDropdown(region) {
+  let dropdownOptions = '<option value="">Select</option>';
+  region.forEach((region) => {
+    dropdownOptions += `<option value="${region.region_id}">${region.region_name}</option>`;
+  });
+  $("#allRegionDropdown").html(dropdownOptions);
+  $("#allRegionDropdown").html(dropdownOptions);
+}
+
+function fetchAllCountriesDropdownAndPopulateDropdown() {
+  jQuery.ajax({
+    type: "POST",
+    url: `${BASE_URL}admin_master/all_country/list`,
+    success: function (response) {
+      if (response.err == 0) {
+        const allCountry = response.data;
+        populateAllCountriesDropdownDropdown(allCountry);
+      } else {
+      }
+    },
+    error: function (xhr, status, error) {},
+  });
+}
+
+function populateAllCountriesDropdownDropdown(country) {
+  let dropdownOptions = '<option value="">Select</option>';
+  country.forEach((country) => {
+    dropdownOptions += `<option value="${country.id}">${country.name}</option>`;
+  });
+  $("#allCountryDropdown").html(dropdownOptions);
+  $("#allCountryDropdown").html(dropdownOptions);
+}
 
 $("#coupon_form").on("submit", function (e) {
   e.preventDefault();
@@ -20,27 +115,27 @@ $("#coupon_form").on("submit", function (e) {
     if (result.isConfirmed) {
       $.ajax({
         type: "POST",
-        url: BASE_URL + "admin_master/coupon_master/add",
+        url: BASE_URL + "admin_master/discount_coupon/add",
         data: {
           id: $("#Id").val(),
+          category_name: $("#mainCategoryDropdown").val(),
+          publisher_name: $("#allPublisherDropdown").val(),
+          region_id: $("#allRegionDropdown").val(),
+          country_id: $("#allCountryDropdown").val(),
           coupon_name: $("#coupon_name").val(),
-          publisher_name: $("#publisher_name").val(),
-          category_name: $("#category_name").val(),
           product_code_from: $("#product_code_from").val(),
           product_code_to: $("#product_code_to").val(),
           single_user_amount_from: $("#single_user_amount_from").val(),
           single_user_amount_to: $("#single_user_amount_to").val(),
           product_code: $("#product_code").val(),
           license: $("#license").val(),
-          type: $("#type").val(),
+          type: $("input[name='type']:checked").val(),
           coupon_type: $("#coupon_type").val(),
           value: $("#value").val(),
           limit_value: $("#limit_value").val(),
-          product_date_start: $("#product_date_start").val(),
-          product_date_end: $("#product_date_end").val(),
+          product_date_start: $("#product_date_start").val(), // <-- Fix here
+          product_date_end: $("#product_date_end").val(), // <-- Fix here
           show_hide: $("#show_hide").val(),
-          region_id: $("#region_id").val(),
-          country_id: $("#country_id").val(),
           expire_date: $("#expire_date").val(),
         },
         success: function (response) {
@@ -65,7 +160,8 @@ $("#coupon_form").on("submit", function (e) {
               },
             });
             formElement.reset();
-            window.location.href = BASE_URL + "admin_master/coupon_master/manage";
+            window.location.href =
+              BASE_URL + "admin_master/coupon_master/manage";
           }
         },
       });
@@ -89,7 +185,7 @@ function remove(id) {
     if (result.isConfirmed) {
       $.ajax({
         type: "POST",
-        url: BASE_URL + "admin_master/coupon_master/delete",
+        url: BASE_URL + "admin_master/discount_coupon/delete",
         data: { id: id },
         success: function (response) {
           if (response.err == 1) {
@@ -127,7 +223,7 @@ function pagination(start) {
   paginationStart = (start - 1) * limit + 1;
   $.ajax({
     type: "POST",
-    url: `${BASE_URL}admin_master/coupon_master/list/${start}/${limit}`,
+    url: `${BASE_URL}admin_master/discount_coupon/list/${start}/${limit}`,
     data: {
       start: start,
       limit: limit,
@@ -156,24 +252,33 @@ function html(list) {
         htmlData += "<tr>";
         htmlData += `<td>${paginationStart + i}</td>`;
         htmlData += `<td>${list[i].coupon_name || ""}</td>`;
+        htmlData += `<td>${list[i].type || ""}</td>`;
         htmlData += `<td>${list[i].publisher_name || ""}</td>`;
         htmlData += `<td>${list[i].category_name || ""}</td>`;
-        htmlData += `<td>${list[i].product_code_from || ""}</td>`;
-        htmlData += `<td>${list[i].product_code_to || ""}</td>`;
-        htmlData += `<td>${list[i].single_user_amount_from || ""}</td>`;
-        htmlData += `<td>${list[i].single_user_amount_to || ""}</td>`;
         htmlData += `<td>${list[i].product_code || ""}</td>`;
         htmlData += `<td>${list[i].license || ""}</td>`;
-        htmlData += `<td>${list[i].type || ""}</td>`;
-        htmlData += `<td>${list[i].coupon_type || ""}</td>`;
+        htmlData += `<td>${
+          list[i].product_date_start
+            ? new Date(list[i].product_date_start).toLocaleDateString()
+            : ""
+        }</td>`;
+        htmlData += `<td>${
+          list[i].product_date_end
+            ? new Date(list[i].product_date_end).toLocaleDateString()
+            : ""
+        }</td>`;
         htmlData += `<td>${list[i].value || ""}</td>`;
         htmlData += `<td>${list[i].limit_value || ""}</td>`;
-        htmlData += `<td>${list[i].product_date_start ? new Date(list[i].product_date_start).toLocaleDateString() : ""}</td>`;
-        htmlData += `<td>${list[i].product_date_end ? new Date(list[i].product_date_end).toLocaleDateString() : ""}</td>`;
-        htmlData += `<td>${list[i].show_hide || ""}</td>`;
-        htmlData += `<td>${list[i].region_id || ""}</td>`;
-        htmlData += `<td>${list[i].country_id || ""}</td>`;
-        htmlData += `<td>${list[i].expire_date || ""}</td>`;
+        htmlData += `<td>${
+          list[i].createddate
+            ? new Date(list[i].createddate).toLocaleDateString()
+            : ""
+        }</td>`;
+        htmlData += `<td>${
+          list[i].expire_date
+            ? new Date(list[i].expire_date).toLocaleDateString()
+            : ""
+        }</td>`;
         htmlData +=
           `<td><a href="` +
           BASE_URL +
@@ -186,6 +291,10 @@ function html(list) {
 }
 
 jQuery(document).ready(function ($) {
+  fetchAllPublisherDropdownAndPopulateDropdown();
+  fetchMainCategoryDropdownAndPopulateDropdown();
+  fetchAllRegionDropdownAndPopulateDropdown();
+  fetchAllCountriesDropdownAndPopulateDropdown();
   pagination(start);
 });
 
@@ -195,47 +304,45 @@ $(document).ready(function () {
   if (couponid) {
     $.ajax({
       type: "POST",
-      url: BASE_URL + "admin_master/coupon_master/view",
+      url: BASE_URL + "admin_master/discount_coupon/view",
       data: { id: couponid },
       success: function (response) {
         if (response.err == 0) {
-            let data = response.data;
-            const dStart = new Date(data.product_date_start);
-            const yStart = dStart.getFullYear();
-            const mStart = String(dStart.getMonth() + 1);
-            const dayStart = String(dStart.getDate());
+          let data = response.data;
+          console.log("data: ", data);
 
-            const dEnd = new Date(data.product_date_end);
-            const yEnd = dEnd.getFullYear();
-            const mEnd = String(dEnd.getMonth() + 1);
-            const dayEnd = String(dEnd.getDate());
+          // Helper to format date as yyyy-mm-dd or empty
+          function formatDate(dateStr) {
+            const d = new Date(dateStr);
+            const y = d.getFullYear();
+            const m = String(d.getMonth() + 1).padStart(2, "0");
+            const day = String(d.getDate()).padStart(2, "0");
+            return `${y}-${m}-${day}`;
+          }
 
-            const dExpire = new Date(data.expire_date);
-            const yExpire = dExpire.getFullYear();
-            const mExpire = String(dExpire.getMonth() + 1);
-            const dayExpire = String(dExpire.getDate());
-            
-            $("#couponid").val(data.couponid);
-            $("#coupon_name").val(data.coupon_name);
-            $("#publisher_name").val(data.publisher_name);
-            $("#category_name").val(data.category_name);
-            $("#product_code_from").val(data.product_code_from);
-            $("#product_code_to").val(data.product_code_to);
-            $("#single_user_amount_from").val(data.single_user_amount_from);
-            $("#single_user_amount_to").val(data.single_user_amount_to);
-            $("#product_code").val(data.product_code);
-            $("#license").val(data.license);
-            $("#type").val(data.type);
-            $("#coupon_type").val(data.coupon_type);
-            $("#value").val(data.value);
-            $("#limit_value").val(data.limit_value);
-            $("#product_date_start").val(`${yStart}-${mStart}-${dayStart}`);
-            $("#product_date_end").val(`${yEnd}-${mEnd}-${dayEnd}`);
-            $("#show_hide").val(data.show_hide);
-            $("#region_id").val(data.region_id);
-            $("#country_id").val(data.country_id);
-            $("#expire_date").val(`${yExpire}-${mExpire}-${dayExpire}`);
-
+          $("#couponid").val(data.couponid);
+          $("#coupon_name").val(data.coupon_name);
+          $("#allPublisherDropdown").val(data.publisher_name);
+          $("#mainCategoryDropdown").val(data.category_name);
+          $("#product_code_from").val(data.product_code_from);
+          $("#product_code_to").val(data.product_code_to);
+          $("#single_user_amount_from").val(data.single_user_amount_from);
+          $("#single_user_amount_to").val(data.single_user_amount_to);
+          $("#product_code").val(data.product_code);
+          $("#license").val(data.license);
+          // Set radio for type
+          if (data.type) {
+            $(`input[name='type'][value='${data.type}']`).prop("checked", true);
+          }
+          $("#coupon_type").val(data.coupon_type);
+          $("#value").val(data.value);
+          $("#limit_value").val(data.limit_value);
+          $("#product_date_start").val(formatDate(data.product_date_start));
+          $("#product_date_end").val(formatDate(data.product_date_end));
+          $("#show_hide").val(data.show_hide);
+          $("#allRegionDropdown").val(data.region_id);
+          $("#allCountryDropdown").val(data.country_id);
+          $("#expire_date").val(formatDate(data.expire_date));
         }
       },
     });

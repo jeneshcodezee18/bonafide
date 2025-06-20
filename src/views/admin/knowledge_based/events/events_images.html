@@ -1,0 +1,66 @@
+<%- include('../../common/header.html')-%>
+    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+        <div class="toolbar" id="kt_toolbar">
+            <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
+                    data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                    class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">
+                        <%= title %>
+                    </h1>
+                    <span class="h-20px border-gray-300 border-start mx-4"></span>
+                    <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
+                        <li class="breadcrumb-item text-dark">Lists</li>
+                    </ul>
+                </div>
+                <div class="d-flex align-items-center py-1">
+                    <a href="javascript:;" id="addEventsImages" class="btn btn-sm btn-primary">Add Events Image</a>
+                </div>
+            </div>
+        </div>
+        <div class="post d-flex flex-column-fluid" id="kt_post">
+            <div id="kt_content_container" class="container-xxl">
+                <div class="row g-5 g-xl-8">
+                    <div class="col-xl-12">
+                        <div class="card card-xl-stretch mb-xl-8">
+                            <div class="card-header border-0 pt-5">
+                                <h3 class="card-title align-items-start flex-column">
+                                    <span class="card-label fw-bolder text-dark">
+                                        <%= title %>
+                                    </span>
+                                </h3>
+
+                            </div>
+                            <div class="card-body pt-5">
+                                <div class="table-responsive">
+                                    <table class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                                        <thead>
+                                            <tr class="fw-bolder text-muted">
+                                                <th class="min-w-150px">Sr No</th>
+                                                <th class="min-w-150px">Image</th>
+                                                <th class="min-w-250px">Title</th>
+                                                <th class="min-w-150px">Date</th>
+                                                <th class="min-w-150px">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="table-data">
+                                            <tr>
+                                                <td colspan="2">
+                                                    <span class="fw-bold d-block fs-7">Loading...</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="d-flex flex-stack flex-wrap pt-10">
+                                    <div class="fs-6 fw-bold text-gray-700 pagination-text"></div>
+                                    <ul class="pagination" id="pagination"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<%- include('../../common/footer.html')-%>
