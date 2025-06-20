@@ -12,8 +12,8 @@ export function bindURL(): void {
                 title: "About Us",  
                 config: config,
                 script: {
-                    available: 0,
-                    js: "about_us",
+                    available: 1,
+                    js: "about_bonafide/about_us",
                 },
                 css: {
                     available: 0,
