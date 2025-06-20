@@ -2,17 +2,11 @@ import { commonController } from "../common/common";
 import * as common from "../common/common"
 import { deleteQuery, insertQuery, selectJoin, selectManyFields, selectQuery, updateQuery, } from "../../../util/commonQuery";
 import { TABLES } from "../../../util/constants/table_names";
-
-interface SendData {
-    status: number;
-    err: number;
-    data: object;
-    msg: string;
-}
+import { CallbackFunction } from "../../../types/common";
 
 export const ADD_REPORT_PROMOTIONAL = async function (
     data: any,
-    callback: (result: SendData) => void
+    callback: CallbackFunction
 ) {
     let sendData = commonController.getSendData();
     try {
@@ -91,7 +85,7 @@ export const ADD_REPORT_PROMOTIONAL = async function (
     callback(sendData);
 };
 
-export const VIEW_REPORT_PROMOTIONAL = async (data: any, callback: (result: SendData) => void) => {
+export const VIEW_REPORT_PROMOTIONAL = async (data: any, callback: CallbackFunction) => {
     let sendData = commonController.getSendData();
     try {
         const id = data.id;
@@ -110,7 +104,7 @@ export const VIEW_REPORT_PROMOTIONAL = async (data: any, callback: (result: Send
     callback(sendData);
 };
 
-export const DELETE_REPORT_PROMOTIONAL = async (data: any, callback: (result: SendData) => void) => {
+export const DELETE_REPORT_PROMOTIONAL = async (data: any, callback: CallbackFunction) => {
     let sendData = commonController.getSendData();
     try {
         const id = data.id;
@@ -129,7 +123,7 @@ export const DELETE_REPORT_PROMOTIONAL = async (data: any, callback: (result: Se
     callback(sendData);
 };
 
-export const LIST_REPORT_PROMOTIONAL = async (data: any, callback: (result: SendData) => void) => {
+export const LIST_REPORT_PROMOTIONAL = async (data: any, callback: CallbackFunction) => {
     let sendData = commonController.getSendData();
     try {
         const start = parseInt(data.start) || 1;
@@ -174,7 +168,7 @@ export const LIST_REPORT_PROMOTIONAL = async (data: any, callback: (result: Send
     callback(sendData);
 };
 
-export const LIST_ASSIGNED_MEMBERS = async (data: any, callback: (result: SendData) => void) => {
+export const LIST_ASSIGNED_MEMBERS = async (data: any, callback: CallbackFunction) => {
     let sendData = commonController.getSendData();
     try {
         const members = await selectManyFields(
@@ -192,7 +186,7 @@ export const LIST_ASSIGNED_MEMBERS = async (data: any, callback: (result: SendDa
     callback(sendData);
 };
 
-export const LIST_CATEGORY = async (data: any, callback: (result: SendData) => void) => {
+export const LIST_CATEGORY = async (data: any, callback: CallbackFunction) => {
     let sendData = commonController.getSendData();
     try {
         const categories = await selectManyFields(
@@ -215,7 +209,7 @@ export const LIST_CATEGORY = async (data: any, callback: (result: SendData) => v
     callback(sendData);
 };
 
-export const LIST_SUBCATEGORY = async (data: any, callback: (result: SendData) => void) => {
+export const LIST_SUBCATEGORY = async (data: any, callback: CallbackFunction) => {
     let sendData = commonController.getSendData();
     try {
         const parentId = data.categoryid;

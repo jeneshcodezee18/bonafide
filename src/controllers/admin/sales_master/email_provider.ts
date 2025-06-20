@@ -2,13 +2,8 @@ import { commonController } from "../common/common";
 import * as common from "../common/common"
 import { deleteQuery, insertQuery, selectJoin, selectQuery, updateQuery, } from "../../../util/commonQuery";
 import { TABLES } from "../../../util/constants/table_names";
+import { CallbackFunction } from "../../../types/common";
 
-interface SendData {
-    status: number;
-    err: number;
-    data: object;
-    msg: string;
-}
 export const ADD_EMAIL_PROVIDER = async function (
     data: {
         providerid?: string;
@@ -17,7 +12,7 @@ export const ADD_EMAIL_PROVIDER = async function (
         smtpuname: string;
         smtppass: string;
     },
-    callback: (result: SendData) => void
+    callback: CallbackFunction
 ) {
     let sendData = commonController.getSendData();
     const bodyData = data;
@@ -80,7 +75,7 @@ export const ADD_EMAIL_PROVIDER = async function (
     callback(sendData);
 };
 
-export const VIEW_EMAIL_PROVIDER = async (data: any, callback: (result: SendData) => void) => {
+export const VIEW_EMAIL_PROVIDER = async (data: any, callback: CallbackFunction) => {
     let sendData = commonController.getSendData();
     try {
         const bodyData = data;
@@ -103,7 +98,7 @@ export const VIEW_EMAIL_PROVIDER = async (data: any, callback: (result: SendData
     callback(sendData);
 };
 
-export const DELETE_EMAIL_PROVIDER = async (data: any, callback: (result: SendData) => void) => {
+export const DELETE_EMAIL_PROVIDER = async (data: any, callback: CallbackFunction) => {
     let sendData = commonController.getSendData();
     try {
         const bodyData = data;
@@ -125,7 +120,7 @@ export const DELETE_EMAIL_PROVIDER = async (data: any, callback: (result: SendDa
     callback(sendData);
 };
 
-export const LIST_EMAIL_PROVIDERS = async (data: any, callback: (result: SendData) => void) => {
+export const LIST_EMAIL_PROVIDERS = async (data: any, callback: CallbackFunction) => {
     let sendData = commonController.getSendData();
     try {
         const start = parseInt(data.start) || 1;

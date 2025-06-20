@@ -9,7 +9,9 @@
     "outDir": "dist",
     "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,
-    "strict": true
+    "strict": true,
+    "typeRoots": ["./src/types", "./node_modules/@types"]
+
   },
   "lib": ["es2017"]
 }

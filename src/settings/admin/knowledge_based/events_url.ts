@@ -9,7 +9,6 @@ import * as eventsController from "../../../controllers/admin/knowledge_based/ev
 import * as apiJwtController from "../../../controllers/admin/jwt/jwt";
 
 export function bindURL(): void {
-<<<<<<< Updated upstream
     app.get("/admin_master/events/manage", async function (req: Request, res: Response): Promise<void> {
         try {
             const respData: ResponseData = {
