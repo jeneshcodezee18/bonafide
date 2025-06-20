@@ -115,29 +115,52 @@ DecoupledEditor.create(document.querySelector("#kt_long_text"), {
     ],
   },
 })
-  .then((newEditor) => {
-    editor = newEditor;
+ .then((newEditor) => {
+  editor = newEditor;
 
-    // Get the editor instance
-    const editorElement = document.querySelector('.ck-editor__editable');
-    
-    // Apply border styling directly to editor instance
+  // Get the editor instance
+  const editorElement = document.querySelector('.ck-editor__editable');
+
+  // Function to apply border styles
+  function applyPermanentBorder() {
     editorElement.style.border = '1px solid #cccccc';
     editorElement.style.borderRadius = '4px';
     editorElement.style.padding = '15px';
-    editorElement.style.minHeight = '300px';
+    editorElement.style.minHeight = '200px';
+  }
 
-    const toolbarContainer = document.querySelector("#toolbar-container");
-    toolbarContainer.appendChild(editor.ui.view.toolbar.element);
+  // Initial apply
+  applyPermanentBorder();
 
-    // Custom image upload adapter
-    editor.plugins.get("FileRepository").createUploadAdapter = (loader) => {
-      return new MyUploadAdapter(loader);
-    };
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+  // Re-apply on focus and blur
+  editorElement.addEventListener('focus', applyPermanentBorder);
+  editorElement.addEventListener('blur', applyPermanentBorder);
+
+  // Inject strong CSS rule
+  const styleTag = document.createElement('style');
+  styleTag.innerHTML = `
+    .ck.ck-editor__editable, .ck.ck-editor__editable:focus {
+      border: 1px solid #cccccc !important;
+      border-radius: 4px !important;
+      box-shadow: none !important;
+      outline: none !important;
+      padding: 15px !important;
+      min-height: 200px !important;
+    }
+  `;
+  document.head.appendChild(styleTag);
+
+  const toolbarContainer = document.querySelector("#toolbar-container");
+  toolbarContainer.appendChild(editor.ui.view.toolbar.element);
+
+  // Custom image upload adapter
+  editor.plugins.get("FileRepository").createUploadAdapter = (loader) => {
+    return new MyUploadAdapter(loader);
+  };
+})
+.catch((error) => {
+  console.error(error);
+});
 
 $("#partner_form").on("submit", function (e) {
   e.preventDefault();
@@ -389,7 +412,12 @@ function applyStickyStyles() {
 }
 
 jQuery(document).ready(function ($) {
-  pagination(start); 
+  if (
+    window.location.pathname === "/admin_master/partner_list/manage" ||
+    window.location.pathname.endsWith("/admin_master/partner_list/manage/")
+  ) {
+    pagination(start);
+  }
 });
 
 $(document).ready(function () {
