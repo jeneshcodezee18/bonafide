@@ -7,7 +7,6 @@ function fetchAssignedMemberDropdownAndPopulateDropdown() {
     type: "POST",
     url: `${BASE_URL}admin_master/assigned_members/list`,
     success: function (response) {
-      console.log("assigned_members-list-response: ", response);
       if (response.err == 0) {
         const assignedMember = response.data;
         populateAssignedMemberDropdownDropdown(assignedMember);
@@ -222,7 +221,6 @@ $(document).ready(function () {
       url: BASE_URL + "admin_master/lead_master/view",
       data: { id: leadId },
       success: function (response) {
-        console.log("response: ", response);
         if (response.err == 0) {
           let data = response.data;
           const d = new Date(data.published_date);

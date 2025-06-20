@@ -23,8 +23,6 @@ export const ADD_PARTNER = async function (
 ) {
     let sendData = commonController.getSendData();
     const bodyData = data;
-    console.log("bodyData: ", bodyData);
-    console.log("bodyData.type: ", bodyData.type);
     try {
         if (bodyData.partner_id) {
             const partnerId = parseInt(bodyData.partner_id, 10);

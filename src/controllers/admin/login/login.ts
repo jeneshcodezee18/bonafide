@@ -119,7 +119,6 @@ export const LOGOUT = async function (
 export const CHANGED_PASSWORD = async (data, callback) => {
   let sendData = commonController.getSendData();
   try {
-    console.log("Change Password Data:", data);
     const bodyData = data;
     const userData = data.userData;
     const userId = userData.id; // Assuming JWT payload has 'id' as adminid
