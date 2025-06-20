@@ -7,7 +7,6 @@ function fetchMainCategoryDropdownAndPopulateDropdown() {
     type: "POST",
     url: `${BASE_URL}admin_master/category/list`,
     success: function (response) {
-        console.log("category-list-response: ", response);
       if (response.err == 0) {
         const serviceParent = response.data;
         populateMainCategoryDropdownDropdown(serviceParent);
@@ -224,7 +223,6 @@ $(document).ready(function () {
       success: function (response) {
         if (response.err == 0) {
           var data = response.data;
-          console.log("data: ", data);
           $("#image_preview").attr("src", data.image).show();
           $("#Id").val(data.client_masterid || "");
           $("#image").val(data.image || "");

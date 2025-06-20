@@ -248,16 +248,14 @@ $("#partner_form").on("submit", function (e) {
                 confirmButton: "btn btn-primary",
               },
             });
-            formElement.reset(); // <-- Reset the form
+            formElement.reset(); 
             if (editor) editor.setData("");
             window.location.href =
               BASE_URL + "admin_master/partner_list/manage";
           }
         },
       });
-    } else if (result.dismiss === Swal.DismissReason.cancel) {
-      console.log("User clicked on No, return");
-    }
+    } 
   });
 });
 
@@ -307,8 +305,6 @@ function remove(id) {
           }
         },
       });
-    } else {
-      console.log("Deletion canceled");
     }
   });
 }
@@ -339,7 +335,6 @@ function pagination(start) {
 }
 
 function html(list) {
-  console.log("list: ", list);
   let htmlData = "";
   if (list.length == 0) {
     htmlData += `<tr><td colspan="8"><span class="fw-bold d-block fs-7">No data found!</span></td></tr>`;
@@ -408,7 +403,6 @@ $(document).ready(function () {
       success: function (response) {
         if (response.err == 0) {
           var data = response.data;
-          console.log("data: ", data);
           $("#image_preview").attr("src", data.images).show();
           $("#Id").val(data.partner_id || "");
           $("#first_name").val(data.first_name || "");
@@ -441,7 +435,6 @@ function handleFileUpload(selectedFile, file_field) {
   formData.append("file", selectedFile);
 
   const oldImagePath = $("#image").val();
-  console.log("oldImagePath: ", oldImagePath);
   if (oldImagePath) {
     formData.append("oldImagePath", oldImagePath);
   }

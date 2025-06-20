@@ -198,7 +198,6 @@ $(document).ready(function () {
       url: BASE_URL + "admin_master/coupon_master/view",
       data: { id: couponid },
       success: function (response) {
-        console.log("response: ", response);
         if (response.err == 0) {
             let data = response.data;
             const dStart = new Date(data.product_date_start);

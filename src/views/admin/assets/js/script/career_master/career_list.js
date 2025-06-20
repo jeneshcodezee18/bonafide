@@ -203,9 +203,7 @@ $("#job_form").on("submit", function (e) {
           });
         }
       });
-    } else if (result.dismiss === Swal.DismissReason.cancel) {
-      console.log("User clicked on No, return");
-    }
+    } 
   });
 });
 
@@ -277,8 +275,6 @@ function remove(id) {
           }
         },
       });
-    } else {
-      console.log("Deletion canceled");
     }
   });
 }

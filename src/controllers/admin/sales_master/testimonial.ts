@@ -22,7 +22,6 @@ export const ADD_TESTIMONIAL = async function (
 ) {
     let sendData = commonController.getSendData();
     const bodyData = data;
-    console.log("bodyData: ", bodyData);
     try {
         if (bodyData.testimonialid) {
             const testimonialId = parseInt(bodyData.testimonialid, 10);
@@ -56,7 +55,6 @@ export const ADD_TESTIMONIAL = async function (
                 ]
             );
             if (addTestimonial) {
-                console.log("addTestimonial: ", addTestimonial);
                 sendData = commonController.getSuccessSendData(addTestimonial, "Testimonial added successfully");
             } else {
                 sendData = commonController.getErrorSendData({}, 400, {}, "Failed to add testimonial.");

@@ -75,9 +75,7 @@ $("#member_form").on("submit", function (e) {
           });
         }
       });
-    } else if (result.dismiss === Swal.DismissReason.cancel) {
-      console.log("User clicked on No, return");
-    }
+    } 
   });
 });
 
@@ -127,9 +125,7 @@ function remove(id) {
           }
         },
       });
-    } else {
-      console.log("Deletion canceled");
-    }
+    } 
   });
 }
 
@@ -199,7 +195,6 @@ $(document).ready(function () {
   // Get memberid from query string
   const urlParams = new URLSearchParams(window.location.search);
   const memberId = urlParams.get("memberid");
-  console.log("memberId: ", memberId);
   if (memberId) {
     // Call the view API to get member data
     $.ajax({
@@ -209,7 +204,6 @@ $(document).ready(function () {
       success: function (response) {
         if (response.err == 0) {
           var data = response.data;
-          console.log("data: ", data);
           $("#image_preview").attr("src", data.image).show();
           $("#Id").val(data.memberid || "");
           $("#f_name").val(data.f_name || "");
